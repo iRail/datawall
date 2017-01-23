@@ -1,0 +1,19 @@
+{
+  "name": "datawall",
+  "version": "0.0.0",
+  "description": "The iRail datawall at De Krook library in Ghent",
+  "main": "server.js",
+  "scripts": {
+    "test": "npm run lint"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Haroenv/datawall.git"
+  },
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/Haroenv/datawall/issues"
+  },
+  "homepage": "https://github.com/Haroenv/datawall#readme",
+  "private": true
+}
