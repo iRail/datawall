@@ -11,6 +11,7 @@ h1 em {
 th {
   text-transform: uppercase;
   text-align: left;
+  font-size: .6em;
 }
 
 tbody tr {
