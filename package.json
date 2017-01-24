@@ -9,7 +9,7 @@
   },
   "main": "server.js",
   "scripts": {
-    "test": "npm run lint"
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
