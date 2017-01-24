@@ -5,9 +5,9 @@
   <title>Socket.io</title>
 </head>
 <body>
-  <script src="./node_modules/socket.io-client/dist/socket.io.min.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
   <script>
-    var socket = io('http://localhost:3000/');
+    var socket = io();
     socket.emit('fetchLogs', { arrivalStop: 'http://irail.be/stations/NMBS/008892007'});
     socket.on('query', function(data) {
       console.log('query', data);
