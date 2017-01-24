@@ -12,14 +12,14 @@ function fetchLogs(socket, inputData, callback = null) {
     })
     .then(queryData => {
       // pass queries to the callback
-      // not the first time though, because we don't know what our lastquery is yet
+      // not the first time though, because we don't know what our lastQuery is yet
       if (callback) {
         emitSingleQueries(socket, filterQueries(callback(queryData), inputData));
         // data refreshed and events emitted, start a new timeout
         setTimeout(fetchLogs, 500, socket, inputData, getNewData);
       }
       else {
-        // initliaze lastQuery
+        // initialize lastQuery
         // at this point the first dataset has been fetched
         lastQuery = queryData[queryData.length - 1];
         fetchLogs(socket, inputData, getNewData);
