@@ -5,6 +5,8 @@ import io from 'socket.io-client';
 import './App.css';
 import {fetchQuery} from '../redux/actions';
 
+import List from './List.js';
+
 class App extends Component {
   componentWillMount() {
     this.startFetching();
@@ -22,28 +24,13 @@ class App extends Component {
     });
   }
 
-  renderQueries() {
-    const {queries} = this.props;
-
-    return queries.map(query => {
-      return <li key={queries.indexOf(query)}>{query.origin.name} => {query.destination.name}</li>;
-    });
-  }
-
-  // TODO make seperate list component jwz with all of the above methods enzu
   render() {
     return (
         <div>
-          <ul>
-            {this.renderQueries()}
-          </ul>
+          <List />
         </div>
     );
   }
 }
 
-function mapStateToProps(state) {
-  return {queries: state.queries};
-}
-
-export default connect(mapStateToProps, {fetchQuery})(App);
+export default connect(null, {fetchQuery})(App);
