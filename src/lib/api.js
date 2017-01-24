@@ -16,12 +16,13 @@ function fetchLogs(socket, inputData, callback = null) {
       if (callback) {
         emitSingleQueries(socket, filterQueries(callback(queryData), inputData));
         // data refreshed and events emitted, start a new timeout
-        refreshQueries(socket, inputData);
+        setTimeout(fetchLogs, 1000, socket, inputData, getNewData);
       }
       else {
         // initliaze lastQuery
         // at this point the first dataset has been fetched
         lastQuery = queryData[queryData.length - 1];
+        fetchLogs(socket, inputData, getNewData);
       }
     })
     .catch(ex => {
@@ -29,9 +30,8 @@ function fetchLogs(socket, inputData, callback = null) {
     });
 }
 
-// runs fetchLogs after 1s
-function refreshQueries(socket, inputData) {
-  setTimeout(fetchLogs, 1000, socket, inputData, getNewData);
+function startPolling(socket, inputData) {
+  fetchLogs(socket, inputData);
 }
 
 // checks for every query
@@ -80,6 +80,5 @@ function emitSingleQueries(socket, data) {
 }
 
 module.exports = {
-  fetchLogs,
-  refreshQueries
+  startPolling
 };
