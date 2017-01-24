@@ -33,16 +33,11 @@ class App extends Component {
   // TODO make seperate list component jwz with all of the above methods enzu
   render() {
     return (
-      <div className="App">
-        <div className="App-header">
-          <h2>Welcome to React</h2>
-        </div>
         <div>
           <ul>
             {this.renderQueries()}
           </ul>
         </div>
-      </div>
     );
   }
 }
