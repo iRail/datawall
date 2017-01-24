@@ -3,24 +3,28 @@ const http = require('http').Server(app);
 const io = require('socket.io')(http);
 const fetch = require('node-fetch');
 
-function getLogs(socket) {
+
+// fetches logs using fetch
+function fetchLogs(socket, inputData) {
   const url = 'http://api.irail.be/logs';
 
   fetch(url)
     .then((response) => {
       return response.json();
     })
-    .then((data) => {
-      emitSingleQueries(socket, filterQueries(data));
+    .then((queryData) => {
+      // filter and pass queries
+      emitSingleQueries(socket, filterQueries(queryData, inputData));
     })
     .catch((ex) => {
-      socket.emit('parsing failed', ex);
+      socket.emit('error', ex);
     });
 }
 
-function filterQueries(data) {
-  return data.filter(query => {
-    if (query.querytype === 'connections' && query.query.arrivalStop['@id'] === "http://irail.be/stations/NMBS/008892007") {
+// filters the queries
+function filterQueries(queryData, inputData) {
+  return queryData.filter(query => {
+    if (query.querytype === 'connections' && query.query.arrivalStop['@id'] === inputData.arrivalStop) {
       return query;
     }
   });
@@ -34,7 +38,11 @@ function emitSingleQueries(socket, data) {
 }
 
 io.on('connection', function(socket) {
-  getLogs(socket);
+  // client passes object with arrivalStop, etc.
+  socket.on('fetchLogs', (inputData) => {
+    // fetch logs
+    fetchLogs(socket, inputData);
+  });
 });
 
 http.listen(3000, function() {
