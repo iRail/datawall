@@ -59,11 +59,9 @@ function getNewData(data) {
 // filters the queries
 function filterQueries(queryData, inputData) {
   return queryData.filter(query => {
-    // sometimes the query doesn't have an arrivalstop?
+    // sometimes queries aren't valid, so they are wrong.
     try {
-      if (query.querytype === 'connections' && query.query.arrivalStop['@id'] === inputData.arrivalStop) {
-        return true;
-      }
+      return query.querytype === 'connections' && query.query.arrivalStop['@id'] === inputData.arrivalStop;
     } catch (ex) {
       console.log('Whoops, didn\'t expect that query!', ex);
       return false;
