@@ -72,6 +72,7 @@ function filterQueries(queryData, inputData) {
 function emitSingleQueries(socket, data) {
   data.forEach(query => socket.emit('query', {
     origin: query.query.departureStop,
+    destination: query.query.arrivalStop,
     querytime: query.querytime,
     useragent: query.user_agent
   }));
