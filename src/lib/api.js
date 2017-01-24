@@ -16,7 +16,7 @@ function fetchLogs(socket, inputData, callback = null) {
       if (callback) {
         emitSingleQueries(socket, filterQueries(callback(queryData), inputData));
         // data refreshed and events emitted, start a new timeout
-        setTimeout(fetchLogs, 1000, socket, inputData, getNewData);
+        setTimeout(fetchLogs, 500, socket, inputData, getNewData);
       }
       else {
         // initliaze lastQuery
@@ -59,13 +59,12 @@ function getNewData(data) {
 // filters the queries
 function filterQueries(queryData, inputData) {
   return queryData.filter(query => {
-    // sometimes the query doesn't have an arrivalstop?
+    // test for invalid queries
     try {
       if (query.querytype === 'connections' && query.query.arrivalStop['@id'] === inputData.arrivalStop) {
         return true;
       }
     } catch (ex) {
-      console.log('Whoops, didn\'t expect that query!', ex);
       return false;
     }
   });
@@ -75,7 +74,8 @@ function filterQueries(queryData, inputData) {
 function emitSingleQueries(socket, data) {
   data.forEach(query => socket.emit('query', {
     origin: query.query.departureStop,
-    querytime: query.querytime
+    querytime: query.querytime,
+    useragent: query.user_agent
   }));
 }
 
