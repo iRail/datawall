@@ -10,7 +10,7 @@
     var socket = io('http://localhost:3000/');
     socket.emit('fetchLogs', { arrivalStop: 'http://irail.be/stations/NMBS/008892007'});
     socket.on('query', function(data) {
-      console.log(data);
+      console.log('query', data);
     });
   </script>
 </body>
