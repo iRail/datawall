@@ -1,19 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './components/App';
+import {Provider} from 'react-redux';
+import {createStore, applyMiddleware} from 'redux';
+
 import './index.css';
+import reducer from './redux/reducerQuery';
 
-import io from 'socket.io-client';
-const apiBaseUrl = process.env.NODE_ENV === 'development' ? 'localhost:3001' : '/';
-
-const socket = io(apiBaseUrl);
-
-socket.emit('fetchLogs', { arrivalStop: 'http://irail.be/stations/NMBS/008892007'});
-socket.on('query', function(data) {
-  console.log('query', data);
-});
+let store = applyMiddleware()(createStore);
 
 ReactDOM.render(
-  <App />,
+  <Provider store={store(
+      reducer,
+      window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())}>
+    <App />
+  </Provider>,
   document.getElementById('root')
 );
