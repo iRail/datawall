@@ -27,18 +27,21 @@ class List extends Component {
 
   render() {
     return (
-      <table>
-        <thead>
-          <tr>
-            <th>time</th>
-            <th>departure</th>
-            <th>destination</th>
-          </tr>
-        </thead>
-        <tbody>
-          {this.renderQueries()}
-        </tbody>
-      </table>
+      <article>
+        <h1>Live search queries <em>of iRail</em></h1>
+        <table>
+          <thead>
+            <tr>
+              <th>time</th>
+              <th>departure</th>
+              <th>destination</th>
+            </tr>
+          </thead>
+          <tbody>
+            {this.renderQueries()}
+          </tbody>
+        </table>
+      </article>
     );
   }
 }

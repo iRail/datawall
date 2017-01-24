@@ -1,3 +1,34 @@
+h1 {
+  font-weight: 600;
+}
+
+h1 em {
+  font-weight: 300;
+  font-style: normal;
+}
+
+
 th {
   text-transform: uppercase;
+  text-align: left;
+}
+
+tbody tr {
+  border: none;
+}
+
+tbody td {
+  border-top: none;
+  border-bottom: none;
+  border-left: .1em transparent solid;
+  border-right: .1em transparent solid;
+  padding: .2em;
+}
+
+tbody tr:nth-of-type(even) {
+  background-color: grey;
+}
+
+tbody tr:nth-of-type(odd) {
+  background-color: lightgrey;
 }
