@@ -2,14 +2,26 @@
   "name": "datawall",
   "version": "0.0.0",
   "description": "The iRail datawall at De Krook library in Ghent",
+  "devDependencies": {
+    "concurrently": "^3.1.0",
+    "react-scripts": "0.8.5"
+  },
   "dependencies": {
+    "cross-env": "^3.1.4",
     "express": "^4.14.0",
     "node-fetch": "^1.6.3",
-    "socket.io": "^1.7.2"
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2",
+    "socket.io": "^1.7.2",
+    "socket.io-client": "^1.7.2"
   },
-  "main": "server.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "cross-env NODE_ENV=production npm run server",
+    "server": "node server.js",
+    "dev": "cross-env NODE_ENV=development concurrently 'npm run server' 'npm run client'",
+    "client": "react-scripts start",
+    "build": "react-scripts build",
+    "eject": "react-scripts eject"
   },
   "repository": {
     "type": "git",
@@ -19,6 +31,7 @@
   "bugs": {
     "url": "https://github.com/Haroenv/datawall/issues"
   },
-  "homepage": "https://github.com/Haroenv/datawall#readme",
+  "homepage": "/",
+  "proxy": "http://localhost:3001/",
   "private": true
 }

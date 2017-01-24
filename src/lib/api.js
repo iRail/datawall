@@ -1,10 +1,4 @@
-const express = require('express');
-const app = express();
-const http = require('http').Server(app);
-const io = require('socket.io')(http);
 const fetch = require('node-fetch');
-
-app.use(express.static('static'));
 
 let lastQuery;
 
@@ -85,17 +79,7 @@ function emitSingleQueries(socket, data) {
   }));
 }
 
-io.on('connection', function(socket) {
-  // client passes object with arrivalStop, etc.
-  // eventually make this the actual station object
-  socket.on('fetchLogs', (inputData) => {
-    // fetch logs for the first time
-    fetchLogs(socket, inputData);
-    // start polling
-    refreshQueries(socket, inputData);
-  });
-});
-
-http.listen(3000, function() {
-  console.log('listening on *:3000');
-});
+module.exports = {
+  fetchLogs,
+  refreshQueries
+};
