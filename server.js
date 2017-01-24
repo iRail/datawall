@@ -5,8 +5,6 @@ const http = require('http').Server(app);
 const io = require('socket.io')(http);
 const fetch = require('node-fetch');
 
-app.use(express.static(path.join(__dirname, 'build')));
-
 // fetches logs using fetch
 function fetchLogs(socket, inputData) {
   const url = 'http://api.irail.be/logs';
@@ -55,6 +53,14 @@ io.on('connection', function(socket) {
   });
 });
 
-http.listen(3000, function() {
-  console.log('listening on *:3000');
+
+app.set('port', (process.env.PORT || 3001));
+
+// Express only serves static assets in production
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, 'build')));
+}
+
+http.listen(app.get('port'), function() {
+  console.log(`Find the server at: http://localhost:${app.get('port')}/`);
 });
