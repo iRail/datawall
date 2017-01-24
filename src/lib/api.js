@@ -61,9 +61,7 @@ function filterQueries(queryData, inputData) {
   return queryData.filter(query => {
     // test for invalid queries
     try {
-      if (query.querytype === 'connections' && query.query.arrivalStop['@id'] === inputData.arrivalStop) {
-        return true;
-      }
+      return query.querytype === 'connections' && query.query.arrivalStop['@id'] === inputData.arrivalStop;
     } catch (ex) {
       return false;
     }
