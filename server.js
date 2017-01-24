@@ -4,14 +4,16 @@ const app = express();
 const http = require('http').Server(app);
 const io = require('socket.io')(http);
 
-const {fetchLogs} = require('./src/lib/api');
+const {fetchLogs, refreshQueries} = require('./src/lib/api');
 
 io.on('connection', function(socket) {
   // client passes object with arrivalStop, etc.
   // eventually make this the actual station object
   socket.on('fetchLogs', (inputData) => {
-    // fetch logs
+    // fetch logs for the first time
     fetchLogs(socket, inputData);
+    // start polling
+    refreshQueries(socket, inputData);
   });
 });
 
