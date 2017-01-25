@@ -12,16 +12,8 @@ import Footer from './Footer.js';
 const Main = styled.main`
   display: flex;
   flex-direction: column;
+  height: 100vh;
 `;
-
-const Container = styled(Scene)`
-  flex-basis: 75vh;
-`;
-
-const Bottom = styled(Footer)`
-  flex-basis: 25vh;
-`;
-
 
 class App extends Component {
   componentWillMount() {
@@ -43,8 +35,8 @@ class App extends Component {
   render() {
     return (
       <Main>
-        <Container />
-        <Bottom />
+        <Scene />
+        <Footer />
       </Main>
     );
   }

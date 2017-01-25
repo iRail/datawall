@@ -17,10 +17,12 @@ const Wrapper = styled.footer`
   background-color: ${colors.black};
   color: ${colors.white};
   display: flex;
-`;
+  flex-basis: 22em;
+`; // basis should be whatever's needed for this to fit or a fraction of the height (x screens)
 
 const Container = styled.div`
   flex-grow: 1;
+  padding: 1em;
 `;
 
 const Aside = styled.aside`
@@ -43,7 +45,7 @@ const Link = styled.a`
 export default class Footer extends Component {
   render() {
     return(
-      <Wrapper className={this.props.className}>
+      <Wrapper>
         <Container>
           <Header>Live search queries <Thin>of iRail</Thin></Header>
           <List />

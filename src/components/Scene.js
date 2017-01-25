@@ -5,6 +5,7 @@ import {colors} from '../constants';
 
 const Wrapper = styled.div`
   background-color: ${colors.red};
+  flex-grow: 1;
 `;
 
 export default class Scene extends Component {
