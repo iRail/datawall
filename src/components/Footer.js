@@ -51,7 +51,7 @@ export default class Footer extends Component {
           <List />
         </Container>
         <Aside>
-          <strong><em>See your own search request appear in gold!</em></strong>
+          <strong><em>See your own search request appear!</em></strong>
           <em>Search on</em>
           <Link href="https://irail.be">irail.be</Link>
           <img src="#" alt="irail logo"/>
