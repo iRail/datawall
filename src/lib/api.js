@@ -26,6 +26,7 @@ function fetchLogs(socket, inputData, callback = null) {
       }
     })
     .catch(ex => {
+      console.log(ex);
       fetchLogs(socket, inputData, getNewData);
     });
 }
