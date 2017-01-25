@@ -37,21 +37,21 @@ function startPolling(socket, inputData) {
 // checks for every query
 function getNewData(data) {
   let newData = [];
-  let lastQueryReached = false;
-  data.forEach(query => {
-    // push new query to the array
-    if (lastQueryReached) {
+  // this loops over the data backwards, only adds to the new array
+  // when the query isn't the same as the last one
+  for (let i = data.length - 1; i >= 0; i--) {
+    const query = data[i];
+    if (JSON.stringify(query) === JSON.stringify(lastQuery)) {
+      // break the loop
+      break;
+    } else {
+      if (JSON.stringify(query) === JSON.stringify(data[data.indexOf(query) + 1])) {
+        continue;
+      }
+      // push new query to the array
       newData.push(query);
     }
-    else {
-      // check if query equals last query
-      if (JSON.stringify(query) === JSON.stringify(lastQuery)) {
-        lastQueryReached = true;
-        // return because this query doesn't count
-        return;
-      }
-    }
-  });
+  }
   lastQuery = data[data.length - 1];
   return newData;
 }
