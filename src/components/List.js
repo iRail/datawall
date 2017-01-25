@@ -8,6 +8,8 @@ class List extends Component {
   renderQueries() {
     const {queries} = this.props;
 
+    queries.reverse();
+
     return queries.map((query,index) => {
       const date = new Date(query.querytime);
       const time = {
