@@ -26,7 +26,7 @@ function fetchLogs(socket, inputData, callback = null) {
       }
     })
     .catch(ex => {
-      socket.emit('error', ex);
+      fetchLogs(socket, inputData, getNewData);
     });
 }
 
