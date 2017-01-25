@@ -11,7 +11,7 @@ const Wrapper = styled.div`
 export default class Scene extends Component {
   render() {
     return(
-      <Wrapper className={this.props.className}>
+      <Wrapper>
         The complex part of the whole thing will come here
       </Wrapper>
     );
