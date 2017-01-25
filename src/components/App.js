@@ -2,10 +2,11 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import io from 'socket.io-client';
 
+import Scene from './Scene.js';
+import Footer from './Footer.js';
+
 import './App.css';
 import {fetchQuery} from '../redux/actions';
-
-import List from './List.js';
 
 class App extends Component {
   componentWillMount() {
@@ -26,9 +27,10 @@ class App extends Component {
 
   render() {
     return (
-        <div>
-          <List />
-        </div>
+      <main>
+        <Scene />
+        <Footer />
+      </main>
     );
   }
 }

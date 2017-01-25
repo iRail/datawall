@@ -1,12 +1,6 @@
-h1 {
-  font-weight: 600;
+table {
+  width: 100%;
 }
-
-h1 em {
-  font-weight: 300;
-  font-style: normal;
-}
-
 
 th {
   text-transform: uppercase;
