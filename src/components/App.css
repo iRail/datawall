@@ -1,1 +1,12 @@
+main {
+  display: flex;
+  flex-direction: column;
+}
 
+.Scene {
+  flex-basis: 75vh;
+}
+
+footer {
+  flex-basis: 25vh;
+}
