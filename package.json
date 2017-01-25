@@ -15,7 +15,8 @@
     "react-redux": "^5.0.2",
     "redux": "^3.6.0",
     "socket.io": "^1.7.2",
-    "socket.io-client": "^1.7.2"
+    "socket.io-client": "^1.7.2",
+    "styled-components": "^1.4.0"
   },
   "scripts": {
     "start": "cross-env NODE_ENV=production npm run server",

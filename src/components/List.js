@@ -1,7 +1,36 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import styled from 'styled-components';
 
-import './List.css';
+import {colors} from '../constants';
+
+const Table = styled.table`
+  width: 100%;
+`;
+
+const Heading = styled.th`
+  text-transform: uppercase;
+  text-align: left;
+  font-size: .6em;
+`;
+
+const Item = styled.td`
+  border-top: none;
+  border-bottom: none;
+  border-left: .1em transparent solid;
+  border-right: .1em transparent solid;
+  padding: .2em;
+`;
+
+const Row = styled.tr`
+  &:nth-of-type(even) {
+    background-color: ${colors.lightGrey};
+  }
+  &:nth-of-type(odd) {
+    background-color: ${colors.darkGrey};
+  }
+`;
+
 
 class List extends Component {
 
@@ -16,29 +45,29 @@ class List extends Component {
         seconds: date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds()
       };
       return (
-        <tr key={index}>
-          <td>{time.hours}:{time.minutes}:{time.seconds}</td>
-          <td>{query.origin.name}</td>
-          <td>{query.destination.name}</td>
-        </tr>
+        <Row key={index}>
+          <Item>{time.hours}:{time.minutes}:{time.seconds}</Item>
+          <Item>{query.origin.name}</Item>
+          <Item>{query.destination.name}</Item>
+        </Row>
       );
     });
   }
 
   render() {
     return (
-      <table>
+      <Table>
         <thead>
           <tr>
-            <th>time</th>
-            <th>departure</th>
-            <th>destination</th>
+            <Heading>time</Heading>
+            <Heading>departure</Heading>
+            <Heading>destination</Heading>
           </tr>
         </thead>
         <tbody>
           {this.renderQueries()}
         </tbody>
-      </table>
+      </Table>
     );
   }
 }

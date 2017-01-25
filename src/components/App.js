@@ -1,12 +1,27 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import styled from 'styled-components';
 import io from 'socket.io-client';
+
+import {fetchQuery} from '../redux/actions';
 
 import Scene from './Scene.js';
 import Footer from './Footer.js';
 
-import './App.css';
-import {fetchQuery} from '../redux/actions';
+
+const Main = styled.main`
+  display: flex;
+  flex-direction: column;
+`;
+
+const Container = styled(Scene)`
+  flex-basis: 75vh;
+`;
+
+const Bottom = styled(Footer)`
+  flex-basis: 25vh;
+`;
+
 
 class App extends Component {
   componentWillMount() {
@@ -27,10 +42,10 @@ class App extends Component {
 
   render() {
     return (
-      <main>
-        <Scene />
-        <Footer />
-      </main>
+      <Main>
+        <Container />
+        <Bottom />
+      </Main>
     );
   }
 }
