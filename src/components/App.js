@@ -26,7 +26,7 @@ class App extends Component {
 
     const socket = io(apiBaseUrl);
 
-    socket.emit('fetchLogs', { arrivalStop: 'http://irail.be/stations/NMBS/008892007'});
+    socket.emit('fetchLogs', { stop: 'http://irail.be/stations/NMBS/008892007'});
     socket.on('query', function(data) {
       fetchQueryProp(data);
     });

@@ -62,7 +62,11 @@ function filterQueries(queryData, inputData) {
     // test for invalid queries
     try {
       // filter another time for departure? IMO this should be two different emit types; 'departure', 'arrival'
-      return query.querytype === 'connections' && query.query.arrivalStop['@id'] === inputData.arrivalStop;
+      return query.querytype === 'connections' &&
+        (
+          query.query.arrivalStop['@id'] === inputData.stop ||
+          query.query.departureStop['@id'] === inputData.stop
+        );
     } catch (ex) {
       return false;
     }
@@ -74,7 +78,7 @@ function emitSingleQueries(socket, data) {
   data.forEach(query => socket.emit('query', {
     origin: query.query.departureStop,
     destination: query.query.arrivalStop,
-    querytime: query.querytime,
+    querytime: query.hasOwnProperty('querytime') ? query.querytime : new Date(),
     useragent: query.user_agent
   }));
 }
