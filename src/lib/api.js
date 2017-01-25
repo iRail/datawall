@@ -61,6 +61,7 @@ function filterQueries(queryData, inputData) {
   return queryData.filter(query => {
     // test for invalid queries
     try {
+      // filter another time for departure? IMO this should be two different emit types; 'departure', 'arrival'
       return query.querytype === 'connections' && query.query.arrivalStop['@id'] === inputData.arrivalStop;
     } catch (ex) {
       return false;
