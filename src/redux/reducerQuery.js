@@ -7,12 +7,22 @@ const INITIAL_STATE = {
 export default function(state = INITIAL_STATE, action) {
   switch (action.type) {
     case RECIEVE_QUERY:
-      // somehow limit it to X here
       // also get out double (via Set -> array ?)
-      // maybe reverse here
+      let queries = [...state.queries, action.payload];
+
+      queries.sort((a,b) => {
+        if (a.querytime === b.querytime) {
+          return 0;
+        }
+        if (a.querytime < b.querytime) {
+          return 1;
+        }
+        return -1;
+      });
+
       return {
         ...state,
-        queries: [...state.queries, action.payload]
+        queries: queries.slice(0,7) // limit to 7 newest
       };
     default:
       return state;
