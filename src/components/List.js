@@ -8,7 +8,16 @@ class List extends Component {
   renderQueries() {
     const {queries} = this.props;
 
-    queries.reverse();
+    // todo: clean this up a bit, newest query first
+    queries.sort((a,b) => {
+      if (a.querytime === b.querytime) {
+        return 0;
+      }
+      if (a.querytime < b.querytime) {
+        return 1;
+      }
+      return -1;
+    })
 
     return queries.map((query,index) => {
       const date = new Date(query.querytime);
