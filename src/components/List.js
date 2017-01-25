@@ -6,6 +6,7 @@ import {colors} from '../constants';
 
 const Table = styled.table`
   width: 100%;
+  border-collapse: collapse;
 `;
 
 const Heading = styled.th`
@@ -17,9 +18,8 @@ const Heading = styled.th`
 const Item = styled.td`
   border-top: none;
   border-bottom: none;
-  border-left: .1em transparent solid;
-  border-right: .1em transparent solid;
-  padding: .2em;
+  border-right: .2em ${colors.black} solid;
+  padding: .4em;
 `;
 
 const Row = styled.tr`
