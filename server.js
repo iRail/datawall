@@ -13,9 +13,9 @@ io.on('connection', function(socket) {
   // eventually make this the actual station object
   socket.on('fetchLogs', (inputData) => {
     // start polling
-    if (!listening.contains(inputData)) {
+    if (!listening.includes(inputData.stop)) {
+      listening.push(inputData.stop);
       startPolling(socket, inputData);
-      listening.push(inputData);
     }
   });
 });
