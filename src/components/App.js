@@ -26,7 +26,7 @@ class App extends Component {
 
     const socket = io(API_BASE_URI);
 
-    socket.emit('fetchLogs', { stop: STATION_URI});
+    // socket.emit('fetchLogs', { stop: STATION_URI});
     socket.on(STATION_URI, function(data) {
       fetchQueryProp(data);
     });
