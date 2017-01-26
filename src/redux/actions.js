@@ -1,8 +1,8 @@
-export const RECIEVE_QUERY = 'RECIEVE_QUERY';
+export const RECEIVE_QUERIES = 'RECEIVE_QUERIES';
 
 export function fetchQuery(query) {
   return {
-    type: RECIEVE_QUERY,
+    type: RECEIVE_QUERIES,
     payload: query
   };
 }
