@@ -9,7 +9,7 @@ const Img = styled.img`
 
 export default class Hub extends Component {
   render() {
-    return(
+    return (
       <Img src={hub} alt={STATION.name} />
     );
   }

@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import styled, {keyframes} from 'styled-components';
 import pod from '../img/pod.svg';
 
+import {times} from '../constants';
+
 const moveIn = keyframes`
   from {
     transform: rotate(0deg);
@@ -15,7 +17,7 @@ const moveIn = keyframes`
 const Img = styled.img`
   width: 3em;
   height: 3em;
-  animation: ${moveIn} 2s linear infinite;
+  animation: ${moveIn} ${times.podAnimation} linear infinite;
 `;
 
 
