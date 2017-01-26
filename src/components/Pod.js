@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import styled, {keyframes} from 'styled-components';
-import bee from '../img/bee.svg';
+import pod from '../img/pod.svg';
 
 const moveIn = keyframes`
   from {
@@ -23,7 +23,7 @@ const Img = styled.img`
 export default class Pod extends Component {
   render() {
     return(
-      <Img src={bee} alt="a lookup"/>
+      <Img src={pod} alt="a lookup"/>
     );
   }
 }
