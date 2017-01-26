@@ -8,7 +8,7 @@ export const queryReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case RECEIVE_QUERIES:
       const queries = [...state.queries, action.payload];
-      queries.sort((a, b) => a - b);
+      queries.sort((a, b) => a.querytime - b.querytime);
       return {...state, queries: queries.slice(0,7)};
     default:
       return state;
