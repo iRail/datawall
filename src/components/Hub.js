@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import styled from 'styled-components';
 import hub from '../img/hub.svg'
-import {STATION} from '../constants';
+import {STATION, colors} from '../constants';
+
 
 const Wrapper = styled.div`
 `;
@@ -17,6 +18,7 @@ const MainStation = styled.div`
 `;
 
 const Text = styled.span`
+  color: ${colors.white};
   line-height: 30vh;
 `;
 
