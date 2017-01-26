@@ -12,7 +12,7 @@ export const colors = {
   red: '#c91f1b'
 };
 
-export const times {
+export const times = {
   podAnimation: 3000
 }
 
