@@ -29,7 +29,7 @@ const Row = styled.tr`
   }
 `;
 
-class List extends Component {
+export default class List extends Component {
   renderQueries() {
     const {queries} = this.props;
 
@@ -67,5 +67,3 @@ class List extends Component {
     );
   }
 }
-
-export default List;
