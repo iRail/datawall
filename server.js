@@ -6,8 +6,8 @@ const io = require('socket.io')(http);
 
 const {startPolling} = require('./src/lib/api');
 
-const {STATION_URI} = {
-  STATION_URI: 'http://irail.be/stations/NMBS/008892007'
+const STATION = {
+  URI: 'http://irail.be/stations/NMBS/008892007'
 }; // can't import from constants because that's an es6 export
 
 
