@@ -10,12 +10,9 @@ const Wrapper = styled.div`
 `;
 
 class Scene extends Component {
-  addBee() {
-    const {latest} = this.props;
-    console.log(latest);
-  }
-
   render() {
+    const { latest } = this.props;
+
     return(
       <Wrapper>
         The complex part of the whole thing will come here
@@ -25,7 +22,7 @@ class Scene extends Component {
 }
 
 function mapStateToProps(state) {
-  return {latest: state.queries[0]};
+  return { latest: state.queries[0] };
 }
 
 export default connect(mapStateToProps)(Scene);

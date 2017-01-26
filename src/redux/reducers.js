@@ -1,10 +1,10 @@
-import {RECIEVE_QUERY} from './actions';
+import { RECIEVE_QUERY } from './actions';
 
 const INITIAL_STATE = {
   queries: []
 };
 
-export default function(state = INITIAL_STATE, action) {
+export const queryReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case RECIEVE_QUERY:
       let queries = [...state.queries, action.payload];
