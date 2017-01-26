@@ -7,7 +7,6 @@ const INITIAL_STATE = {
 export default function(state = INITIAL_STATE, action) {
   switch (action.type) {
     case RECIEVE_QUERY:
-      // also get out double (via Set -> array ?)
       let queries = [...state.queries, action.payload];
 
       queries.sort((a,b) => {

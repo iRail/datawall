@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import io from 'socket.io-client';
 
 import {fetchQuery} from '../redux/actions';
+import {API_BASE_URI, STATION_URI} from '../constants';
 
 import Scene from './Scene.js';
 import Footer from './Footer.js';
@@ -22,12 +23,11 @@ class App extends Component {
 
   startFetching() {
     const fetchQueryProp = this.props.fetchQuery;
-    const apiBaseUrl = process.env.NODE_ENV === 'development' ? 'localhost:3001' : '/';
 
-    const socket = io(apiBaseUrl);
+    const socket = io(API_BASE_URI);
 
-    socket.emit('fetchLogs', { stop: 'http://irail.be/stations/NMBS/008892007'});
-    socket.on('http://irail.be/stations/NMBS/008892007', function(data) {
+    socket.emit('fetchLogs', { stop: STATION_URI});
+    socket.on(STATION_URI, function(data) {
       fetchQueryProp(data);
     });
   }
