@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
 import styled from 'styled-components';
 
 import {colors} from '../constants';
@@ -8,7 +9,12 @@ const Wrapper = styled.div`
   flex-grow: 1;
 `;
 
-export default class Scene extends Component {
+class Scene extends Component {
+  addBee() {
+    const {latest} = this.props;
+    console.log(latest);
+  }
+
   render() {
     return(
       <Wrapper>
@@ -17,3 +23,9 @@ export default class Scene extends Component {
     );
   }
 }
+
+function mapStateToProps(state) {
+  return {latest: state.queries[0]};
+}
+
+export default connect(mapStateToProps)(Scene);
