@@ -12,6 +12,10 @@ export const colors = {
   red: '#c91f1b'
 };
 
+export const times {
+  podAnimation: 3000
+}
+
 export const STATION = {
   URI: 'http://irail.be/stations/NMBS/008892007',
   name: 'Gent Sint-Pieters'
