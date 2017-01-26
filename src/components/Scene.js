@@ -9,13 +9,15 @@ import Pod from './Pod';
 const Wrapper = styled.div`
   background-color: ${colors.red};
   flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 class Scene extends Component {
   render() {
     return(
       <Wrapper>
-        <Pod />
         <Hub />
       </Wrapper>
     );
