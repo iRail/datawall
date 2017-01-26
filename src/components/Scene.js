@@ -1,8 +1,7 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
+import React, { Component } from 'react';
 import styled from 'styled-components';
 
-import {colors} from '../constants';
+import { colors } from '../constants';
 
 import Hub from './Hub';
 import Pod from './Pod';
@@ -14,8 +13,6 @@ const Wrapper = styled.div`
 
 class Scene extends Component {
   render() {
-    const { latest } = this.props;
-
     return(
       <Wrapper>
         <Pod />
@@ -25,8 +22,4 @@ class Scene extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  return { latest: state.queries[0] };
-}
-
-export default connect(mapStateToProps)(Scene);
+export default Scene;
