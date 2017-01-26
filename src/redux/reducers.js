@@ -1,4 +1,4 @@
-import { RECIEVE_QUERY } from './actions';
+import { RECEIVE_QUERIES } from './actions';
 
 const INITIAL_STATE = {
   queries: []
@@ -6,23 +6,10 @@ const INITIAL_STATE = {
 
 export const queryReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case RECIEVE_QUERY:
-      let queries = [...state.queries, action.payload];
-
-      queries.sort((a,b) => {
-        if (a.querytime === b.querytime) {
-          return 0;
-        }
-        if (a.querytime < b.querytime) {
-          return 1;
-        }
-        return -1;
-      });
-
-      return {
-        ...state,
-        queries: queries.slice(0,7) // limit to 7 newest
-      };
+    case RECEIVE_QUERIES:
+      const queries = [...state.queries, action.payload];
+      queries.sort((a, b) => a - b);
+      return {...state, queries: queries.slice(0,7)};
     default:
       return state;
   }
