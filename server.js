@@ -6,17 +6,17 @@ const io = require('socket.io')(http);
 
 const {startPolling} = require('./src/lib/api');
 
-const listening = [];
+// const listening = [];
 
 io.on('connection', function(socket) {
   // client passes object with stop, etc.
   // eventually make this the actual station object
   socket.on('fetchLogs', (inputData) => {
     // start polling
-    if (!listening.includes(inputData.stop)) {
-      listening.push(inputData.stop);
+    // if (!listening.includes(inputData.stop)) {
+      // listening.push(inputData.stop);
       startPolling(socket, inputData);
-    }
+    // }
   });
 });
 
