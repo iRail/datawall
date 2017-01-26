@@ -40,6 +40,8 @@ const Aside = styled.aside`
 
 const Link = styled.a`
   color: ${colors.red};
+  font-weight: 800;
+  font-size: 1.2em;
 `;
 
 const Img = styled.img`
@@ -58,7 +60,7 @@ export default class Footer extends Component {
         <Aside>
           <strong><em>See your own search request appear!</em></strong>
           <em>Search on</em>
-          <Link href="https://irail.be">irail.be</Link>
+          <Link href="https://irail.be" target="_blank" rel="noopener">irail.be</Link>
           <Img src={logo} alt="irail logo"/>
         </Aside>
       </Wrapper>
