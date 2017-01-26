@@ -4,6 +4,9 @@ import styled from 'styled-components';
 
 import {colors} from '../constants';
 
+import Hub from './Hub';
+import Pod from './Pod';
+
 const Wrapper = styled.div`
   background-color: ${colors.red};
   flex-grow: 1;
@@ -18,7 +21,8 @@ class Scene extends Component {
   render() {
     return(
       <Wrapper>
-        The complex part of the whole thing will come here
+        <Pod />
+        <Hub />
       </Wrapper>
     );
   }
