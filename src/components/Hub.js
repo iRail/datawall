@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-export default class Hab extends Component {
+export default class Hub extends Component {
   render() {
     return(
       <div>
