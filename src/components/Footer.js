@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import styled from 'styled-components';
-import {colors} from '../constants';
+import logo from '../img/logo.svg';
 
+import {colors} from '../constants';
 import List from './List.js';
 
 const Header = styled.h2`
@@ -41,6 +42,10 @@ const Link = styled.a`
   color: ${colors.red};
 `;
 
+const Img = styled.img`
+  width: 4em;
+  margin: .2em;
+`;
 
 export default class Footer extends Component {
   render() {
@@ -54,7 +59,7 @@ export default class Footer extends Component {
           <strong><em>See your own search request appear!</em></strong>
           <em>Search on</em>
           <Link href="https://irail.be">irail.be</Link>
-          <img src="#" alt="irail logo"/>
+          <Img src={logo} alt="irail logo"/>
         </Aside>
       </Wrapper>
     );
