@@ -14,7 +14,7 @@ function fetchLogs(socket, inputData, callback = null) {
       // pass queries to the callback
       // not the first time though, because we don't know what our lastQuery is yet
       if (callback) {
-        emitSingleQueries(socket, filterQueries(callback(queryData), inputData));
+        emitSingleQueries(socket, filterQueries(callback(queryData), inputData), inputData);
         // data refreshed and events emitted, start a new timeout
         setTimeout(fetchLogs, 500, socket, inputData, getNewData);
       }
@@ -62,7 +62,6 @@ function filterQueries(queryData, inputData) {
   return queryData.filter(query => {
     // test for invalid queries
     try {
-      // filter another time for departure? IMO this should be two different emit types; 'departure', 'arrival'
       return query.querytype === 'connections' &&
         (
           query.query.arrivalStop['@id'] === inputData.stop ||
@@ -75,8 +74,8 @@ function filterQueries(queryData, inputData) {
 }
 
 // emit event for every query
-function emitSingleQueries(socket, data) {
-  data.forEach(query => socket.emit('query', {
+function emitSingleQueries(socket, data, inputData) {
+  data.forEach(query => socket.emit(inputData.stop, {
     origin: query.query.departureStop,
     destination: query.query.arrivalStop,
     querytime: query.hasOwnProperty('querytime') ? query.querytime : new Date(),
