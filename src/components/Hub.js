@@ -7,10 +7,19 @@ const Img = styled.img`
   height: 20vh;
 `;
 
+const Wrapper = styled.div`
+`;
+
+const Text = styled.span`
+`;
+
 export default class Hub extends Component {
   render() {
     return (
-      <Img src={hub} alt={STATION.name} />
+      <Wrapper>
+        <Text>{STATION.name}</Text>
+        <Img src={hub} alt={STATION.name} />
+      </Wrapper>
     );
   }
 }
