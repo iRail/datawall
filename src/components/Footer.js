@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import styled from 'styled-components';
 import logo from '../img/logo.svg';
 
@@ -51,7 +51,7 @@ const Img = styled.img`
 
 export default class Footer extends Component {
   render() {
-    const { queries } = this.props;
+    const {queries} = this.props;
     return(
       <Wrapper>
         <Container>

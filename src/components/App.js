@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
 import styled from 'styled-components';
-import { listenToQueries } from '../redux/actions';
+import {listenToQueries} from '../redux/actions';
 
 import Scene from './Scene.js';
 import Footer from './Footer.js';
@@ -19,7 +19,7 @@ class App extends Component {
   }
 
   render() {
-    const { queries } = this.props;
+    const {queries} = this.props;
     return (
       <Main>
         <Scene queries={queries} />
@@ -33,4 +33,4 @@ const mapStateToProps = (state, ownProps) => ({
   queries: state.queries
 });
 
-export default connect(mapStateToProps, { listenToQueries })(App);
+export default connect(mapStateToProps, {listenToQueries})(App);

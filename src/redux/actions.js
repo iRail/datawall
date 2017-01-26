@@ -1,5 +1,5 @@
 import io from 'socket.io-client';
-import { API_BASE_URI, STATION } from '../constants';
+import {API_BASE_URI, STATION} from '../constants';
 
 export const RECEIVE_QUERIES = 'RECEIVE_QUERIES';
 export const LISTEN_FOR_QUERIES = 'LISTEN_FOR_QUERIES';

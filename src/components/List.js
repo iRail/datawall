@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import styled from 'styled-components';
-import { colors } from '../constants';
+import {colors} from '../constants';
 
 const Table = styled.table`
   width: 100%;
@@ -31,7 +31,7 @@ const Row = styled.tr`
 
 class List extends Component {
   renderQueries() {
-    const { queries } = this.props;
+    const {queries} = this.props;
 
     return queries.map((query,index) => {
       const date = new Date(query.querytime);
