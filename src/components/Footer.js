@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import styled from 'styled-components';
 import logo from '../img/logo.svg';
 
@@ -49,11 +49,12 @@ const Img = styled.img`
 
 export default class Footer extends Component {
   render() {
+    const { queries } = this.props;
     return(
       <Wrapper>
         <Container>
           <Header>Live search queries <Thin>of iRail</Thin></Header>
-          <List />
+          <List queries={queries} />
         </Container>
         <Aside>
           <strong><em>See your own search request appear!</em></strong>
