@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import io from 'socket.io-client';
 
 import {fetchQuery} from '../redux/actions';
-import {API_BASE_URI, STATION_URI} from '../constants';
+import {API_BASE_URI, STATION} from '../constants';
 
 import Scene from './Scene.js';
 import Footer from './Footer.js';
@@ -26,8 +26,8 @@ class App extends Component {
 
     const socket = io(API_BASE_URI);
 
-    // socket.emit('fetchLogs', { stop: STATION_URI});
-    socket.on(STATION_URI, function(data) {
+    // socket.emit('fetchLogs', { stop: STATION.URI});
+    socket.on(STATION.URI, function(data) {
       fetchQueryProp(data);
     });
   }
