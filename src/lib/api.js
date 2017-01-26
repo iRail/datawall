@@ -7,9 +7,7 @@ function fetchLogs(socket, inputData, callback = null) {
   const url = 'http://api.irail.be/logs';
 
   fetch(url)
-    .then(response => {
-      return response.json();
-    })
+    .then(response => response.json())
     .then(queryData => {
       // pass queries to the callback
       // not the first time though, because we don't know what our lastQuery is yet
@@ -26,7 +24,6 @@ function fetchLogs(socket, inputData, callback = null) {
       }
     })
     .catch(ex => {
-      console.log(ex);
       fetchLogs(socket, inputData, getNewData);
     });
 }
