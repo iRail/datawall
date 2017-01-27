@@ -3,14 +3,18 @@ import {connect} from 'react-redux';
 import styled from 'styled-components';
 import {listenToQueries} from '../redux/actions';
 
-import Scene from './Scene.js';
-import Footer from './Footer.js';
+import {colors} from '../constants';
+
+import Header from './Header';
+import Scene from './Scene';
+import Footer from './Footer';
 
 
 const Main = styled.main`
   display: flex;
   flex-direction: column;
   height: 100vh;
+  background-color: ${colors.red};
 `;
 
 class App extends Component {
@@ -22,6 +26,7 @@ class App extends Component {
     const {queries} = this.props;
     return (
       <Main>
+        <Header />
         <Scene queries={queries} />
         <Footer queries={queries} />
       </Main>
