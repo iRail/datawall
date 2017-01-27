@@ -19,11 +19,20 @@ function isCenter(stop) {
 export default class Pod extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      position: {
-        transform: `translateX(0) translateY(0) scale(0.8)`
+    const {departureStop} = props;
+    if (isCenter(departureStop)) {
+      this.state = {
+        position: {
+          transform: `translateX(0) translateY(0) scale(-1, 1)`,
+        }
       }
-    };
+    } else {
+      this.state = {
+        position: {
+          transform: `translateX(0) translateY(0) scale(0.8)`
+        }
+      };
+    }
   }
 
   componentDidMount() {
@@ -32,7 +41,7 @@ export default class Pod extends Component {
     let position = '';
 
     if (isCenter(departureStop)) {
-      position = `translateX(-50vw) translateY(-50vh)`;
+      position = `translateX(-50vw) translateY(-50vh) scale(-1, 1)`;
     } else {
       this.setState({
         position: {
@@ -74,7 +83,6 @@ export default class Pod extends Component {
       width: 3em;
       height: 3em;
       animation: ${buzz} ${props => .5 + props.random}s infinite;
-      transform: scale(1);
     `;
 
     return (
