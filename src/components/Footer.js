@@ -8,7 +8,7 @@ const Wrapper = styled.footer`
   background-color: ${colors.black};
   color: ${colors.white};
   display: flex;
-  flex-basis: 14em;
+  flex-basis: 18em;
 `; // basis should be whatever's needed for this to fit or a fraction of the height (x screens)
 
 const Container = styled.div`
