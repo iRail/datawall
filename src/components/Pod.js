@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import styled, {keyframes} from 'styled-components';
 import pod from '../img/pod.svg';
 
-import {times} from '../constants';
+import {times, STATION} from '../constants';
 
 const buzz = keyframes`
   0%, 100% {
@@ -25,14 +25,46 @@ const Img = styled.img`
 const Wrapper = styled.div`
   transform: translateX(1px) translateY(1px) scale(1);
   transition: transform ${times.podAnimation}ms;
+  position: absolute;
+  left: calc(50% - 3em/2);
+  top: calc(50% - 3em/2);
 `;
 
+function isCenter(stop) {
+  return stop['@id'] === STATION.URI;
+}
+
 export default class Pod extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      position: {
+        transform: `translateX(0) translateY(0)`
+      }
+    };
+  }
+
   render() {
     const {departureStop, arrivalStop} = this.props;
-    console.log(departureStop, arrivalStop);
+
+    if (isCenter(departureStop)) {
+      // this.setState({
+      //   position: {
+      //     transform: `translateX(-10px) translateY(-10px)`
+      //   }
+      // });
+      // requestAnimationFrame(() => {
+      //   this.setState({
+      //     position: {
+      //       transform: `translateX(-100px) translateY(-10px)`
+      //     }
+      //   });
+      // });
+    } else {
+    }
+
     return (
-      <Wrapper>
+      <Wrapper style={this.state.position}>
         <Img src={pod} alt="a lookup"/>
       </Wrapper>
     );
