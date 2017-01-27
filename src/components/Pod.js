@@ -4,26 +4,32 @@ import pod from '../img/pod.svg';
 
 import {times, STATION} from '../constants';
 
+// somehow use the random here, now it's NaN 🙃
 const buzz = keyframes`
   0%, 100% {
-    transform: scale(1) translateX(${Math.random()}vh) translateY(${Math.random()}vw);
+    transform:
+      scale(1)
+      translateX(${props => props.random}vh)
+      translateY(${props => props.random}vw);
   }
 
   50% {
-    transform: scale(${Math.random() * (1.4 - 0.6) + 0.6}) translateX(${Math.random()}vh) translateY(${Math.random()}vw);
+    transform: 
+      scale(${props => props.random * (1.4 - 0.6) + 0.6})
+      translateX(${props => props.random}vh)
+      translateY(${props => props.random}vw);
   }
 `;
 
 const Img = styled.img`
   width: 3em;
   height: 3em;
-  animation: ${buzz} ${.5 + Math.random()}s infinite;
+  animation: ${buzz} ${props => .5 + props.random}s infinite;
   transform: scale(1);
 `;
 
 // moves from departure to arrival
 const Wrapper = styled.div`
-  transform: translateX(1px) translateY(1px) scale(1);
   transition: transform ${times.podAnimation}ms;
   position: absolute;
   left: calc(50% - 3em/2);
@@ -39,30 +45,37 @@ export default class Pod extends Component {
     super(props);
     this.state = {
       position: {
-        transform: `translateX(0) translateY(0)`
+        transform: `translateX(0) translateY(0) scale(0.8)`
       }
     };
   }
 
-  render() {
+  componentDidMount() {
     const {departureStop, arrivalStop} = this.props;
 
+    let position = '';
+
     if (isCenter(departureStop)) {
-      // this.setState({
-      //   position: {
-      //     transform: `translateX(-10px) translateY(-10px)`
-      //   }
-      // });
-      // requestAnimationFrame(() => {
-      //   this.setState({
-      //     position: {
-      //       transform: `translateX(-100px) translateY(-10px)`
-      //     }
-      //   });
-      // });
+      position = `translateX(-50vw) translateY(-50vh)`;
     } else {
+      this.setState({
+        position: {
+          transform: `translateX(-50vw) translateY(50vh) scale(1)`
+        }
+      });
+      position = `translateX(0) translateY(0) scale(0.8)`;
     }
 
+    requestAnimationFrame(() => {
+      this.setState({
+        position: {
+          transform: position
+        }
+      });
+    });
+  }
+
+  render() {
     return (
       <Wrapper style={this.state.position}>
         <Img src={pod} alt="a lookup"/>
