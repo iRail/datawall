@@ -14,7 +14,7 @@ export const colors = {
 
 export const times = {
   podAnimation: 3000
-}
+};
 
 export const STATION = {
   URI: 'http://irail.be/stations/NMBS/008892007',
