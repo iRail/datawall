@@ -4,34 +4,27 @@ import pod from '../img/pod.svg';
 
 import {times} from '../constants';
 
-const moveIn = keyframes`
-  from {
-    transform: translateX(${0}) translateY(${0});
-  }
-
-  to {
-    transform: translateX(0) translateY(0);
-  }
-`;
-
 const buzz = keyframes`
-  from {
-    transform: scale(1) translateX(${Math.random()}) translateY(${Math.random()});
+  0%, 100% {
+    transform: scale(1) translateX(${Math.random()}vh) translateY(${Math.random()}vw);
   }
 
-  to {
-    transform: scale(${1 + Math.random()}) translateX(${Math.random()}) translateY(${Math.random()});
+  50% {
+    transform: scale(${Math.random() * (1.4 - 0.6) + 0.6}) translateX(${Math.random()}vh) translateY(${Math.random()}vw);
   }
 `;
 
 const Img = styled.img`
   width: 3em;
   height: 3em;
-  animation: ${buzz} ${times.podAnimation} linear 1;
+  animation: ${buzz} ${.5 + Math.random()}s infinite;
+  transform: scale(1);
 `;
 
+// moves from departure to arrival
 const Wrapper = styled.div`
-  animation: ${moveIn} ${times.podAnimation} linear 1;
+  transform: translateX(1px) translateY(1px) scale(1);
+  transition: transform ${times.podAnimation}ms;
 `;
 
 export default class Pod extends Component {
