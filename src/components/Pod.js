@@ -36,7 +36,9 @@ const Wrapper = styled.div`
 
 export default class Pod extends Component {
   render() {
-    return(
+    const {departureStop, arrivalStop} = this.props;
+    console.log(departureStop, arrivalStop);
+    return (
       <Wrapper>
         <Img src={pod} alt="a lookup"/>
       </Wrapper>
