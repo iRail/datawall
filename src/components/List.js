@@ -11,13 +11,14 @@ const Heading = styled.th`
   text-transform: uppercase;
   text-align: left;
   font-size: .6em;
+  padding: .4rem;
 `;
 
 const Item = styled.td`
   border-top: none;
   border-bottom: none;
   border-right: .2em ${colors.black} solid;
-  padding: .4em;
+  padding: .4rem;
 `;
 
 const Row = styled.tr`
