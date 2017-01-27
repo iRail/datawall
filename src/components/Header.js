@@ -9,6 +9,9 @@ const Wrapper = styled.div`
   display: flex;
   align-items: center;
   padding: 0.8em;
+  position: absolute;
+  top: 0;
+  left: 0;
 `;
 
 const Header = styled.h2`

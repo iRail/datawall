@@ -5,7 +5,6 @@ import {listenToQueries} from '../redux/actions';
 
 import {colors} from '../constants';
 
-import Header from './Header';
 import Scene from './Scene';
 import Footer from './Footer';
 
@@ -26,7 +25,6 @@ class App extends Component {
     const {queries} = this.props;
     return (
       <Main>
-        <Header />
         <Scene queries={queries} />
         <Footer queries={queries} />
       </Main>
