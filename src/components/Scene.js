@@ -20,7 +20,7 @@ class Scene extends Component {
     const {visible} = this.props;
     return visible.map((pod,index) => {
       return (
-        <Pod {...pod} random={Math.random()} key={index}/>
+        <Pod {...pod} key={index}/>
       );
     });
   }

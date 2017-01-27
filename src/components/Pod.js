@@ -52,20 +52,21 @@ export default class Pod extends Component {
   }
 
   render() {
-    // somehow use the random here, now it's NaN 🙃
+    const random = Math.random();
+    
     const buzz = keyframes`
       0%, 100% {
         transform:
           scale(1)
-          translateX(${this.props.random}vh)
-          translateY(${this.props.random}vw);
+          translateX(${random}vh)
+          translateY(${random}vw);
       }
 
       50% {
         transform: 
-          scale(${this.props.random * (1.4 - 0.6) + 0.6})
-          translateX(${this.props.random}vh)
-          translateY(${this.props.random}vw);
+          scale(${random * (1.4 - 0.6) + 0.6})
+          translateX(${random}vh)
+          translateY(${random}vw);
       }
     `;
 
