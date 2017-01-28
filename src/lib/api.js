@@ -77,7 +77,7 @@ function emitSingleQueries(socket, data, inputData) {
     destination: request.query.arrivalStop,
     querytime: request.hasOwnProperty('querytime') ? request.querytime : new Date(),
     useragent: request.user_agent,
-    journey: request.query.journeyoptions
+    //journey: request.query.journeyoptions // can be useful later to get the latest station
   }));
 }
 
