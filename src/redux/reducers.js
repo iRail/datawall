@@ -1,7 +1,8 @@
 import {RECEIVE_QUERIES} from './actions';
 
 const INITIAL_STATE = {
-  queries: []
+  queries: [],
+  visible: []
 };
 
 export const queryReducer = (state = INITIAL_STATE, action) => {
