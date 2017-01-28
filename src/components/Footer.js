@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import styled from 'styled-components';
 
 import {colors} from '../constants';
+
 import List from './List.js';
 
 const Wrapper = styled.footer`
