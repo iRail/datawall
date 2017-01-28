@@ -1,10 +1,9 @@
 import React, {Component} from 'react';
 import styled, {keyframes} from 'styled-components';
-import {isCenter} from '../station';
+import {isCenter, getDirection, DIRECTIONS} from '../station';
+import {times} from '../constants';
 
 import pod from '../img/pod.svg';
-
-import {times} from '../constants';
 
 // moves from departure to arrival
 const Wrapper = styled.div`
@@ -34,14 +33,37 @@ export default class Pod extends Component {
   }
 
   componentDidMount() {
-    // eslint-disable-next-line no-unused-vars
     const {origin, destination} = this.props;
 
     let position = '';
 
     if (isCenter(origin)) {
+      switch (getDirection(origin)) {
+        case DIRECTIONS.northeast:
+          break;
+        case DIRECTIONS.northwest:
+          break;
+        case DIRECTIONS.southeast:
+          break;
+        case DIRECTIONS.southwest:
+          break;
+        default:
+          break;
+      }
       position = `translateX(-50vw) translateY(-50vh) scale(-1, 1)`;
     } else {
+      switch (getDirection(origin)) {
+        case DIRECTIONS.northeast:
+          break;
+        case DIRECTIONS.northwest:
+          break;
+        case DIRECTIONS.southeast:
+          break;
+        case DIRECTIONS.southwest:
+          break;
+        default:
+          break;
+      }
       this.setState({
         position: {
           transform: `translateX(-50vw) translateY(50vh) scale(1)`
