@@ -17,6 +17,21 @@ const Wrapper = styled.div`
   top: calc(50% - 3em/2);
 `;
 
+function getPosition(stop) {
+    switch (getDirection(stop)) {
+      case DIRECTIONS.northeast:
+        break;
+      case DIRECTIONS.northwest:
+        break;
+      case DIRECTIONS.southeast:
+        break;
+      case DIRECTIONS.southwest:
+        break;
+      default:
+        break;
+    }
+}
+
 export default class Pod extends Component {
   constructor(props) {
     super(props);
@@ -42,32 +57,10 @@ export default class Pod extends Component {
     let position = '';
 
     if (isCenter(origin)) {
-      switch (getDirection(destination)) {
-        case DIRECTIONS.northeast:
-          break;
-        case DIRECTIONS.northwest:
-          break;
-        case DIRECTIONS.southeast:
-          break;
-        case DIRECTIONS.southwest:
-          break;
-        default:
-          break;
-      }
+      getPosition(destination);
       position = `translateX(-50vw) translateY(-50vh) scale(-1, 1)`;
     } else {
-      switch (getDirection(origin)) {
-        case DIRECTIONS.northeast:
-          break;
-        case DIRECTIONS.northwest:
-          break;
-        case DIRECTIONS.southeast:
-          break;
-        case DIRECTIONS.southwest:
-          break;
-        default:
-          break;
-      }
+      getPosition(origin);
       this.setState({
         position: {
           transform: `translateX(-50vw) translateY(50vh) scale(1)`
@@ -76,13 +69,11 @@ export default class Pod extends Component {
       position = POSITIONS.center;
     }
 
-    requestAnimationFrame(() => {
-      this.setState({
-        position: {
-          transform: position
-        }
-      });
-    });
+    setTimeout(() => this.setState({
+      position: {
+        transform: position
+      }
+    }), 0);
   }
 
   render() {
