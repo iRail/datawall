@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import styled from 'styled-components';
-import hub from '../img/hub.svg'
+
+import hub from '../img/hub.svg';
+
 import {STATION, colors} from '../constants';
 
 

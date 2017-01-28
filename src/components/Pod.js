@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import styled, {keyframes} from 'styled-components';
+
 import pod from '../img/pod.svg';
 
 import {times, STATION} from '../constants';

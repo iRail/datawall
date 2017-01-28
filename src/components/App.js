@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import styled from 'styled-components';
+
 import {listenToQueries} from '../redux/actions';
 
 import {colors} from '../constants';
