@@ -19,20 +19,30 @@ function isCenter(stop) {
 export default class Pod extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      position: {
-        transform: `translateX(0) translateY(0) scale(0.8)`
+    const {origin} = props;
+    if (isCenter(origin)) {
+      this.state = {
+        position: {
+          transform: `translateX(0) translateY(0) scale(-1, 1)`,
+        }
       }
-    };
+    } else {
+      this.state = {
+        position: {
+          transform: `translateX(0) translateY(0) scale(0.8)`
+        }
+      };
+    }
   }
 
   componentDidMount() {
-    const {departureStop, arrivalStop} = this.props;
+    // eslint-disable-next-line no-unused-vars
+    const {origin, destination} = this.props;
 
     let position = '';
 
-    if (isCenter(departureStop)) {
-      position = `translateX(-50vw) translateY(-50vh)`;
+    if (isCenter(origin)) {
+      position = `translateX(-50vw) translateY(-50vh) scale(-1, 1)`;
     } else {
       this.setState({
         position: {
@@ -42,13 +52,13 @@ export default class Pod extends Component {
       position = `translateX(0) translateY(0) scale(0.8)`;
     }
 
-    requestAnimationFrame(() => {
+    setTimeout(() => {
       this.setState({
         position: {
           transform: position
         }
       });
-    });
+    },10); // meh, idk why this won't work with rAF
   }
 
   render() {
@@ -74,7 +84,6 @@ export default class Pod extends Component {
       width: 3em;
       height: 3em;
       animation: ${buzz} ${props => .5 + props.random}s infinite;
-      transform: scale(1);
     `;
 
     return (

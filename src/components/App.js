@@ -3,14 +3,17 @@ import {connect} from 'react-redux';
 import styled from 'styled-components';
 import {listenToQueries} from '../redux/actions';
 
-import Scene from './Scene.js';
-import Footer from './Footer.js';
+import {colors} from '../constants';
+
+import Scene from './Scene';
+import Footer from './Footer';
 
 
 const Main = styled.main`
   display: flex;
   flex-direction: column;
   height: 100vh;
+  background-color: ${colors.red};
 `;
 
 class App extends Component {
@@ -19,10 +22,10 @@ class App extends Component {
   }
 
   render() {
-    const {queries} = this.props;
+    const {queries, visible} = this.props;
     return (
       <Main>
-        <Scene queries={queries} />
+        <Scene queries={visible} />
         <Footer queries={queries} />
       </Main>
     );
@@ -30,7 +33,8 @@ class App extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => ({
-  queries: state.queries
+  queries: state.queries,
+  visible: state.visible // todo: make a list of the visible components in redux
 });
 
 export default connect(mapStateToProps, {listenToQueries})(App);
