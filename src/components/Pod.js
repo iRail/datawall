@@ -5,6 +5,10 @@ import {times} from '../constants';
 
 import pod from '../img/pod.svg';
 
+const POSITIONS = {
+  center: `translateX(0) translateY(0) scale(0.8)`
+};
+
 // moves from departure to arrival
 const Wrapper = styled.div`
   transition: transform ${times.podAnimation}ms;
@@ -38,7 +42,7 @@ export default class Pod extends Component {
     let position = '';
 
     if (isCenter(origin)) {
-      switch (getDirection(origin)) {
+      switch (getDirection(destination)) {
         case DIRECTIONS.northeast:
           break;
         case DIRECTIONS.northwest:
@@ -69,7 +73,7 @@ export default class Pod extends Component {
           transform: `translateX(-50vw) translateY(50vh) scale(1)`
         }
       });
-      position = `translateX(0) translateY(0) scale(0.8)`;
+      position = POSITIONS.center;
     }
 
     requestAnimationFrame(() => {
