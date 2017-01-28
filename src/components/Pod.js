@@ -13,27 +13,28 @@ const POSITIONS = {
   },
   [DIRECTIONS.northeast]: {
     x: -50,
-    y: 50,
+    y: -50,
     scale: 1 // todo: make sure direction is right
   },
   [DIRECTIONS.northwest]: {
     x: 50,
-    y: 50,
+    y: -50,
     scale: 1
   },
   [DIRECTIONS.southeast]: {
     x: -50,
-    y: -50,
+    y: 50,
     scale: 1
   },
   [DIRECTIONS.southwest]: {
     x: 50,
-    y: -50,
+    y: 50,
     scale: 1
   }
 };
 
 function getPosition(stop) {
+  console.log(stop.name, getDirection(stop));
   return POSITIONS[getDirection(stop)];
 }
 
@@ -83,7 +84,8 @@ export default class Pod extends Component {
 
   render() {
     const random = Math.random();
-    
+
+    // todo: make this look better
     const buzz = keyframes`
       0%, 100% {
         transform:
@@ -103,12 +105,12 @@ export default class Pod extends Component {
     const Img = styled.img`
       width: ${width};
       height: ${width};
-      animation: ${buzz} ${props => .5 + props.random}s infinite;
+      animation: ${buzz} ${.5 + Math.random()}s infinite;
     `;
 
     return (
       <Wrapper style={this.state.position}>
-        <Img src={pod} alt="a lookup" random={Math.random()} />
+        <Img src={pod} alt="a lookup" />
       </Wrapper>
     );
   }
