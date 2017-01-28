@@ -21,16 +21,19 @@ export const queryReducer = (state = INITIAL_STATE, action) => {
         store.dispatch(deleteVisible(VISIBLE_INDEX));
       }, times.podAnimation + 10);
 
+      console.log(action.payload);
+
       return {
         ...state,
         queries: queries.slice(0,7),
         visible: {
           ...state.visible,
-          [VISIBLE_INDEX]: action.payload[0]
+          [VISIBLE_INDEX]: queries[0]
         }
       };
     case DELETE_VISIBLE:
       const visible = state.visible;
+      console.log(visible);
       delete visible.action.payload;
       return {
         ...state,
