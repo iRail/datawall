@@ -6,72 +6,77 @@ import {times} from '../constants';
 import pod from '../img/pod.svg';
 
 const POSITIONS = {
-  center: `translateX(0) translateY(0) scale(0.8)`
+  center: {
+    x: 0,
+    y: 0,
+    scale: 1
+  },
+  [DIRECTIONS.northeast]: {
+    x: -50,
+    y: 50,
+    scale: 1 // todo: make sure direction is right
+  },
+  [DIRECTIONS.northwest]: {
+    x: 50,
+    y: 50,
+    scale: 1
+  },
+  [DIRECTIONS.southeast]: {
+    x: -50,
+    y: -50,
+    scale: 1
+  },
+  [DIRECTIONS.southwest]: {
+    x: 50,
+    y: -50,
+    scale: 1
+  }
 };
+
+function getPosition(stop) {
+  return POSITIONS[getDirection(stop)];
+}
+
+const width = '3em';
 
 // moves from departure to arrival
 const Wrapper = styled.div`
   transition: transform ${times.podAnimation}ms;
   position: absolute;
-  left: calc(50% - 3em/2);
-  top: calc(50% - 3em/2);
+  left: calc(50% - ${width}/2);
+  top: calc(50% - ${width}/2);
 `;
-
-function getPosition(stop) {
-    switch (getDirection(stop)) {
-      case DIRECTIONS.northeast:
-        break;
-      case DIRECTIONS.northwest:
-        break;
-      case DIRECTIONS.southeast:
-        break;
-      case DIRECTIONS.southwest:
-        break;
-      default:
-        break;
-    }
-}
 
 export default class Pod extends Component {
   constructor(props) {
     super(props);
-    const {origin} = props;
-    if (isCenter(origin)) {
-      this.state = {
-        position: {
-          transform: `translateX(0) translateY(0) scale(-1, 1)`,
-        }
+    let {x, y, scale} = POSITIONS.center;
+    this.state = {
+      position: {
+        transform: `translateX(${x}) translateY(${y}) scale(${scale})`,
       }
-    } else {
-      this.state = {
-        position: {
-          transform: `translateX(0) translateY(0) scale(0.8)`
-        }
-      };
     }
   }
 
   componentDidMount() {
     const {origin, destination} = this.props;
-
-    let position = '';
+    let position = POSITIONS.center;
 
     if (isCenter(origin)) {
-      getPosition(destination);
-      position = `translateX(-50vw) translateY(-50vh) scale(-1, 1)`;
+      position = getPosition(destination);
     } else {
-      getPosition(origin);
+      let {x, y, scale} = getPosition(origin);
       this.setState({
         position: {
-          transform: `translateX(-50vw) translateY(50vh) scale(1)`
+          transform: `translateX(${x}vw) translateY(${y}vh) scale(${scale})`
         }
       });
-      position = POSITIONS.center;
     }
 
+    let {x, y, scale} = position;
     setTimeout(() => this.setState({
       position: {
-        transform: position
+        transform: `translateX(${x}vw) translateY(${y}vh) scale(${scale})`
       }
     }), 0);
   }
@@ -96,8 +101,8 @@ export default class Pod extends Component {
     `;
 
     const Img = styled.img`
-      width: 3em;
-      height: 3em;
+      width: ${width};
+      height: ${width};
       animation: ${buzz} ${props => .5 + props.random}s infinite;
     `;
 
