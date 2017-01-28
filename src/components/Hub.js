@@ -1,10 +1,9 @@
-import React, {Component} from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
 import hub from '../img/hub.svg';
 
 import {STATION, colors} from '../constants';
-
 
 const Wrapper = styled.div`
 `;
@@ -24,8 +23,7 @@ const Text = styled.span`
   line-height: 30vh;
 `;
 
-export default class Hub extends Component {
-  render() {
+export default () => {
     return (
       <Wrapper>
         <MainStation>
@@ -33,5 +31,4 @@ export default class Hub extends Component {
         </MainStation>
       </Wrapper>
     );
-  }
 }
