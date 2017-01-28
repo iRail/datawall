@@ -9,7 +9,11 @@ export const queryReducer = (state = INITIAL_STATE, action) => {
     case RECEIVE_QUERIES:
       const queries = [...state.queries, action.payload];
       queries.sort((a, b) => new Date(b.querytime) - new Date(a.querytime));
-      return {...state, queries: queries.slice(0,7)};
+      return {
+        ...state,
+        queries: queries.slice(0,7),
+        visible: [queries[0]] // todo all visible queries
+      };
     default:
       return state;
   }

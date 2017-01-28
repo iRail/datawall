@@ -14,6 +14,11 @@ const Wrapper = styled.div`
 `;
 
 class Scene extends Component {
+  static defaultProps = {
+    ...Component.defaultProps,
+    queries: [],
+  }
+
   renderPods() {
     const {queries} = this.props;
     return queries.map((pod,index) => {
