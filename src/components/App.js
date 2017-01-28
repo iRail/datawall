@@ -18,7 +18,7 @@ const Main = styled.main`
 
 class App extends Component {
   componentWillMount() {
-    listenToQueries(); // this.props ??
+    this.props.listenToQueries();
   }
 
   render() {
