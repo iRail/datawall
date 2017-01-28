@@ -30,7 +30,7 @@ export const queryReducer = (state = INITIAL_STATE, action) => {
         }
       };
     case DELETE_VISIBLE:
-      const visible = state.visible;
+      const visible = Object.assign({}, state.visible);
       delete visible[action.payload];
       return {
         ...state,
