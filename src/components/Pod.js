@@ -12,29 +12,28 @@ const POSITIONS = {
     scale: 1
   },
   [DIRECTIONS.northeast]: {
-    x: -50,
+    x: 50,
     y: -50,
     scale: 1 // todo: make sure direction is right
   },
   [DIRECTIONS.northwest]: {
-    x: 50,
+    x: -50,
     y: -50,
     scale: 1
   },
   [DIRECTIONS.southeast]: {
-    x: -50,
+    x: 50,
     y: 50,
     scale: 1
   },
   [DIRECTIONS.southwest]: {
-    x: 50,
+    x: -50,
     y: 50,
     scale: 1
   }
 };
 
 function getPosition(stop) {
-  console.log(stop.name, getDirection(stop));
   return POSITIONS[getDirection(stop)];
 }
 

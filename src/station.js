@@ -19,18 +19,18 @@ export const DIRECTIONS = {
  */
 export function getDirection({latitude, longitude} = stop) {
   if (longitude > STATION.longitude) {
-    // WEST
-    if (latitude > STATION.latitude) {
-      return DIRECTIONS.northwest;
-    } else {
-      return DIRECTIONS.southwest;
-    }
-  } else {
     // EAST
     if (latitude > STATION.latitude) {
       return DIRECTIONS.northeast;
     } else {
       return DIRECTIONS.southeast;
+    }
+  } else {
+    // WEST
+    if (latitude > STATION.latitude) {
+      return DIRECTIONS.northwest;
+    } else {
+      return DIRECTIONS.southwest;
     }
   }
 }
