@@ -72,11 +72,12 @@ function filterQueries(queryData, inputData) {
 
 // emit event for every query
 function emitSingleQueries(socket, data, inputData) {
-  data.forEach(query => socket.emit(inputData.stop, {
-    origin: query.query.departureStop,
-    destination: query.query.arrivalStop,
-    querytime: query.hasOwnProperty('querytime') ? query.querytime : new Date(),
-    useragent: query.user_agent
+  data.forEach(request => socket.emit(inputData.stop, {
+    origin: request.query.departureStop,
+    destination: request.query.arrivalStop,
+    querytime: request.hasOwnProperty('querytime') ? request.querytime : new Date(),
+    useragent: request.user_agent,
+    journey: request.query.journeyoptions
   }));
 }
 
