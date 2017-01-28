@@ -16,11 +16,7 @@ const Wrapper = styled.div`
 class Scene extends Component {
   renderPods() {
     const {queries} = this.props;
-    return queries.map((pod,index) => {
-      return (
-        <Pod {...pod} key={index}/>
-      );
-    });
+    return Object.entries(queries).map(([index, pod]) => <Pod {...pod} key={index}/>);
   }
 
   render() {

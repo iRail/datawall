@@ -2,7 +2,7 @@ import {RECEIVE_QUERIES} from './actions';
 
 const INITIAL_STATE = {
   queries: [],
-  visible: []
+  visible: {}
 };
 
 export const queryReducer = (state = INITIAL_STATE, action) => {
@@ -13,7 +13,9 @@ export const queryReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         queries: queries.slice(0,7),
-        visible: [queries[0]] // todo all visible queries
+        visible: {
+          idx: queries[0]
+         } // todo all visible queries
       };
     default:
       return state;
