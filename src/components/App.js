@@ -34,7 +34,7 @@ class App extends Component {
 
 const mapStateToProps = (state, ownProps) => ({
   queries: state.queries,
-  visible: state.visible // todo: make a list of the visible components in redux
+  visible: state.visible
 });
 
 export default connect(mapStateToProps, {listenToQueries})(App);
