@@ -14,23 +14,34 @@ const Wrapper = styled.div`
   left: 0;
 `;
 
-const Header = styled.h2`
+const Header = styled.header`
   font-weight: 600;
   margin: .4em;
+  font-size: 2vh;
   color: ${colors.white};
 `;
 
 const Logo = styled.img`
-  width: 12vw;
+  width: 5vh;
   margin: 0.4em;
 `;
+
+const Link = styled.a`
+  color: inherit;
+  text-decoration: none;
+`;
+
+const Text = styled.p`
+  margin: 0;
+`
 
 export default () => {
   return (
     <Wrapper>
       <Logo src={logo} alt="logo" />
       <Header>
-        See your own search request <br/>use www.irail.be
+        <Text>See your own search request</Text>
+        <Text>use <Link href="https://irail.be/route" target="_blank" rel="noopener">www.irail.be</Link></Text>
       </Header>
     </Wrapper>
   );
