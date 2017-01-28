@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
 import styled, {keyframes} from 'styled-components';
+import {isCenter} from '../station';
 
 import pod from '../img/pod.svg';
 
-import {times, STATION} from '../constants';
+import {times} from '../constants';
 
 // moves from departure to arrival
 const Wrapper = styled.div`
@@ -12,10 +13,6 @@ const Wrapper = styled.div`
   left: calc(50% - 3em/2);
   top: calc(50% - 3em/2);
 `;
-
-function isCenter(stop) {
-  return stop['@id'] === STATION.URI;
-}
 
 export default class Pod extends Component {
   constructor(props) {
