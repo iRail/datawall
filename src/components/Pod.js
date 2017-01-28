@@ -74,11 +74,11 @@ export default class Pod extends Component {
     }
 
     let {x, y, scale} = position;
-    setTimeout(() => this.setState({
+    setTimeout(() => requestAnimationFrame(() => this.setState({
       position: {
         transform: `translateX(${x}vw) translateY(${y}vh) scale(${scale})`
       }
-    }), 0);
+    })), 0);
   }
 
   render() {
