@@ -53,13 +53,13 @@ export default class Pod extends Component {
       position = `translateX(0) translateY(0) scale(0.8)`;
     }
 
-    setTimeout(() => {
+    requestAnimationFrame(() => {
       this.setState({
         position: {
           transform: position
         }
       });
-    },10); // meh, idk why this won't work with rAF
+    });
   }
 
   render() {
