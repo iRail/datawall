@@ -42,9 +42,7 @@ const POSITIONS = {
   }
 };
 
-function getPosition(origin, destination) {
-  return POSITIONS[getDirection(origin, destination)];
-}
+const getPosition = (origin, destination) => POSITIONS[getDirection(origin, destination)];
 
 const offsetCenter = (position) => ({
   x: position.x + POSITIONS.center.x, 
