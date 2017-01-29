@@ -66,9 +66,7 @@ export default class Pod extends Component {
     x += POSITIONS.center.x;
     y += POSITIONS.center.y;
     if(isCenter(props.origin, STATION)) {
-      ({x, y} = getPosition(props.origin, props.destination));
-      x -= x;
-      y -= y;
+      ({x,y} = POSITIONS.center);
     }
     console.log('Initial position: ', x, y);
     // sets the right direction the bee should be facing
@@ -87,8 +85,7 @@ export default class Pod extends Component {
     console.log(getDirection(origin, destination));
     let {x, y, scaleX, scaleY, rotate} = getPosition(origin, destination);
     if(isCenter(origin, STATION) === false) {
-      x = 0;
-      y = 0;
+      ({x,y} = POSITIONS.center);
     }
 
     console.log('New position: ', x, y);
