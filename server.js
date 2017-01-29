@@ -7,12 +7,12 @@ const io = require('socket.io')(http);
 const {startPolling} = require('./src/lib/api');
 
 const STATION = {
-  URI: 'http://irail.be/stations/NMBS/008892007',
+  '@id': 'http://irail.be/stations/NMBS/008892007',
   name: 'Gent Sint-Pieters'
 }; // can't import from constants because that's an es6 export
 
 
-startPolling(io, {stop: STATION.URI});
+startPolling(io, {stop: STATION['@id']});
 
 app.set('port', (process.env.PORT || 3001));
 
