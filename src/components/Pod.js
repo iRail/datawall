@@ -46,6 +46,11 @@ function getPosition(origin, destination) {
   return POSITIONS[getDirection(origin, destination)];
 }
 
+const offsetCenter = (position) => ({
+  x: position.x + POSITIONS.center.x, 
+  y: position.y + POSITIONS.center.y
+});
+
 const width = '3em';
 
 // moves from departure to arrival
@@ -60,9 +65,7 @@ export default class Pod extends Component {
   constructor(props) {
     super(props);
     // original position
-    let {x, y} = getPosition(props.destination, props.origin);
-    x += POSITIONS.center.x;
-    y += POSITIONS.center.y;
+    let {x, y} = offsetCenter(getPosition(props.destination, props.origin));
     if(isCenter(props.origin, STATION)) {
       ({x,y} = POSITIONS.center);
     }
