@@ -10,9 +10,7 @@ import pod from '../img/pod.svg';
 const POSITIONS = {
   center: {
     x: 0,
-    y: 0,
-    scaleX: 1,
-    scaleY: 1
+    y: 0
   },
   [DIRECTIONS.northeast]: {
     x: 50,
