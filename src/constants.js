@@ -18,6 +18,7 @@ export const times = {
 
 export const STATION = {
   URI: 'http://irail.be/stations/NMBS/008892007',
+  '@id': 'http://irail.be/stations/NMBS/008892007',
   name: 'Gent-Sint-Pieters',
   longitude: 3.710675,
   latitude: 51.035896
