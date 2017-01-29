@@ -34,5 +34,5 @@ export function getDirection(origin, destination) {
 }
 
 export function isCenter(origin, center) {
-  return origin['@id'] === center.URI;
+  return origin['@id'] === center['@id'];
 }
