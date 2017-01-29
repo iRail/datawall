@@ -13,8 +13,8 @@ export const receiveQueries = (queries) => ({
 export const listenToQueries = () => (
   dispatch => {
     const socket = io(API_BASE_URI);
-    // socket.emit('fetchLogs', { stop: STATION.URI});
-    socket.on(STATION.URI, (queries) => {
+    // socket.emit('fetchLogs', { stop: STATION['@id']});
+    socket.on(STATION['@id'], (queries) => {
       dispatch(receiveQueries(queries));
     });
   }
