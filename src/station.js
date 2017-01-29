@@ -12,25 +12,20 @@ export const DIRECTIONS = {
  * 
  * @see DIRECTIONS
  * @returns the direction a certain station is in
- * @param {object} [{latitude, longitude}=destinationStop]
- * @param {object} [{latitude, longitude}=originStop]
+ * @param {object} [{latitude, longitude}=destination]
+ * @param {object} [{latitude, longitude}=origin]
  */
-export function getDirection(originStop, destinationStop) {
-  const latitudeO  = originStop.latitude;
-  const longitudeO = originStop.longitude;
-  const latitudeD = destinationStop.latitude;
-  const longitudeD = destinationStop.longitude;
-
-  if (longitudeO < longitudeD) {
+export function getDirection(origin, destination) {
+  if (origin.longitude < destination.longitude) {
     // EAST
-    if (latitudeO < latitudeD) {
+    if (origin.latitude < destination.latitude) {
       return DIRECTIONS.northeast;
     } else {
       return DIRECTIONS.southeast;
     }
   } else {
     // WEST
-    if (latitudeO < latitudeD) {
+    if (origin.latitude < destination.latitude) {
       return DIRECTIONS.northwest;
     } else {
       return DIRECTIONS.southwest;
@@ -38,6 +33,6 @@ export function getDirection(originStop, destinationStop) {
   }
 }
 
-export function isCenter(originStop, centerStop) {
-  return originStop['@id'] === centerStop.URI;
+export function isCenter(origin, center) {
+  return origin['@id'] === center.URI;
 }
