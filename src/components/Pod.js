@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import styled, {keyframes} from 'styled-components';
+
+import {STATION} from '../constants';
 import {isCenter, getDirection, DIRECTIONS} from '../station';
 import {times} from '../constants';
 
@@ -8,34 +10,44 @@ import pod from '../img/pod.svg';
 const POSITIONS = {
   center: {
     x: 0,
-    y: 0,
-    scale: 1
+    y: 0
   },
   [DIRECTIONS.northeast]: {
     x: 50,
     y: -50,
-    scale: 1 // todo: make sure direction is right
+    scaleX: 1,
+    scaleY: 1,
+    rotate: 0
   },
   [DIRECTIONS.northwest]: {
     x: -50,
     y: -50,
-    scale: 1
+    scaleX: -1,
+    scaleY: 1,
+    rotate: 0
   },
   [DIRECTIONS.southeast]: {
     x: 50,
     y: 50,
-    scale: 1
+    scaleX: 1,
+    scaleY: 1,
+    rotate: 90
   },
   [DIRECTIONS.southwest]: {
     x: -50,
     y: 50,
-    scale: 1
+    scaleX: -1,
+    scaleY: 1,
+    rotate: 90
   }
 };
 
-function getPosition(stop) {
-  return POSITIONS[getDirection(stop)];
-}
+const getPosition = (origin, destination) => POSITIONS[getDirection(origin, destination)];
+
+const offsetCenter = (position) => ({
+  x: position.x + POSITIONS.center.x, 
+  y: position.y + POSITIONS.center.y
+});
 
 const width = '3em';
 
@@ -50,33 +62,33 @@ const Wrapper = styled.div`
 export default class Pod extends Component {
   constructor(props) {
     super(props);
-    let {x, y, scale} = POSITIONS.center;
+    // original position
+    let {x, y} = offsetCenter(getPosition(props.destination, props.origin));
+    if(isCenter(props.origin, STATION)) {
+      ({x,y} = POSITIONS.center);
+    }
+
+    // sets the right direction the bee should be facing
+    let {scaleX, scaleY, rotate} = getPosition(props.origin, props.destination);
     this.state = {
       position: {
-        transform: `translateX(${x}) translateY(${y}) scale(${scale})`,
+        transform: `translateX(${x}vw) translateY(${y}vh) scaleX(${scaleX}) scaleY(${scaleY}) rotate(${rotate}deg)`,
       }
     }
   }
 
   componentDidMount() {
     const {origin, destination} = this.props;
-    let position = POSITIONS.center;
 
-    if (isCenter(origin)) {
-      position = getPosition(destination);
-    } else {
-      let {x, y, scale} = getPosition(origin);
-      this.setState({
-        position: {
-          transform: `translateX(${x}vw) translateY(${y}vh) scale(${scale})`
-        }
-      });
+    // the position and direction the bee should fly to
+    let {x, y, scaleX, scaleY, rotate} = getPosition(origin, destination);
+    if(isCenter(origin, STATION) === false) {
+      ({x,y} = POSITIONS.center);
     }
 
-    let {x, y, scale} = position;
     setTimeout(() => requestAnimationFrame(() => this.setState({
       position: {
-        transform: `translateX(${x}vw) translateY(${y}vh) scale(${scale})`
+        transform: `translateX(${x}vw) translateY(${y}vh) scaleX(${scaleX}) scaleY(${scaleY}) rotate(${rotate}deg)`
       }
     })), 0);
   }

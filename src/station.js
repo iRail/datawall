@@ -1,12 +1,9 @@
-import {STATION} from './constants';
-
 export const DIRECTIONS = {
   northeast: 'NORTHEAST',
   northwest: 'NORTHWEST',
   southeast: 'SOUTHEAST',
   southwest: 'SOUTHWEST'
 };
-
 
 /**
  * Get the direciton of a station
@@ -15,19 +12,20 @@ export const DIRECTIONS = {
  * 
  * @see DIRECTIONS
  * @returns the direction a certain station is in
- * @param {object} [{latitude, longitude}=stop]
+ * @param {object} [{latitude, longitude}=destination]
+ * @param {object} [{latitude, longitude}=origin]
  */
-export function getDirection({latitude, longitude} = stop) {
-  if (longitude > STATION.longitude) {
+export function getDirection(origin, destination) {
+  if (origin.longitude < destination.longitude) {
     // EAST
-    if (latitude > STATION.latitude) {
+    if (origin.latitude < destination.latitude) {
       return DIRECTIONS.northeast;
     } else {
       return DIRECTIONS.southeast;
     }
   } else {
     // WEST
-    if (latitude > STATION.latitude) {
+    if (origin.latitude < destination.latitude) {
       return DIRECTIONS.northwest;
     } else {
       return DIRECTIONS.southwest;
@@ -35,6 +33,6 @@ export function getDirection({latitude, longitude} = stop) {
   }
 }
 
-export function isCenter(stop) {
-  return stop['@id'] === STATION.URI;
+export function isCenter(origin, center) {
+  return origin['@id'] === center['@id'];
 }
