@@ -67,7 +67,7 @@ export default class Pod extends Component {
     if(isCenter(props.origin, STATION)) {
       ({x,y} = POSITIONS.center);
     }
-    console.log('Initial position: ', x, y);
+
     // sets the right direction the bee should be facing
     let {scaleX, scaleY, rotate} = getPosition(props.origin, props.destination);
     this.state = {
@@ -81,13 +81,11 @@ export default class Pod extends Component {
     const {origin, destination} = this.props;
 
     // the position and direction the bee should fly to
-    console.log(getDirection(origin, destination));
     let {x, y, scaleX, scaleY, rotate} = getPosition(origin, destination);
     if(isCenter(origin, STATION) === false) {
       ({x,y} = POSITIONS.center);
     }
 
-    console.log('New position: ', x, y);
     setTimeout(() => requestAnimationFrame(() => this.setState({
       position: {
         transform: `translateX(${x}vw) translateY(${y}vh) scaleX(${scaleX}) scaleY(${scaleY}) rotate(${rotate}deg)`
