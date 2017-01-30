@@ -50,7 +50,7 @@ const offsetCenter = (position) => ({
 
 // moves from departure to arrival
 const Wrapper = styled.div`
-  transition: transform ${times.podAnimation}ms;
+  transition: transform ${times.pod.moveIn}ms;
   position: absolute;
   left: calc(50% - ${sizes.pod.width}/2);
   top: calc(50% - ${sizes.pod.height}/2);
@@ -82,6 +82,29 @@ export default class Pod extends Component {
     let {x, y, scaleX, scaleY, rotate} = getPosition(origin, destination);
     if(isCenter(origin) === false) {
       ({x,y} = POSITIONS.center);
+
+      const moveAround = keyframes`
+        0%, 100% {
+          transform:
+            rotate(0)
+            scale(1)
+            translateY(-${Math.random()}vh);
+        }
+
+        50% {
+          transform: 
+            rotate(0)
+            scale(1)
+            translateY(-${Math.random() + 2}vh);
+        }
+      `;
+
+      setTimeout(() => this.setState({
+        position: {
+          transition: `transform ${.5 + Math.random()}ms`,
+          animation: `${moveAround} ${.5 + Math.random()}s infinite`
+        }
+      }), times.pod.moveIn);
     }
 
     // won't fire when in another tab, nbd

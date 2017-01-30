@@ -19,7 +19,7 @@ export const queryReducer = (state = INITIAL_STATE, action) => {
 
       setTimeout((index) => {
         store.dispatch(deleteVisible(index));
-      }, times.podAnimation + 5000, VISIBLE_INDEX);
+      }, times.pod.moveIn + times.pod.moveAround, VISIBLE_INDEX);
 
       return {
         ...state,

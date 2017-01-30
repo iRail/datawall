@@ -13,7 +13,10 @@ export const colors = {
 };
 
 export const times = {
-  podAnimation: 3000
+  pod: {
+    moveIn: 3000,
+    moveAround: 5000
+  }
 };
 
 export const sizes = {
