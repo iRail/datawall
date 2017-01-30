@@ -3,14 +3,14 @@ import styled from 'styled-components';
 import {name} from '../../config.json';
 import hub from '../img/hub.svg';
 
-import {colors} from '../constants';
+import {colors, sizes} from '../constants';
 
 const Wrapper = styled.div`
 `;
 
 const MainStation = styled.div`
-  height: 40vh;
-  width: 40vw;
+  width: ${sizes.hub.width};
+  height: ${sizes.hub.height};
   background-image: url(${hub});
   background-size: contain;
   background-position: center;

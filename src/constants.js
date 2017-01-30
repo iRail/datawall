@@ -16,4 +16,18 @@ export const times = {
   podAnimation: 3000
 };
 
+export const sizes = {
+  pod: {
+    width: '3em',
+    height: '3em'
+  },
+  hub: {
+    width: '40vw',
+    height: '40vh'
+  },
+  footer: {
+    height: '18em'
+  }
+};
+
 export const API_BASE_URI = process.env.NODE_ENV === 'development' ? 'localhost:3001' : '/';

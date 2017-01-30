@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import styled from 'styled-components';
 
-import {colors} from '../constants';
+import {colors, sizes} from '../constants';
 
 import List from './List.js';
 
@@ -9,7 +9,7 @@ const Wrapper = styled.footer`
   background-color: ${colors.black};
   color: ${colors.white};
   display: flex;
-  flex-basis: 18em;
+  flex-basis: ${sizes.footer.height};
 `; // basis should be whatever's needed for this to fit or a fraction of the height (x screens)
 
 const Container = styled.div`

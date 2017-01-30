@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import styled, {keyframes} from 'styled-components';
 
 import {isCenter, getDirection, DIRECTIONS} from '../station';
-import {times} from '../constants';
+import {times, sizes} from '../constants';
 
 import pod from '../img/pod.svg';
 
@@ -48,14 +48,12 @@ const offsetCenter = (position) => ({
   y: position.y + POSITIONS.center.y
 });
 
-const width = '3em';
-
 // moves from departure to arrival
 const Wrapper = styled.div`
   transition: transform ${times.podAnimation}ms;
   position: absolute;
-  left: calc(50% - ${width}/2);
-  top: calc(50% - ${width}/2);
+  left: calc(50% - ${sizes.pod.width}/2);
+  top: calc(50% - ${sizes.pod.height}/2);
 `;
 
 export default class Pod extends Component {
@@ -113,8 +111,8 @@ export default class Pod extends Component {
     `;
 
     const Img = styled.img`
-      width: ${width};
-      height: ${width};
+      width: ${sizes.pod.width};
+      height: ${sizes.pod.height};
       animation: ${buzz} ${.5 + Math.random()}s infinite;
     `;
 
