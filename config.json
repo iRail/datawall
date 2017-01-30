@@ -1,0 +1,19 @@
+{
+  "stations": [
+    {
+      "@id": "http://irail.be/stations/NMBS/008892007",
+      "name": "Gent-Sint-Pieters"
+    },
+    {
+      "@id": "http://irail.be/stations/NMBS/008893120",
+      "name": "Gent-Dampoort"
+    },
+    {
+      "@id": "http://irail.be/stations/NMBS/008893179",
+      "name": "Gentbrugge"
+    }
+  ],
+  "name": "Gent",
+  "longitude": 3.710675,
+  "latitude": 51.035896
+}
