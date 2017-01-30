@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import {name} from '../../config.json';
-import hub from '../img/hub.svg';
+import hub from '../img/hub';
 
 import {colors, sizes, zIndex} from '../constants';
 
@@ -12,11 +12,10 @@ const Wrapper = styled.div`
 const MainStation = styled.div`
   width: ${sizes.hub.width};
   height: ${sizes.hub.height};
-  background-image: url(${hub});
+  background-image: url(${hub.all});
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
-  text-align: center;
   display: flex;
   justify-content: center;
   align-items: center;
