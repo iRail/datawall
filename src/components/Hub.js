@@ -17,11 +17,15 @@ const MainStation = styled.div`
   background-position: center;
   background-repeat: no-repeat;
   text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 const Text = styled.span`
   color: ${colors.white};
-  line-height: 30vh;
+  margin-top: -15vh;
+  font-size: 3vh;
 `;
 
 export default () => {
