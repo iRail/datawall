@@ -12,29 +12,29 @@ const POSITIONS = {
     y: 0
   },
   [DIRECTIONS.northeast]: {
-    x: 50,
-    y: -50,
+    x: 60,
+    y: -25,
     scaleX: 1,
     scaleY: 1,
     rotate: 0
   },
   [DIRECTIONS.northwest]: {
-    x: -50,
-    y: -50,
+    x: -60,
+    y: -25,
     scaleX: -1,
     scaleY: 1,
     rotate: 0
   },
   [DIRECTIONS.southeast]: {
-    x: 50,
-    y: 50,
+    x: 60,
+    y: 20,
     scaleX: 1,
     scaleY: 1,
     rotate: 90
   },
   [DIRECTIONS.southwest]: {
-    x: -50,
-    y: 50,
+    x: -60,
+    y: 20,
     scaleX: -1,
     scaleY: 1,
     rotate: 90
