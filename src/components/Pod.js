@@ -54,25 +54,27 @@ const Wrapper = styled.div`
   position: absolute;
   left: calc(50% - ${sizes.pod.width}/2);
   top: calc(50% - ${sizes.pod.height}/2);
-  z-index: ${zIndex.pod};
 `;
 
 export default class Pod extends Component {
   constructor(props) {
     super(props);
+    let {origin, destination} = props;
     // original position
-    let {x, y} = offsetCenter(getPosition(props.destination, props.origin));
-    if(isCenter(props.origin)) {
+    let {x, y} = offsetCenter(getPosition(destination, origin));
+    if(isCenter(origin)) {
       ({x,y} = POSITIONS.center);
     }
 
     // sets the right direction the bee should be facing
-    let {scaleX, scaleY, rotate} = getPosition(props.origin, props.destination);
+    let {scaleX, scaleY, rotate} = getPosition(origin, destination);
+    console.log(getDirection(origin, destination), zIndex.pod, zIndex.pod[getDirection(origin, destination)]);
     this.state = {
-      position: {
+      wrapper: {
         transform: `translateX(${x}vw) translateY(${y}vh) scaleX(${scaleX}) scaleY(${scaleY}) rotate(${rotate}deg)`,
+        zIndex: zIndex.pod[getDirection(origin, destination)],
       }
-    }
+    };
   }
 
   componentDidMount() {
@@ -100,18 +102,21 @@ export default class Pod extends Component {
       `;
 
       setTimeout(() => this.setState({
-        position: {
+        wrapper: {
+          ...this.state.wrapper,
           transition: `transform ${.5 + Math.random()}ms`,
           animation: `${moveAround} ${.5 + Math.random()}s infinite`
-        }
+        },
       }), times.pod.moveIn);
     }
 
     // won't fire when in another tab, nbd
+    console.log(this.state);
     setTimeout(() => requestAnimationFrame(() => this.setState({
-      position: {
+      wrapper: {
+        ...this.state.wrapper,
         transform: `translateX(${x}vw) translateY(${y}vh) scaleX(${scaleX}) scaleY(${scaleY}) rotate(${rotate}deg)`
-      }
+      },
     })), 0);
   }
 
@@ -142,7 +147,7 @@ export default class Pod extends Component {
     `;
 
     return (
-      <Wrapper style={this.state.position}>
+      <Wrapper style={this.state.wrapper}>
         <Img src={pod} alt="a lookup" />
       </Wrapper>
     );

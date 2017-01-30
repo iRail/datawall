@@ -3,6 +3,7 @@
  */
 
 // import { keyframes } from 'styled-components';
+import {DIRECTIONS} from './station';
 
 export const colors = {
   darkGrey: '#232323',
@@ -32,11 +33,23 @@ export const sizes = {
     height: '18em'
   }
 };
-
+console.log(DIRECTIONS);
 export const zIndex = {
-  footer: 2,
-  pod: 1,
-  hub: 0,
+  footer: 8,
+  pod: {
+    [DIRECTIONS.southwest]: 6,
+    [DIRECTIONS.southeast]: 6,
+    [DIRECTIONS.northwest]: 2,
+    [DIRECTIONS.northeast]: 2,
+  },
+  hub: {
+    south_front: 7,
+    south_back: 5,
+    jar: 4,
+    north_front: 3,
+    north_back: 1,
+    platform: 0,
+  }
 }
 
 export const API_BASE_URI = process.env.NODE_ENV === 'development' ? 'localhost:3001' : '/';

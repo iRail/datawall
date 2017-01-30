@@ -8,14 +8,10 @@ import south_front from './south_front.svg';
 
 export default {
   all,
+  south_front,
+  south_back,
   jar,
-  north: {
-    back: north_back,
-    north: north_front,
-  },
+  north_front,
+  north_back,
   platform,
-  south: {
-    back: south_back,
-    front: south_front,
-  }
 }
