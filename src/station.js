@@ -42,7 +42,6 @@ export function getDirection(origin, destination) {
  * @returns true if the station is being targeted as center
  */
 export function isCenter(station) {
-  console.log(stations);
   const ids = stations.map(s => s['@id']);
   return ids.includes(station['@id']);
 }
