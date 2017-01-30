@@ -94,7 +94,7 @@ export default class Pod extends Component {
   render() {
     const random = Math.random();
 
-    // todo: make this look better
+    // todo: make this look better (#12)
     const buzz = keyframes`
       0%, 100% {
         transform:
