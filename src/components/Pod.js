@@ -84,6 +84,7 @@ export default class Pod extends Component {
       ({x,y} = POSITIONS.center);
     }
 
+    // won't fire when in another tab, nbd
     setTimeout(() => requestAnimationFrame(() => this.setState({
       position: {
         transform: `translateX(${x}vw) translateY(${y}vh) scaleX(${scaleX}) scaleY(${scaleY}) rotate(${rotate}deg)`
