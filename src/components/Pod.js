@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import styled, {keyframes} from 'styled-components';
 
 import {isCenter, getDirection, DIRECTIONS} from '../station';
-import {times, sizes} from '../constants';
+import {times, sizes, zIndex} from '../constants';
 
 import pod from '../img/pod.svg';
 
@@ -54,6 +54,7 @@ const Wrapper = styled.div`
   position: absolute;
   left: calc(50% - ${sizes.pod.width}/2);
   top: calc(50% - ${sizes.pod.height}/2);
+  z-index: ${zIndex.pod};
 `;
 
 export default class Pod extends Component {

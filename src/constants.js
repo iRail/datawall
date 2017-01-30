@@ -30,4 +30,10 @@ export const sizes = {
   }
 };
 
+export const zIndex = {
+  footer: 2,
+  pod: 1,
+  hub: 0,
+}
+
 export const API_BASE_URI = process.env.NODE_ENV === 'development' ? 'localhost:3001' : '/';

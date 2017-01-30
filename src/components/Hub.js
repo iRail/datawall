@@ -3,9 +3,10 @@ import styled from 'styled-components';
 import {name} from '../../config.json';
 import hub from '../img/hub.svg';
 
-import {colors, sizes} from '../constants';
+import {colors, sizes, zIndex} from '../constants';
 
 const Wrapper = styled.div`
+  z-index: ${zIndex.hub};
 `;
 
 const MainStation = styled.div`
