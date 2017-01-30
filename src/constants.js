@@ -16,11 +16,4 @@ export const times = {
   podAnimation: 3000
 };
 
-export const STATION = {
-  '@id': 'http://irail.be/stations/NMBS/008892007',
-  name: 'Gent-Sint-Pieters',
-  longitude: 3.710675,
-  latitude: 51.035896
-};
-
 export const API_BASE_URI = process.env.NODE_ENV === 'development' ? 'localhost:3001' : '/';

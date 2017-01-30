@@ -1,3 +1,5 @@
+import {stations} from '../config.json';
+
 export const DIRECTIONS = {
   northeast: 'NORTHEAST',
   northwest: 'NORTHWEST',
@@ -33,6 +35,14 @@ export function getDirection(origin, destination) {
   }
 }
 
-export function isCenter(origin, center) {
-  return origin['@id'] === center['@id'];
+/**
+ * Checks whether a station is part of the targeted area
+ * 
+ * @param {object} [{'@id': url}=station] a station to check
+ * @returns true if the station is being targeted as center
+ */
+export function isCenter(station) {
+  console.log(stations);
+  const ids = stations.map(s => s['@id']);
+  return ids.includes(station['@id']);
 }

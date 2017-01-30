@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-
+import {name} from '../../config.json';
 import hub from '../img/hub.svg';
 
-import {STATION, colors} from '../constants';
+import {colors} from '../constants';
 
 const Wrapper = styled.div`
 `;
@@ -27,7 +27,7 @@ export default () => {
     return (
       <Wrapper>
         <MainStation>
-          <Text>{STATION.name}</Text>
+          <Text>{name}</Text>
         </MainStation>
       </Wrapper>
     );

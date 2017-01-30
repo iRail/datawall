@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import styled, {keyframes} from 'styled-components';
 
-import {STATION} from '../constants';
 import {isCenter, getDirection, DIRECTIONS} from '../station';
 import {times} from '../constants';
 
@@ -64,7 +63,7 @@ export default class Pod extends Component {
     super(props);
     // original position
     let {x, y} = offsetCenter(getPosition(props.destination, props.origin));
-    if(isCenter(props.origin, STATION)) {
+    if(isCenter(props.origin)) {
       ({x,y} = POSITIONS.center);
     }
 
@@ -82,7 +81,7 @@ export default class Pod extends Component {
 
     // the position and direction the bee should fly to
     let {x, y, scaleX, scaleY, rotate} = getPosition(origin, destination);
-    if(isCenter(origin, STATION) === false) {
+    if(isCenter(origin) === false) {
       ({x,y} = POSITIONS.center);
     }
 

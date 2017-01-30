@@ -1,9 +1,9 @@
 const fetch = require('node-fetch');
-
+const {stations} = require('../../config.json');
 let lastQuery;
 
 // fetches logs using fetch
-function fetchLogs(socket, inputData, callback = null) {
+function fetchLogs(socket, callback = null) {
   const url = 'http://api.irail.be/logs';
 
   fetch(url)
@@ -12,24 +12,24 @@ function fetchLogs(socket, inputData, callback = null) {
       // pass queries to the callback
       // not the first time though, because we don't know what our lastQuery is yet
       if (callback) {
-        emitSingleQueries(socket, filterQueries(callback(queryData), inputData), inputData);
+        emitSingleQueries(socket, filterQueries(callback(queryData)));
         // data refreshed and events emitted, start a new timeout
-        setTimeout(fetchLogs, 500, socket, inputData, getNewData);
+        setTimeout(fetchLogs, 500, socket, getNewData);
       }
       else {
         // initialize lastQuery
         // at this point the first dataset has been fetched
         lastQuery = queryData[queryData.length - 1];
-        fetchLogs(socket, inputData, getNewData);
+        fetchLogs(socket, getNewData);
       }
     })
     .catch(ex => {
-      fetchLogs(socket, inputData, getNewData);
+      fetchLogs(socket, getNewData);
     });
 }
 
-function startPolling(socket, inputData) {
-  fetchLogs(socket, inputData);
+function startPolling(socket) {
+  fetchLogs(socket);
 }
 
 // checks for every query
@@ -56,13 +56,14 @@ function getNewData(data) {
 
 // filters the queries
 function filterQueries(queryData, inputData) {
+  const ids = stations.map(s => s['@id']);
   return queryData.filter(query => {
     // test for invalid queries
     try {
       return query.querytype === 'connections' &&
         (
-          query.query.arrivalStop['@id'] === inputData.stop ||
-          query.query.departureStop['@id'] === inputData.stop
+          ids.includes(query.query.arrivalStop['@id']) ||
+          ids.includes(query.query.departureStop['@id'])
         );
     } catch (ex) {
       return false;
@@ -71,8 +72,8 @@ function filterQueries(queryData, inputData) {
 }
 
 // emit event for every query
-function emitSingleQueries(socket, data, inputData) {
-  data.forEach(request => socket.emit(inputData.stop, {
+function emitSingleQueries(socket, data) {
+  data.forEach(request => socket.emit('newData', {
     origin: request.query.departureStop,
     destination: request.query.arrivalStop,
     querytime: request.hasOwnProperty('querytime') ? request.querytime : new Date(),
