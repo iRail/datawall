@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 
-import Header from './Header';
+import Info from './Info';
 import Hub from './Hub';
 import Pod from './Pod';
 
@@ -22,7 +22,7 @@ class Scene extends Component {
   render() {
     return (
       <Wrapper>
-        <Header />
+        <Info />
         {this.renderPods()}
         <Hub />
       </Wrapper>
