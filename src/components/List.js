@@ -1,34 +1,55 @@
 import React, {Component} from 'react';
 import styled from 'styled-components';
 
-import {colors} from '../constants';
+import icons from '../img/icons';
+import {isCenter} from '../station';
+import {colors, sizes, zIndex} from '../constants';
 
-const Table = styled.table`
+const Wrapper = styled.div`
   width: 100%;
-  border-collapse: collapse;
+  height: 100%;
+  background-color: ${colors.black};
+  color: ${colors.white};
+  z-index: ${zIndex.list};
+  flex-basis: ${sizes.list.height};
+  flex-grow: 0;
+  border: 1px solid ${colors.black};
+  overflow: hidden;
+  display: flex;
 `;
 
-const Heading = styled.th`
-  text-transform: uppercase;
-  text-align: left;
-  font-size: .6em;
-  padding: .4rem;
-`;
+const Item = styled.div`
+  flex-grow: 1;
+  max-width: 50vw;
+  display: flex;
+  flex-direction: column;
 
-const Item = styled.td`
-  border-top: none;
-  border-bottom: none;
-  border-right: .2em ${colors.black} solid;
-  padding: .4rem;
-`;
-
-const Row = styled.tr`
   &:nth-of-type(even) {
     background-color: ${colors.lightGrey};
   }
+
   &:nth-of-type(odd) {
     background-color: ${colors.darkGrey};
   }
+`;
+
+const Heading = styled.div`
+  text-transform: uppercase;
+  text-align: right;
+  font-size: .8em;
+  padding: .4rem;
+  background-color: ${colors.black};
+`;
+
+const Info = styled.div`
+  padding: .4rem;
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+`;
+
+const Text = styled.span`
+  margin: .4rem;
 `;
 
 export default class List extends Component {
@@ -42,30 +63,25 @@ export default class List extends Component {
         minutes: date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes(),
         seconds: date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds()
       };
+      const inbound = isCenter(query.destination);
+
       return (
-        <Row key={index}>
-          <Item>{time.hours}:{time.minutes}:{time.seconds}</Item>
-          <Item>{query.origin.name}</Item>
-          <Item>{query.destination.name}</Item>
-        </Row>
+        <Item key={index}>
+          <Heading>{time.hours}:{time.minutes}:{time.seconds}</Heading>
+          <Info>
+            <img src={inbound ? icons.inbound : icons.outbound} alt={inbound ? 'inbound' : 'outbound'} style={{width: sizes.icon.width, height: sizes.icon.height}}/>
+            <Text>{inbound ? query.origin.name : query.destination.name}</Text>
+          </Info>
+        </Item>
       );
     });
   }
 
   render() {
     return (
-      <Table>
-        <thead>
-          <tr>
-            <Heading>time</Heading>
-            <Heading>departure</Heading>
-            <Heading>destination</Heading>
-          </tr>
-        </thead>
-        <tbody>
-          {this.renderQueries()}
-        </tbody>
-      </Table>
+      <Wrapper>
+        {this.renderQueries()}
+      </Wrapper>
     );
   }
 }
