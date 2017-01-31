@@ -41,26 +41,16 @@ const Text = styled.span`
   font-size: 3vh;
 `;
 
-class Hub extends Component {
-  shouldComponentUpdate(nextProps, nextState) {
-    return false;
-  }
-
-  render() {
-    return (
-      <Wrapper>
-        <Text>{name}</Text>
-        <Images>
-          <Item id="north_front" />
-          <Item id="north_back" />
-          <Item id="jar" />
-          <Item id="south_front" />
-          <Item id="south_back" />
-          <Item id="platform" />
-        </Images>
-      </Wrapper>
-    );
-  }
-};
-
-export default Hub;
+export default () => (
+  <Wrapper>
+    <Text>{name}</Text>
+    <Images>
+      <Item id="north_front" />
+      <Item id="north_back" />
+      <Item id="jar" />
+      <Item id="south_front" />
+      <Item id="south_back" />
+      <Item id="platform" />
+    </Images>
+  </Wrapper>
+);
