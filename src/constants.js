@@ -37,10 +37,10 @@ export const sizes = {
 export const zIndex = {
   footer: 8,
   pod: {
-    [DIRECTIONS.southwest]: 6,
-    [DIRECTIONS.southeast]: 6,
-    [DIRECTIONS.northwest]: 2,
-    [DIRECTIONS.northeast]: 2,
+    [DIRECTIONS.southwest]: 2,
+    [DIRECTIONS.southeast]: 2,
+    [DIRECTIONS.northwest]: 6,
+    [DIRECTIONS.northeast]: 6,
   },
   hub: {
     south_front: 7,
