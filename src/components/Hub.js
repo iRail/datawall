@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import styled from 'styled-components';
 import {name} from '../../config.json';
 import hub from '../img/hub';
@@ -41,18 +41,26 @@ const Text = styled.span`
   font-size: 3vh;
 `;
 
-export default () => {
-  return (
-    <Wrapper>
-      <Text>{name}</Text>
-      <Images>
-        <Item id="north_front" />
-        <Item id="north_back" />
-        <Item id="jar" />
-        <Item id="south_front" />
-        <Item id="south_back" />
-        <Item id="platform" />
-      </Images>
-    </Wrapper>
-  );
-}
+class Hub extends Component {
+  shouldComponentUpdate(nextProps, nextState) {
+    return false;
+  }
+
+  render() {
+    return (
+      <Wrapper>
+        <Text>{name}</Text>
+        <Images>
+          <Item id="north_front" />
+          <Item id="north_back" />
+          <Item id="jar" />
+          <Item id="south_front" />
+          <Item id="south_back" />
+          <Item id="platform" />
+        </Images>
+      </Wrapper>
+    );
+  }
+};
+
+export default Hub;
