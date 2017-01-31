@@ -11,6 +11,30 @@
     {
       "@id": "http://irail.be/stations/NMBS/008893179",
       "name": "Gentbrugge"
+    },
+    {
+      "@id": "https://irail.be/stations/NMBS/008893211",
+      "name": "Wondelgem"
+    },
+    {
+      "@id": "https://irail.be/stations/NMBS/008893252",
+      "name": "Evergem"
+    },
+    {
+      "@id": "https://irail.be/stations/NMBS/008893039",
+      "name": "Melle"
+    },
+    {
+      "@id": "https://irail.be/stations/NMBS/008892080",
+      "name": "De Pinte"
+    },
+    {
+      "@id": "https://irail.be/stations/NMBS/008892056",
+      "name": "Landegem"
+    },
+    {
+      "@id": "https://irail.be/stations/NMBS/008892031",
+      "name": "Drongen"
     }
   ],
   "name": "Gent",
