@@ -2,7 +2,7 @@
  * Global things that never change, colors and keyframes
  */
 
-// import { keyframes } from 'styled-components';
+import { keyframes } from 'styled-components';
 import {DIRECTIONS} from './station';
 
 export const colors = {
@@ -33,6 +33,44 @@ export const sizes = {
     height: '18em'
   }
 };
+
+export const animations = {
+  moveAround() {
+    return keyframes`
+      0%, 100% {
+        transform:
+          rotate(0)
+          scale(1)
+          translateY(-${Math.random()}vh);
+      }
+
+      50% {
+        transform: 
+          rotate(0)
+          scale(1)
+          translateY(-${Math.random() + 2}vh);
+      }
+    `;
+  },
+  // todo: make this look better (#12)
+  buzz() {
+    return keyframes`
+      0%, 100% {
+        transform:
+          scale(1)
+          translateX(${Math.random()}vh)
+          translateY(${Math.random()}vw);
+      }
+
+      50% {
+        transform: 
+          scale(${Math.random() * (1.4 - 0.6) + 0.6})
+          translateX(${Math.random()}vh)
+          translateY(${Math.random()}vw);
+      }
+    `;
+  },
+}
 
 export const zIndex = {
   footer: 8,

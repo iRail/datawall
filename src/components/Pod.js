@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
-import styled, {keyframes} from 'styled-components';
+import styled from 'styled-components';
 
 import {isCenter, getDirection, DIRECTIONS} from '../station';
-import {times, sizes, zIndex} from '../constants';
+import {times, sizes, zIndex, animations} from '../constants';
 
 import pod from '../img/pod.svg';
 
@@ -86,27 +86,11 @@ export default class Pod extends Component {
     if(isCenter(origin) === false) {
       ({x,y} = POSITIONS.center);
 
-      const moveAround = keyframes`
-        0%, 100% {
-          transform:
-            rotate(0)
-            scale(1)
-            translateY(-${Math.random()}vh);
-        }
-
-        50% {
-          transform: 
-            rotate(0)
-            scale(1)
-            translateY(-${Math.random() + 2}vh);
-        }
-      `;
-
       setTimeout(() => this.setState({
         wrapper: {
           ...this.state.wrapper,
           transition: `transform ${.5 + Math.random()}ms`,
-          animation: `${moveAround} ${.5 + Math.random()}s infinite`
+          animation: `${animations.moveAround()} ${.5 + Math.random()}s infinite`
         },
       }), times.pod.moveIn);
     }
@@ -121,29 +105,10 @@ export default class Pod extends Component {
   }
 
   render() {
-    const random = Math.random();
-
-    // todo: make this look better (#12)
-    const buzz = keyframes`
-      0%, 100% {
-        transform:
-          scale(1)
-          translateX(${random}vh)
-          translateY(${random}vw);
-      }
-
-      50% {
-        transform: 
-          scale(${random * (1.4 - 0.6) + 0.6})
-          translateX(${random}vh)
-          translateY(${random}vw);
-      }
-    `;
-
     const Img = styled.img`
       width: ${sizes.pod.width};
       height: ${sizes.pod.height};
-      animation: ${buzz} ${.5 + Math.random()}s infinite;
+      animation: ${animations.buzz()} ${.5 + Math.random()}s infinite;
     `;
 
     return (
