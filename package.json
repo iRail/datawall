@@ -1,6 +1,6 @@
 {
   "name": "datawall",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "The iRail datawall at De Krook library in Ghent",
   "devDependencies": {
     "concurrently": "^3.1.0",
