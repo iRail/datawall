@@ -65,47 +65,29 @@ export default class List extends Component {
   renderInbound() {
     const {inbound} = this.props.queries;
 
-    return inbound.map((query,index) => {
-      const date = new Date(query.querytime);
-      const time = {
-        hours: date.getHours() < 10 ? '0' + date.getHours() : date.getHours(),
-        minutes: date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes(),
-        seconds: date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds()
-      };
-
-      return (
-        <Item key={index}>
-          <Heading>{time.hours}:{time.minutes}:{time.seconds}</Heading>
-          <Info>
-            <img src={icons.inbound} alt='inbound request' style={{width: sizes.icon.width, height: sizes.icon.height}}/>
-            <Text>{query.origin.name}</Text>
-          </Info>
-        </Item>
-      );
-    });
+    return inbound.map((query,index) => (
+      <Item key={index}>
+        <Heading>{query.destination.name}</Heading>
+        <Info>
+          <img src={icons.right} alt='inbound request' style={{width: sizes.icon.width, height: sizes.icon.height}}/>
+          <Text>{query.origin.name}</Text>
+        </Info>
+      </Item>
+    ));
   }
 
   renderOutbound() {
     const {outbound} = this.props.queries;
 
-    return outbound.map((query,index) => {
-      const date = new Date(query.querytime);
-      const time = {
-        hours: date.getHours() < 10 ? '0' + date.getHours() : date.getHours(),
-        minutes: date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes(),
-        seconds: date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds()
-      };
-
-      return (
-        <Item key={index}>
-          <Heading>{time.hours}:{time.minutes}:{time.seconds}</Heading>
-          <Info>
-            <img src={icons.outbound} alt='outbound request' style={{width: sizes.icon.width, height: sizes.icon.height}}/>
-            <Text>{query.destination.name}</Text>
-          </Info>
-        </Item>
-      );
-    });
+    return outbound.map((query,index) => (
+      <Item key={index}>
+        <Heading>{query.origin.name}</Heading>
+        <Info>
+          <img src={icons.right} alt='outbound request' style={{width: sizes.icon.width, height: sizes.icon.height}}/>
+          <Text>{query.destination.name}</Text>
+        </Info>
+      </Item>
+    ));
   }
 
   render() {
