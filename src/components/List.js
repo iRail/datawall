@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import styled from 'styled-components';
 
 import icons from '../img/icons';
-import {isCenter} from '../station';
 import {colors, sizes, zIndex} from '../constants';
 
 const Wrapper = styled.div`
@@ -13,9 +12,17 @@ const Wrapper = styled.div`
   z-index: ${zIndex.list};
   flex-basis: ${sizes.list.height};
   flex-grow: 0;
+  display: flex;
+  flex-direction: column;
   border: 1px solid ${colors.black};
+`;
+
+const Container = styled.div`
   overflow: hidden;
   display: flex;
+  width: 100%;
+  height: 100%;
+  flex-direction: ${props => props.direction};
 `;
 
 const Item = styled.div`
@@ -52,25 +59,49 @@ const Text = styled.span`
   margin: .4rem;
 `;
 
-export default class List extends Component {
-  renderQueries() {
-    const {queries} = this.props;
 
-    return queries.map((query,index) => {
+
+export default class List extends Component {
+  renderInbound() {
+    const {inbound} = this.props.queries;
+
+    return inbound.map((query,index) => {
       const date = new Date(query.querytime);
       const time = {
         hours: date.getHours() < 10 ? '0' + date.getHours() : date.getHours(),
         minutes: date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes(),
         seconds: date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds()
       };
-      const inbound = isCenter(query.destination);
 
       return (
         <Item key={index}>
           <Heading>{time.hours}:{time.minutes}:{time.seconds}</Heading>
           <Info>
-            <img src={inbound ? icons.inbound : icons.outbound} alt={inbound ? 'inbound' : 'outbound'} style={{width: sizes.icon.width, height: sizes.icon.height}}/>
-            <Text>{inbound ? query.origin.name : query.destination.name}</Text>
+            <img src={icons.inbound} alt='inbound request' style={{width: sizes.icon.width, height: sizes.icon.height}}/>
+            <Text>{query.origin.name}</Text>
+          </Info>
+        </Item>
+      );
+    });
+  }
+
+  renderOutbound() {
+    const {outbound} = this.props.queries;
+
+    return outbound.map((query,index) => {
+      const date = new Date(query.querytime);
+      const time = {
+        hours: date.getHours() < 10 ? '0' + date.getHours() : date.getHours(),
+        minutes: date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes(),
+        seconds: date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds()
+      };
+
+      return (
+        <Item key={index}>
+          <Heading>{time.hours}:{time.minutes}:{time.seconds}</Heading>
+          <Info>
+            <img src={icons.outbound} alt='outbound request' style={{width: sizes.icon.width, height: sizes.icon.height}}/>
+            <Text>{query.destination.name}</Text>
           </Info>
         </Item>
       );
@@ -80,7 +111,12 @@ export default class List extends Component {
   render() {
     return (
       <Wrapper>
-        {this.renderQueries()}
+        <Container direction="row">
+          {this.renderInbound()}
+        </Container>
+        <Container direction="row-reverse">
+          {this.renderOutbound()}
+        </Container>
       </Wrapper>
     );
   }
