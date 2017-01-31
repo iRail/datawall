@@ -23,7 +23,7 @@ export const queryReducer = (state = INITIAL_STATE, action) => {
 
       return {
         ...state,
-        queries: queries.slice(0,7),
+        queries: queries.slice(0,4),
         visible: {
           ...state.visible,
           [VISIBLE_INDEX]: queries[0]
