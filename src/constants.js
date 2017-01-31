@@ -29,8 +29,8 @@ export const sizes = {
     width: '40vw',
     height: '40vh'
   },
-  footer: {
-    height: '18em'
+  list: {
+    height: '10vh'
   }
 };
 
@@ -73,7 +73,7 @@ export const animations = {
 }
 
 export const zIndex = {
-  footer: 8,
+  list: 8,
   pod: {
     [DIRECTIONS.southwest]: 2,
     [DIRECTIONS.southeast]: 2,
