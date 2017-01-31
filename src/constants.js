@@ -31,6 +31,10 @@ export const sizes = {
   },
   list: {
     height: '10vh'
+  },
+  icon: {
+    width: '1em',
+    height: '1em'
   }
 };
 
