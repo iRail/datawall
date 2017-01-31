@@ -68,7 +68,6 @@ export default class Pod extends Component {
 
     // sets the right direction the bee should be facing
     let {scaleX, scaleY, rotate} = getPosition(origin, destination);
-    console.log(getDirection(origin, destination), zIndex.pod, zIndex.pod[getDirection(origin, destination)]);
     this.state = {
       wrapper: {
         transform: `translateX(${x}vw) translateY(${y}vh) scaleX(${scaleX}) scaleY(${scaleY}) rotate(${rotate}deg)`,
@@ -111,7 +110,6 @@ export default class Pod extends Component {
     }
 
     // won't fire when in another tab, nbd
-    console.log(this.state);
     setTimeout(() => requestAnimationFrame(() => this.setState({
       wrapper: {
         ...this.state.wrapper,

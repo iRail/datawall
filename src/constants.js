@@ -33,7 +33,7 @@ export const sizes = {
     height: '18em'
   }
 };
-console.log(DIRECTIONS);
+
 export const zIndex = {
   footer: 8,
   pod: {
