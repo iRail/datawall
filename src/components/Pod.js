@@ -61,9 +61,11 @@ export default class Pod extends Component {
     super(props);
     let {origin, destination} = props;
     // original position
+    let z = zIndex.pod[getDirection(origin, destination)];
     let {x, y} = offsetCenter(getPosition(destination, origin));
     if(isCenter(origin)) {
       ({x,y} = POSITIONS.center);
+      z = zIndex.pod[getDirection(destination, origin)]
     }
 
     // sets the right direction the bee should be facing
@@ -71,7 +73,7 @@ export default class Pod extends Component {
     this.state = {
       wrapper: {
         transform: `translateX(${x}vw) translateY(${y}vh) scaleX(${scaleX}) scaleY(${scaleY}) rotate(${rotate}deg)`,
-        zIndex: zIndex.pod[getDirection(origin, destination)],
+        zIndex: z,
       }
     };
   }
