@@ -26,8 +26,8 @@ class App extends Component {
     const {queries, visible} = this.props;
     return (
       <Main>
-        <Scene queries={visible} />
         <Footer queries={queries} />
+        <Scene queries={visible} />
       </Main>
     );
   }
