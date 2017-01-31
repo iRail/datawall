@@ -7,7 +7,7 @@ import {listenToQueries} from '../redux/actions';
 import {colors} from '../constants';
 
 import Scene from './Scene';
-import Footer from './Footer';
+import List from './List';
 
 
 const Main = styled.main`
@@ -26,7 +26,7 @@ class App extends Component {
     const {queries, visible} = this.props;
     return (
       <Main>
-        <Footer queries={queries} />
+        <List queries={queries} />
         <Scene queries={visible} />
       </Main>
     );
