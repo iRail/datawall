@@ -19,6 +19,7 @@ export const times = {
     moveAround: 5000
   }
 };
+const screens = (num) => `${num * 100/7}vh`;
 
 export const sizes = {
   pod: {
@@ -27,10 +28,10 @@ export const sizes = {
   },
   hub: {
     width: '40vw',
-    height: '40vh'
+    height: screens(4)
   },
   list: {
-    height: '10vh'
+    height: screens(1)
   },
   icon: {
     width: '1em',
