@@ -1,7 +1,7 @@
-import inbound from './inbound.svg';
-import outbound from './outbound.svg';
+import left from './left.svg';
+import right from './right.svg';
 
 export default {
-  inbound,
-  outbound
+  left,
+  right
 }
