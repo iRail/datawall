@@ -23,21 +23,20 @@ const Item = styled.div`
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
-  position: absolute;
-  top: 0;
+  position: fixed;
+  bottom: 0;
   left: 0;
 `;
 
 const Images = styled.div`
-  position: relative;
-  top: 0;
+  bottom: 0;
   left: 0;
-  position: absolute;
+  position: fixed;
 `;
 
 const Text = styled.span`
   color: ${colors.white};
-  margin-top: -9vh;
+  margin-top: -16vh;
   font-size: 3vh;
 `;
 
@@ -45,12 +44,11 @@ export default () => (
   <Wrapper>
     <Text>{name}</Text>
     <Images>
-      <Item id="north_front" />
-      <Item id="north_back" />
+      <Item id="back" />
+      <Item id="doors_back_front" />
       <Item id="jar" />
-      <Item id="south_front" />
-      <Item id="south_back" />
-      <Item id="platform" />
+      <Item id="doors_front_back" />
+      <Item id="doors_front_front" />
     </Images>
   </Wrapper>
 );
