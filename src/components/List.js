@@ -14,7 +14,6 @@ const Wrapper = styled.div`
   flex-grow: 0;
   display: flex;
   flex-direction: column;
-  border: 1px solid ${colors.black};
 `;
 
 const Container = styled.div`
@@ -45,7 +44,7 @@ const Heading = styled.div`
   text-align: right;
   font-size: .8em;
   padding: .4rem;
-  color: ${colors.darkGrey};
+  color: ${colors.veryLightGrey};
 `;
 
 const Info = styled.div`
@@ -57,6 +56,14 @@ const Info = styled.div`
 
 const Text = styled.span`
   margin: .4rem;
+`;
+
+const InfoItem = styled.div`
+  background-color: ${colors.red};
+  color: ${colors.white};
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 export default class List extends Component {
@@ -92,15 +99,15 @@ export default class List extends Component {
     return (
       <Wrapper>
         <Container direction="row">
-          <Item>
-            <Text>Outbound</Text>
-          </Item>
+          <InfoItem>
+            <img src={icons.inbound} alt="inbound requests" />
+          </InfoItem>
           {this.renderOutbound()}
         </Container>
         <Container direction="row-reverse">
-          <Item>
-            <Text>Inbound</Text>
-          </Item>
+          <InfoItem>
+            <img src={icons.outbound} alt="outbound requests" />
+          </InfoItem>
           {this.renderInbound()}
         </Container>
       </Wrapper>
