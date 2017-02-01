@@ -20,7 +20,7 @@ const Item = styled.div`
   height: ${sizes.hub.height};
   z-index: ${props => zIndex.hub[props.id]};
   background-image: url(${props => hub[props.id]});
-  background-size: contain;
+  background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   position: fixed;
@@ -37,7 +37,7 @@ const Images = styled.div`
 const Text = styled.span`
   color: ${colors.white};
   margin-top: -16vh;
-  font-size: 3vh;
+  font-size: 4vh;
 `;
 
 export default () => (
