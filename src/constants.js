@@ -8,6 +8,7 @@ import {DIRECTIONS} from './station';
 export const colors = {
   darkGrey: '#232323',
   lightGrey: '#353535',
+  veryLightGrey: '#b5b5b5',
   white: '#ffffff',
   black: '#191919',
   red: '#c91f1b'
@@ -31,7 +32,10 @@ export const sizes = {
     height: screens(4)
   },
   list: {
-    height: screens(1)
+    height: screens(1),
+    info: {
+      width: '5vw'
+    }
   },
   icon: {
     width: '1em',
