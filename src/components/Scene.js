@@ -29,7 +29,7 @@ class Scene extends Component {
     return (
       <Wrapper>
         <Info />
-        {this.renderPods()}
+        <div style={{position: 'absolute'}}>{this.renderPods()}</div>
         <Hub />
         <Text>
           <p>See the future of train travel</p>

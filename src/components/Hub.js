@@ -12,7 +12,6 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  position: relative;
 `;
 
 const Item = styled.div`
@@ -23,7 +22,7 @@ const Item = styled.div`
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  position: fixed;
+  position: absolute;
   bottom: 0;
   left: 0;
 `;
