@@ -42,18 +42,19 @@ const Item = styled.div`
 const Heading = styled.div`
   font-size: .8em;
   padding: .4rem;
+  padding-bottom: 0;
   color: ${colors.veryLightGrey};
 `;
 
 const Info = styled.div`
-  padding: .4rem;
+  padding: 0 .4rem;
   flex-grow: 1;
   display: flex;
   align-items: center;
 `;
 
 const Text = styled.span`
-  margin: .4rem;
+  margin: 0 .4rem;
   font-weight: 700;
 `;
 
