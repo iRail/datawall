@@ -45,7 +45,7 @@ const Heading = styled.div`
   text-align: right;
   font-size: .8em;
   padding: .4rem;
-  background-color: ${colors.black};
+  color: ${colors.darkGrey};
 `;
 
 const Info = styled.div`
@@ -58,8 +58,6 @@ const Info = styled.div`
 const Text = styled.span`
   margin: .4rem;
 `;
-
-
 
 export default class List extends Component {
   renderInbound() {
@@ -94,10 +92,16 @@ export default class List extends Component {
     return (
       <Wrapper>
         <Container direction="row">
-          {this.renderInbound()}
+          <Item>
+            <Text>Outbound</Text>
+          </Item>
+          {this.renderOutbound()}
         </Container>
         <Container direction="row-reverse">
-          {this.renderOutbound()}
+          <Item>
+            <Text>Inbound</Text>
+          </Item>
+          {this.renderInbound()}
         </Container>
       </Wrapper>
     );
