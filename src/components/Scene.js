@@ -9,9 +9,6 @@ import Pod from './Pod';
 
 const Wrapper = styled.div`
   flex-grow: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   height: ${sizes.scene.height};
   position: relative;
 `;

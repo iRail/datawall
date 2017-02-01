@@ -51,7 +51,7 @@ const offsetCenter = (position) => ({
 // moves from departure to arrival
 const Wrapper = styled.div`
   transition: transform ${times.pod.moveIn}ms;
-  position: absolute;
+  position: fixed;
   left: calc(50% - ${sizes.pod.width}/2);
   top: calc(50% - ${sizes.pod.height}/2);
 `;
