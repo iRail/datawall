@@ -28,8 +28,8 @@ export const sizes = {
     height: '3em'
   },
   hub: {
-    width: '40vw',
-    height: screens(4)
+    width: '100vw',
+    height: screens(5)
   },
   list: {
     height: screens(1),
@@ -90,12 +90,11 @@ export const zIndex = {
     [DIRECTIONS.northeast]: 6,
   },
   hub: {
-    south_front: 7,
-    south_back: 5,
+    back: 1,
+    doors_back_front: 3,
     jar: 4,
-    north_front: 3,
-    north_back: 1,
-    platform: 0,
+    doors_front_back: 5,
+    doors_front_front: 7,
   }
 }
 
