@@ -1,17 +1,13 @@
-import all from './all.svg';
-import jar from './jar.svg';
-import north_back from './north_back.svg';
-import north_front from './north_front.svg';
-import platform from './platform.svg';
-import south_back from './south_back.svg';
-import south_front from './south_front.svg';
+import back from '0_back.svg';
+import doors_back_front from '1_doors_back_front.svg';
+import jar from '2_jar.svg';
+import doors_front_back from '3_doors_front_back.svg';
+import doors_front_front from '4_doors_front_front.svg';
 
 export default {
-  all,
-  south_front,
-  south_back,
+  back,
+  doors_back_front,
   jar,
-  north_front,
-  north_back,
-  platform,
+  doors_front_back,
+  doors_front_front,
 }
