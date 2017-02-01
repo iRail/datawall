@@ -17,6 +17,17 @@ const Wrapper = styled.div`
 
 const Text = styled.div`
   color: ${colors.white};
+  text-align: center;
+  margin: 2em 0;
+  position: absolute;
+  bottom: 0;
+  width: 50vw;
+  left: calc(50% - 25vw);
+  right: calc(50% - 25vw);
+`;
+
+const P = styled.p`
+  margin: .2em;
 `;
 
 class Scene extends Component {
@@ -32,8 +43,8 @@ class Scene extends Component {
         <div style={{position: 'absolute'}}>{this.renderPods()}</div>
         <Hub />
         <Text>
-          <p>See the future of train travel</p>
-          <p>search with <strong>irail.be</strong></p>
+          <P>See the future of train travel</P>
+          <P>search with <strong>irail.be</strong></P>
         </Text>
       </Wrapper>
     );
