@@ -40,8 +40,6 @@ const Item = styled.div`
 `;
 
 const Heading = styled.div`
-  text-transform: uppercase;
-  text-align: right;
   font-size: .8em;
   padding: .4rem;
   color: ${colors.veryLightGrey};
@@ -56,6 +54,7 @@ const Info = styled.div`
 
 const Text = styled.span`
   margin: .4rem;
+  font-weight: 700;
 `;
 
 const InfoItem = styled.div`
