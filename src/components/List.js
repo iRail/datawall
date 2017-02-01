@@ -19,9 +19,9 @@ const Wrapper = styled.div`
 const Container = styled.div`
   overflow: hidden;
   display: flex;
+  flex-direction: ${props => props.direction};
   width: 100%;
   height: 100%;
-  flex-direction: ${props => props.direction};
 `;
 
 const Item = styled.div`
@@ -59,6 +59,8 @@ const Text = styled.span`
 `;
 
 const InfoItem = styled.div`
+  padding: .4rem;
+  width: ${sizes.list.info.width};
   background-color: ${colors.red};
   color: ${colors.white};
   display: flex;
@@ -100,13 +102,13 @@ export default class List extends Component {
       <Wrapper>
         <Container direction="row">
           <InfoItem>
-            <img src={icons.inbound} alt="inbound requests" />
+            <img src={icons.outbound} alt="outbound requests" style={{height: '100%', width: '100%'}}/>
           </InfoItem>
           {this.renderOutbound()}
         </Container>
         <Container direction="row-reverse">
           <InfoItem>
-            <img src={icons.outbound} alt="outbound requests" />
+            <img src={icons.inbound} alt="inbound requests" style={{height: '100%', width: '100%'}}/>
           </InfoItem>
           {this.renderInbound()}
         </Container>
