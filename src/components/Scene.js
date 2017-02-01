@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 
-import {colors} from '../constants';
+import {colors, sizes} from '../constants';
 
 import Info from './Info';
 import Hub from './Hub';
@@ -12,6 +12,7 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  height: ${sizes.scene.height};
   position: relative;
 `;
 

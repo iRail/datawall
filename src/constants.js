@@ -31,6 +31,9 @@ export const sizes = {
     width: '100vw',
     height: screens(5)
   },
+  scene: {
+    height: screens(6)
+  },
   icons: {
     height: screens(1),
   },
