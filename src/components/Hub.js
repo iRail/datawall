@@ -12,6 +12,9 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  position: absolute;
+  bottom: 0;
+  left: 0;
 `;
 
 const Item = styled.div`
@@ -35,7 +38,7 @@ const Images = styled.div`
 
 const Text = styled.span`
   color: ${colors.white};
-  margin-top: -16vh;
+  margin-top: -30vh;
   font-size: 4vh;
 `;
 
