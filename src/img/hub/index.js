@@ -1,8 +1,8 @@
-import back from '0_back.svg';
-import doors_back_front from '1_doors_back_front.svg';
-import jar from '2_jar.svg';
-import doors_front_back from '3_doors_front_back.svg';
-import doors_front_front from '4_doors_front_front.svg';
+import back from 'back.svg';
+import doors_back_front from 'doors_back_front.svg';
+import jar from 'jar.svg';
+import doors_front_back from 'doors_front_back.svg';
+import doors_front_front from 'doors_front_front.svg';
 
 export default {
   back,
