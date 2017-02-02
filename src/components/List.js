@@ -62,7 +62,7 @@ const Text = styled.span`
 
 const InfoItem = styled.div`
   padding: .4rem;
-  width: ${sizes.list.info.width};
+  min-width: ${sizes.list.info.width};
   background-color: ${colors.red};
   color: ${colors.white};
   display: flex;
