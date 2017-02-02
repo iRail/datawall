@@ -1,11 +1,14 @@
 import React, {Component} from 'react';
 import styled from 'styled-components';
 import GSAP from 'react-gsap-enhancer';
+import {TweenMax, TimelineLite} from 'gsap';
+import {convertToCubicBezier} from '../lib/bezier';
 
 import {isCenter, getDirection, DIRECTIONS} from '../station';
 import {times, sizes, zIndex, animations} from '../constants';
 
 import pod from '../img/pod.svg';
+import {} from '../img/hub';
 
 const POSITIONS = {
   [DIRECTIONS.northeast]: {
@@ -22,12 +25,19 @@ const POSITIONS = {
   }
 };
 
+const moveAnimation = ({target}) => {
+};
+
 class Pod extends Component {
   constructor(props) {
+    super(props);
+    const path = document.getElementById('back_left');
+    console.dir(path.attributes.d.nodeValue.split(' '));
+    console.dir(convertToCubicBezier(path));
   }
 
   componentDidMount() {
-
+    this.addAnimation(moveAnimation);
   }
 
   render() {
