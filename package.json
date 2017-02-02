@@ -10,6 +10,7 @@
   "dependencies": {
     "cross-env": "^3.1.4",
     "express": "^4.14.0",
+    "gsap": "^1.19.1",
     "node-fetch": "^1.6.3",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
