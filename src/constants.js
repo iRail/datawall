@@ -20,6 +20,7 @@ export const times = {
     moveAround: 5000
   }
 };
+
 const screens = (num) => `${num * 100/7}vh`;
 
 export const sizes = {
@@ -36,6 +37,9 @@ export const sizes = {
   },
   icons: {
     height: screens(1),
+  },
+  labels: {
+    height: screens(3),
   },
   list: {
     height: screens(1),
