@@ -5,7 +5,6 @@ import hub from '../img/hub';
 
 import {colors, sizes, zIndex} from '../constants';
 
-
 const Wrapper = styled.div`
   width: ${sizes.hub.width};
   height: ${sizes.hub.height};
