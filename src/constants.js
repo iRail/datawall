@@ -39,17 +39,18 @@ export const sizes = {
     height: screens(1),
   },
   labels: {
-    height: screens(3),
+    height: screens(2),
+    bottom: screens(1.75),
   },
   list: {
     height: screens(1),
     info: {
-      width: '5vw'
+      width: '5vw',
     }
   },
   icon: {
     width: '1em',
-    height: '1em'
+    height: '1em',
   }
 };
 
