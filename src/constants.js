@@ -61,14 +61,14 @@ export const animations = {
         transform:
           rotate(0)
           scale(1)
-          translateY(-${Math.random()}vh);
+          translateY(5vh);
       }
 
       50% {
         transform: 
           rotate(0)
           scale(1)
-          translateY(-${Math.random() + 2}vh);
+          translateY(5-${Math.random() + 2}vh);
       }
     `;
   },
