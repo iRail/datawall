@@ -44,7 +44,11 @@ const LabelsInner = styled.div`
   width: 100%;
 `;
 
-const Label = styled.p``;
+const Label = styled.p`
+  font-weight: 700;
+  margin: 0 .4em;
+  color: ${colors.white};
+`;
 
 class Scene extends Component {
   renderPods() {
