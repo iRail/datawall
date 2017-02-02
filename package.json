@@ -20,7 +20,8 @@
     "redux-thunk": "^2.2.0",
     "socket.io": "^1.7.2",
     "socket.io-client": "^1.7.2",
-    "styled-components": "^1.4.0"
+    "styled-components": "^1.4.0",
+    "typeface-pt-sans": "^0.0.21"
   },
   "scripts": {
     "start": "cross-env NODE_ENV=production npm run server",
