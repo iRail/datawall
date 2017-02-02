@@ -40,7 +40,7 @@ export const sizes = {
   },
   labels: {
     height: screens(2),
-    bottom: screens(1.75),
+    bottom: screens(1.7),
   },
   list: {
     height: screens(1),
