@@ -41,7 +41,6 @@ const Text = styled.span`
   font-size: 4vh;
 `;
 
-
 const {Paths} = hub;
 
 export default () => (
