@@ -44,6 +44,7 @@ const Heading = styled.div`
   padding: .4rem;
   padding-bottom: 0;
   color: ${colors.veryLightGrey};
+  white-space: nowrap;
 `;
 
 const Info = styled.div`
@@ -56,6 +57,7 @@ const Info = styled.div`
 const Text = styled.span`
   margin: 0 .4rem;
   font-weight: 700;
+  white-space: nowrap;
 `;
 
 const InfoItem = styled.div`
