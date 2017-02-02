@@ -3,6 +3,8 @@ import styled from 'styled-components';
 
 import {colors, sizes} from '../constants';
 
+import icons from '../img/icons';
+
 import Info from './Info';
 import Hub from './Hub';
 import Pod from './Pod';
@@ -11,6 +13,7 @@ const Wrapper = styled.div`
   flex-grow: 1;
   height: ${sizes.scene.height};
   position: relative;
+  transform: translateY(0.5em);
 `;
 
 const Text = styled.div`
@@ -49,6 +52,8 @@ const Label = styled.p`
   margin: 0 .4em;
   color: ${colors.white};
   transform: rotate(${props => props.rotate}deg);
+  display: flex;
+  align-items: center;
 `;
 
 class Scene extends Component {
@@ -65,13 +70,25 @@ class Scene extends Component {
         <Hub />
         <Labels>
           <LabelsInner>
-            <Label rotate={6}>Brugge</Label>
-            <Label rotate={-6}>Antwerpen</Label>
+            <Label rotate={6}>
+              <img src={icons.chevronLeft} alt='inbound request' style={{width: sizes.icon.width, height: sizes.icon.height}}/>
+              Brugge
+            </Label>
+            <Label rotate={-6}>
+              Antwerpen
+              <img src={icons.chevronRight} alt='inbound request' style={{width: sizes.icon.width, height: sizes.icon.height}}/>
+            </Label>
           </LabelsInner>
           <div style={{flexGrow: 1}}></div>
           <LabelsInner>
-            <Label rotate={-19}>Kortrijk</Label>
-            <Label rotate={19}>Brussel</Label>
+            <Label rotate={-19}>
+              <img src={icons.chevronLeft} alt='inbound request' style={{width: sizes.icon.width, height: sizes.icon.height}}/>
+              Kortrijk
+            </Label>
+            <Label rotate={19}>
+              Brussel
+              <img src={icons.chevronRight} alt='inbound request' style={{width: sizes.icon.width, height: sizes.icon.height}}/>
+            </Label>
           </LabelsInner>
         </Labels>
         <Text>

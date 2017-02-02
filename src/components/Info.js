@@ -17,6 +17,7 @@ const Wrapper = styled.div`
   width: 100%;
   height: ${sizes.icons.height};
   box-sizing: border-box;
+  transform: translateY(-0.5em);
 `;
 
 const Logo = styled.img`
