@@ -42,6 +42,9 @@ const Text = styled.span`
   font-size: 4vh;
 `;
 
+
+const {Paths} = hub;
+
 export default () => (
   <Wrapper>
     <Text>{name}</Text>
@@ -51,6 +54,7 @@ export default () => (
       <Item id="jar" />
       <Item id="doors_front_back" />
       <Item id="doors_front_front" />
+      <Paths />
     </Images>
   </Wrapper>
 );
