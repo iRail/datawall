@@ -15,6 +15,7 @@ const Main = styled.main`
   flex-direction: column;
   height: 100vh;
   background-color: ${colors.red};
+  overflow: hidden;
 `;
 
 const Overlay = styled.div`
