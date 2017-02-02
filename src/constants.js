@@ -2,7 +2,7 @@
  * Global things that never change, colors and keyframes
  */
 
-import { keyframes } from 'styled-components';
+import {keyframes} from 'styled-components';
 import {DIRECTIONS} from './station';
 
 export const colors = {
