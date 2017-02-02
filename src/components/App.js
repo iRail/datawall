@@ -4,12 +4,11 @@ import styled from 'styled-components';
 
 import {listenToQueries} from '../redux/actions';
 
-import {colors} from '../constants';
+import {colors, sizes} from '../constants';
 
 import Scene from './Scene';
 import List from './List';
 
-import {sizes} from '../constants';
 
 const Main = styled.main`
   display: flex;
