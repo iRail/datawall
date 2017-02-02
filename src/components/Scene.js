@@ -48,6 +48,7 @@ const Label = styled.p`
   font-weight: 700;
   margin: 0 .4em;
   color: ${colors.white};
+  transform: rotate(${props => props.rotate}deg);
 `;
 
 class Scene extends Component {
@@ -64,13 +65,13 @@ class Scene extends Component {
         <Hub />
         <Labels>
           <LabelsInner>
-            <Label>Brugge</Label>
-            <Label>Antwerpen</Label>
+            <Label rotate={6}>Brugge</Label>
+            <Label rotate={-6}>Antwerpen</Label>
           </LabelsInner>
           <div style={{flexGrow: 1}}></div>
           <LabelsInner>
-            <Label>Kortrijk</Label>
-            <Label>Brussel</Label>
+            <Label rotate={-19}>Kortrijk</Label>
+            <Label rotate={19}>Brussel</Label>
           </LabelsInner>
         </Labels>
         <Text>
