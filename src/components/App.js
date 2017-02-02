@@ -38,7 +38,7 @@ class App extends Component {
       <Main>
         <List queries={queries} />
         <Scene queries={visible} />
-        {/*<Overlay />*/}
+        {this.props.overlay ? <Overlay /> : ''}
       </Main>
     );
   }
