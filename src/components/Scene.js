@@ -28,6 +28,24 @@ const P = styled.p`
   margin: .2em;
 `;
 
+const Labels = styled.div`
+  position: absolute;
+  bottom: ${sizes.labels.bottom};
+  left: 0;
+  height: ${sizes.labels.height};
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+`;
+
+const LabelsInner = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+`;
+
+const Label = styled.p``;
+
 class Scene extends Component {
   renderPods() {
     const {queries} = this.props;
@@ -40,6 +58,17 @@ class Scene extends Component {
         <Info />
         <div style={{position: 'absolute'}}>{this.renderPods()}</div>
         <Hub />
+        <Labels>
+          <LabelsInner>
+            <Label>Brugge</Label>
+            <Label>Antwerpen</Label>
+          </LabelsInner>
+          <div style={{flexGrow: 1}}></div>
+          <LabelsInner>
+            <Label>Kortrijk</Label>
+            <Label>Brussel</Label>
+          </LabelsInner>
+        </Labels>
         <Text>
           <P>See the future of train travel</P>
           <P>search with <strong>irail.be</strong></P>
