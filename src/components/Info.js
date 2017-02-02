@@ -25,15 +25,6 @@ const Logo = styled.img`
   margin: 0.4em;
 `;
 
-// const Link = styled.a`
-//   color: inherit;
-//   text-decoration: none;
-// `;
-
-// const Text = styled.p`
-//   margin: 0;
-// `;
-
 export default () => {
   return (
     <Wrapper>
