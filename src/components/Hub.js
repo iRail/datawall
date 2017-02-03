@@ -32,7 +32,7 @@ const Item = styled.div`
 const Images = styled.div`
   bottom: 0;
   left: 0;
-  position: fixed;
+  position: absolute;
 `;
 
 const Text = styled.span`
