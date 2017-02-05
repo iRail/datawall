@@ -5,7 +5,6 @@ import hub from '../img/hub';
 
 import {colors, sizes, zIndex} from '../constants';
 
-
 const Wrapper = styled.div`
   width: ${sizes.hub.width};
   height: ${sizes.hub.height};
@@ -33,7 +32,7 @@ const Item = styled.div`
 const Images = styled.div`
   bottom: 0;
   left: 0;
-  position: fixed;
+  position: absolute;
 `;
 
 const Text = styled.span`
@@ -41,9 +40,6 @@ const Text = styled.span`
   margin-top: -30vh;
   font-size: 4vh;
 `;
-
-
-const {Paths} = hub;
 
 export default () => (
   <Wrapper>
@@ -54,7 +50,6 @@ export default () => (
       <Item id="jar" />
       <Item id="doors_front_back" />
       <Item id="doors_front_front" />
-      <Paths />
     </Images>
   </Wrapper>
 );
