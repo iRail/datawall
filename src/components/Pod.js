@@ -100,7 +100,6 @@ const moveAnimation = ({target, options}) => {
 
 class Pod extends Component {
   componentDidMount() {
-    console.log('pod mounted');
     const {origin, destination} = this.props;
     this.addAnimation(moveAnimation, {origin, destination});
   }
@@ -115,7 +114,7 @@ class Pod extends Component {
       marginTop: '250px',
       marginLeft: '-150px',
       position: 'absolute',
-      transform: `rotate(${rotate}deg)`,
+      transform: `scaleX(-1) rotate(${rotate}deg)`,
       zIndex: z,
       width: sizes.pod.width,
       height: sizes.pod.height,
