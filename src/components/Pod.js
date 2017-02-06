@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
-import {TimelineMax, TweenLite, Power1} from 'gsap';
+import {TimelineMax, Power1} from 'gsap';
 import GSAP from 'react-gsap-enhancer';
 
 import {isCenter, getDirection, DIRECTIONS} from '../station';
-import {times, sizes, zIndex, animations} from '../constants';
+import {sizes} from '../constants';
 import pod from '../img/pod.svg';
 import hub from '../img/hub';
 
