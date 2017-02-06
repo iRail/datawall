@@ -112,25 +112,27 @@ const moveAnimation = ({target, options}) => {
       .add('bounce')
       .to(pod, 0.3,{rotation: west ? 180 : 0}, 'bounce')
       .to(pod, 0.6, {scaleX: 0.8, scaleY: west ? -0.8 : 0.8, y: '-=50px', repeat: 4, yoyo: true}, 'bounce')
-      .add('dissapear')
-      .to(pod, 3, {scale: 0, opacity: 0, y: '+=350px'});
-  } else {
-    timeline
-      .add('dissapear')
-      .to(pod, 0.5, {opacity: 0, scale: 0});
   }
+  timeline
+    .add('dissapear')
+    .to(pod, 3, {scale: 0, opacity: 0, y: '+=350px', onComplete: options.removePod});
 
   return timeline;
 };
 
 class Pod extends Component {
   componentDidMount() {
-    const {origin, destination} = this.props;
-    this.addAnimation(moveAnimation, {origin, destination});
+    const {query: {origin, destination}} = this.props;
+    this.addAnimation(moveAnimation, {origin, destination, removePod: this.removePod});
+  }
+
+  removePod = () => {
+    const {removePod, query} = this.props;
+    removePod(query);
   }
 
   render() {
-    const {origin, destination} = this.props;
+    const {origin, destination} = this.props.query;
     const direction = getDirection(origin, destination);
     const {rotate} = POSITIONS[direction];
 

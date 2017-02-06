@@ -58,8 +58,15 @@ const Label = styled.p`
 
 class Scene extends Component {
   renderPods() {
-    const {queries} = this.props;
-    return queries.all.map((query, i) => <Pod {...query} key={query.querytime + query.origin['@id'] + query.destination['@id'] + query.useragent}/>);
+    const {queries, removePod} = this.props;
+    return queries.all
+      .map((query, i) => (
+        <Pod
+          query={query}
+          key={query.querytime + query.origin['@id'] + query.destination['@id'] + query.useragent}
+          removePod={removePod}
+        />
+      ));
   }
 
   render() {

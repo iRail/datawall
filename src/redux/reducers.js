@@ -33,7 +33,7 @@ export const queryReducer = (state = INITIAL_STATE, action) => {
         queries: {
           inbound: inbound.slice(0,4),
           outbound: outbound.slice(0,4),
-          all: all.length > 40 ? all.slice(0,20) : all,
+          all,
         }
       };
     case REMOVE_QUERY:
@@ -43,6 +43,7 @@ export const queryReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         queries: {
+          ...state.queries,
           all: filtered
         }
       };

@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import styled from 'styled-components';
 
-import {listenToQueries} from '../redux/actions';
+import {listenToQueries, removeQuery} from '../redux/actions';
 
 import {colors, sizes} from '../constants';
 
@@ -32,12 +32,17 @@ class App extends Component {
     this.props.listenToQueries();
   }
 
+  removePod = (query) => {
+    console.log(query);
+    this.props.removeQuery(query);
+  }
+
   render() {
     const {queries} = this.props;
     return (
       <Main>
         <List queries={queries} />
-        <Scene queries={queries} />
+        <Scene removePod={this.removePod} queries={queries} />
         {this.props.overlay ? <Overlay /> : ''}
       </Main>
     );
@@ -49,4 +54,4 @@ const mapStateToProps = (state, ownProps) => ({
   visible: state.visible
 });
 
-export default connect(mapStateToProps, {listenToQueries})(App);
+export default connect(mapStateToProps, {listenToQueries, removeQuery})(App);
