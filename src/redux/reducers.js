@@ -7,8 +7,8 @@ const INITIAL_STATE = {
   queries: {
     inbound: [],
     outbound: [],
-  },
-  visible: {}
+    all: []
+  }
 };
 
 let VISIBLE_INDEX = 0;
@@ -18,7 +18,6 @@ export const queryReducer = (state = INITIAL_STATE, action) => {
     case RECEIVE_QUERIES:
       const queries = [...state.queries, action.payload];
       queries.sort((a, b) => new Date(b.querytime) - new Date(a.querytime));
-
       const inbound = [
         ...queries.filter((q) => isCenter(q.destination)),
         ...state.queries.inbound
@@ -27,21 +26,26 @@ export const queryReducer = (state = INITIAL_STATE, action) => {
         ...queries.filter((q) => isCenter(q.origin)),
         ...state.queries.outbound
       ];
+      let all = [
+        ...state.queries.all,
+        ...queries,
+      ];
 
-      VISIBLE_INDEX++;
-      setTimeout((index) => {
-        store.dispatch(deleteVisible(index));
-      }, times.pod.moveIn + times.pod.moveAround, VISIBLE_INDEX);
+      if(all.length > 100) {
+        all = queries;
+      }
+
+      // VISIBLE_INDEX++;
+      // setTimeout((index) => {
+      //   store.dispatch(deleteVisible(index));
+      // }, times.pod.moveIn + times.pod.moveAround + 50000, VISIBLE_INDEX);
 
       return {
         ...state,
         queries: {
           inbound: inbound.slice(0,4),
-          outbound: outbound.slice(0,4)
-        },
-        visible: {
-          ...state.visible,
-          [VISIBLE_INDEX]: queries[0]
+          outbound: outbound.slice(0,4),
+          all,
         }
       };
     case DELETE_VISIBLE:

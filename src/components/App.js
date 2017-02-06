@@ -33,11 +33,11 @@ class App extends Component {
   }
 
   render() {
-    const {queries, visible} = this.props;
+    const {queries} = this.props;
     return (
       <Main>
         <List queries={queries} />
-        <Scene queries={visible} />
+        <Scene queries={queries} />
         {this.props.overlay ? <Overlay /> : ''}
       </Main>
     );
