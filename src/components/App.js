@@ -33,7 +33,6 @@ class App extends Component {
   }
 
   removePod = (query) => {
-    console.log(query);
     this.props.removeQuery(query);
   }
 
