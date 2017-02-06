@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {TimelineMax, TweenLite, Power0} from 'gsap';
+import {TimelineMax, TweenLite, Power1} from 'gsap';
 import GSAP from 'react-gsap-enhancer';
 
 import {isCenter, getDirection, DIRECTIONS} from '../station';
@@ -49,67 +49,53 @@ const POSITIONS = {
 const moveAnimation = ({target, options}) => {
   const {origin, destination} = options;
   const direction = getDirection(origin, destination);
-  const z = zIndex.pod[direction];
   const pod = target.find({name: 'pod'});
-  let curve;
   const originIsGhent = isCenter(origin);
-  let scaleBegin, scaleEnd;
+  let curve, scaleBegin, scaleEnd;
 
-  if(originIsGhent) {
+  if(originIsGhent && direction === DIRECTIONS.northwest) {
+    curve = hub.paths.back_left.bezier;
     scaleBegin = 1;
-
-    switch(direction) {
-      case DIRECTIONS.northeast:
-        curve = hub.paths.back_right.bezier;
-        break;
-      case DIRECTIONS.northwest:
-        curve = hub.paths.back_left.bezier;
-        break;
-      case DIRECTIONS.southeast:
-        curve = hub.paths.front_right.bezier;
-        break;
-      default:
-        curve = hub.paths.front_left.bezier;
-    }
-
-    if(direction === DIRECTIONS.northeast || direction === DIRECTIONS.northwest) {
-      scaleEnd = 0.33;
-    } else {
-      scaleEnd = 3;
-    }
-  } else {
+    scaleEnd = 0.33;
+  } else if(originIsGhent && direction === DIRECTIONS.northeast) {
+    curve = [...hub.paths.back_right.bezier].reverse();
+    scaleBegin = 1;
+    scaleEnd = 0.33;
+  } else if(originIsGhent && direction === DIRECTIONS.southwest) {
+    curve = [...hub.paths.front_left.bezier].reverse();
+    scaleBegin = 1;
+    scaleEnd = 2.5;
+  } else if(originIsGhent && direction === DIRECTIONS.southeast) {
+    curve = hub.paths.front_right.bezier;
+    scaleBegin = 1;
+    scaleEnd = 2.5;
+  } else if(!originIsGhent && direction === DIRECTIONS.northwest) {
+    curve = [...hub.paths.front_right.bezier].reverse();
+    scaleBegin = 2.5;
     scaleEnd = 1;
-
-    switch(direction) {
-      case DIRECTIONS.northeast:
-        curve = hub.paths.front_left.bezier;
-        break;
-      case DIRECTIONS.northwest:
-        curve = hub.paths.front_right.bezier;
-        break;
-      case DIRECTIONS.southeast:
-        curve = hub.paths.back_left.bezier;
-        break;
-      default:
-        curve = hub.paths.back_right.bezier;
-    }
-
-    if(direction === DIRECTIONS.northeast || direction === DIRECTIONS.northwest) {
-      scaleBegin = 0.33;
-    } else {
-      scaleBegin = 3;
-    }
+  } else if(!originIsGhent && direction === DIRECTIONS.northeast) {
+    curve = hub.paths.front_left.bezier;
+    scaleBegin = 2.5;
+    scaleEnd = 1;
+  } else if(!originIsGhent && direction === DIRECTIONS.southwest) {
+    curve = hub.paths.back_right.bezier;
+    scaleBegin = 0.33;
+    scaleEnd = 1;
+  } else if(!originIsGhent && direction === DIRECTIONS.southeast) {
+    curve = [...hub.paths.back_left.bezier].reverse();
+    scaleBegin = 0.33;
+    scaleEnd = 1;
   }
 
-  console.log(originIsGhent, scaleBegin, scaleEnd, direction);
-
-  const values = originIsGhent ? [...curve].reverse() : curve;
+  console.log(originIsGhent, scaleBegin, scaleEnd, direction, direction === DIRECTIONS.southeast);
 
   return new TimelineMax()
-    .set(pod,{scale: scaleBegin, x: values[0].x, y: values[0].y})
+    .set(pod,{scale: scaleBegin , x: curve[0].x, y: curve[0].y})
     .add('move')
-    .to(pod, 10, {scale: scaleEnd, bezier:{type:"cubic", values}, force3D:true})
-    .to(pod, 2, {scale: 0.1, opacity: 0});
+    .to(pod, 10, {scale: scaleEnd, bezier:{type:"cubic", values: curve}, force3D:true, ease: Power1.easeInOut})
+    .add('dissapear')
+    .to(pod, 0.3, {scale: 0.9, repeat: 4, yoyo: true})
+    .to(pod, 3, {scale: 0.1, opacity: 0});
 };
 
 class Pod extends Component {
@@ -124,15 +110,17 @@ class Pod extends Component {
     const direction = getDirection(origin, destination);
     const z = zIndex.pod[direction];
     const {scaleX, scaleY, rotate} = POSITIONS[direction];
+
     const style = {
       marginTop: '250px',
       marginLeft: '-150px',
       position: 'absolute',
-      transform: `scaleX(${scaleX}) scaleY(${scaleY}) rotate(${rotate}deg)`,
+      transform: `rotate(${rotate}deg)`,
       zIndex: z,
       width: sizes.pod.width,
       height: sizes.pod.height,
     }
+    console.log(style.transform);
     return (
       <div>
         <img style={style} name="pod" src={pod} alt="a lookup" />
