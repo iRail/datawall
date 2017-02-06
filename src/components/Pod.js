@@ -138,7 +138,7 @@ class Pod extends Component {
 
     const style = {
       marginTop: '220px',
-      marginLeft: '-150px',
+      marginLeft: '-120px',
       position: 'absolute',
       transform: `rotate(${rotate}deg)`,
       width: sizes.pod.width,
