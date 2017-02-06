@@ -9,6 +9,8 @@ const INITIAL_STATE = {
   }
 };
 
+let podIndex = 0;
+
 export const queryReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case RECEIVE_QUERIES:
@@ -16,18 +18,20 @@ export const queryReducer = (state = INITIAL_STATE, action) => {
       queries.sort((a, b) => new Date(b.querytime) - new Date(a.querytime));
 
       const inbound = [
-        ...queries.filter((q) => isCenter(q.destination)),
+        ...queries.filter(q => isCenter(q.destination)),
         ...state.queries.inbound
       ];
       const outbound = [
-        ...queries.filter((q) => isCenter(q.origin)),
+        ...queries.filter(q => isCenter(q.origin)),
         ...state.queries.outbound
       ];
+
       const all = [
-        ...queries,
+        ...queries.map(q => ({...q, index: podIndex})),
         ...state.queries.all
       ];
 
+      podIndex++;
       return {
         ...state,
         queries: {

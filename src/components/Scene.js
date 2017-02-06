@@ -61,10 +61,10 @@ class Scene extends Component {
   renderPods() {
     const {queries, removePod} = this.props;
     return queries.all
-      .map((query, i) => (
+      .map((query) => (
         <Pod
           query={query}
-          key={query.querytime + query.origin['@id'] + query.destination['@id'] + query.useragent}
+          key={query.index}
           removePod={removePod}
         />
       ));
