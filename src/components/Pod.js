@@ -99,17 +99,27 @@ const moveAnimation = ({target, options}) => {
     z = 2;
   }
 
-  return new TimelineMax()
+  const timeline = new TimelineMax();
+  timeline
     .set(pod, {scale: 0, opacity:0, x: curve[0].x, y: curve[0].y + 350})
     .set(pod, {css:{zIndex: z}})
     .add('appear')
     .to(pod, 1, {opacity: 1, y: curve[0].y, scale: scaleBegin, scaleY: west ? -scaleBegin : scaleBegin, ease: Power1.easeIn})
     .add('move')
-    .to(pod, 5, {scale: scaleEnd, scaleY: west ? -scaleEnd : scaleEnd, bezier:{type:"cubic", values: curve}, force3D:true, ease: Power1.easeInOut})
-    .add('dissapear')
-    .to(pod, 0.2,{rotation: west ? 180 : 0})
-    .to(pod, 0.5, {scaleX: '*=0.8', scaleY: west ? '*=-0.8' : '*=0.8', y: '-=50px', repeat: 4, yoyo: true})
-    .to(pod, 3, {scale: 0, opacity: 0, y: '+=350px'});
+    .to(pod, 5, {scale: scaleEnd, scaleY: west ? -scaleEnd : scaleEnd, bezier:{type:"cubic", values: curve}, force3D:true, ease: Power1.easeInOut});
+
+  if(!originIsGhent) {
+    timeline
+      .add('dissapear')
+      .to(pod, 0.2,{rotation: west ? 180 : 0})
+      .to(pod, 0.5, {scaleX: 0.8, scaleY: west ? -0.8 : 0.8, y: '-=50px', repeat: 4, yoyo: true})
+      .to(pod, 3, {scale: 0, opacity: 0, y: '+=350px'});
+  } else {
+    timeline
+      .to(pod, 0.5, {opacity: 0, scale: 0});
+  }
+
+  return timeline;
 };
 
 class Pod extends Component {
