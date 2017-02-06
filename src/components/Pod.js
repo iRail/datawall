@@ -25,7 +25,7 @@ const POSITIONS = {
     y: -25,
     scaleX: -1,
     scaleY: 1,
-    rotate: 0,
+    rotate: -180,
     path: 'back_left'
   },
   [DIRECTIONS.southeast]: {
@@ -51,12 +51,13 @@ const moveAnimation = ({target, options}) => {
   const direction = getDirection(origin, destination);
   const pod = target.find({name: 'pod'});
   const originIsGhent = isCenter(origin);
-  let curve, scaleBegin, scaleEnd;
+  let curve, scaleBegin, scaleEnd, west = false;
 
   if(originIsGhent && direction === DIRECTIONS.northwest) {
     curve = hub.paths.back_left.bezier;
     scaleBegin = 1;
     scaleEnd = 0.33;
+    west = true;
   } else if(originIsGhent && direction === DIRECTIONS.northeast) {
     curve = [...hub.paths.back_right.bezier].reverse();
     scaleBegin = 1;
@@ -65,6 +66,7 @@ const moveAnimation = ({target, options}) => {
     curve = [...hub.paths.front_left.bezier].reverse();
     scaleBegin = 1;
     scaleEnd = 2.5;
+    west = true;
   } else if(originIsGhent && direction === DIRECTIONS.southeast) {
     curve = hub.paths.front_right.bezier;
     scaleBegin = 1;
@@ -73,6 +75,7 @@ const moveAnimation = ({target, options}) => {
     curve = [...hub.paths.front_right.bezier].reverse();
     scaleBegin = 2.5;
     scaleEnd = 1;
+    west = true;
   } else if(!originIsGhent && direction === DIRECTIONS.northeast) {
     curve = hub.paths.front_left.bezier;
     scaleBegin = 2.5;
@@ -81,6 +84,7 @@ const moveAnimation = ({target, options}) => {
     curve = hub.paths.back_right.bezier;
     scaleBegin = 0.33;
     scaleEnd = 1;
+    west = true;
   } else if(!originIsGhent && direction === DIRECTIONS.southeast) {
     curve = [...hub.paths.back_left.bezier].reverse();
     scaleBegin = 0.33;
@@ -90,12 +94,14 @@ const moveAnimation = ({target, options}) => {
   console.log(originIsGhent, scaleBegin, scaleEnd, direction, direction === DIRECTIONS.southeast);
 
   return new TimelineMax()
-    .set(pod,{scale: scaleBegin , x: curve[0].x, y: curve[0].y})
+    .set(pod, {scale: 0, opacity:0, x: curve[0].x, y: curve[0].y})
+    .add('appear')
+    .to(pod, 1, {opacity: 1, scale: scaleBegin, scaleY: west ? -scaleBegin : scaleBegin, ease: Power1.easeIn})
     .add('move')
-    .to(pod, 10, {scale: scaleEnd, bezier:{type:"cubic", values: curve}, force3D:true, ease: Power1.easeInOut})
+    .to(pod, 10, {scale: scaleEnd, scaleY: west ? -scaleEnd : scaleEnd, bezier:{type:"cubic", values: curve}, force3D:true, ease: Power1.easeInOut})
     .add('dissapear')
-    .to(pod, 0.3, {scale: 0.9, repeat: 4, yoyo: true})
-    .to(pod, 3, {scale: 0.1, opacity: 0});
+    .to(pod, 0.5, {scale: 0.9, y: '-=30px', repeat: 3, yoyo: true})
+    .to(pod, 3, {scale: 0, opacity: 0});
 };
 
 class Pod extends Component {
@@ -111,10 +117,10 @@ class Pod extends Component {
     const {scaleX, scaleY, rotate} = POSITIONS[direction];
 
     const style = {
-      marginTop: '250px',
+      marginTop: '200px',
       marginLeft: '-150px',
       position: 'absolute',
-      transform: `scaleX(-1) rotate(${rotate}deg)`,
+      transform: `rotate(${rotate}deg)`,
       zIndex: z,
       width: sizes.pod.width,
       height: sizes.pod.height,
