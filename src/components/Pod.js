@@ -99,8 +99,7 @@ const moveAnimation = ({target, options}) => {
     z = 2;
   }
 
-  const timeline = new TimelineMax();
-  timeline
+  const timeline = new TimelineMax()
     .set(pod, {scale: 0, opacity:0, x: curve[0].x, y: curve[0].y + 350})
     .set(pod, {css:{zIndex: z}})
     .add('appear')
@@ -110,12 +109,14 @@ const moveAnimation = ({target, options}) => {
 
   if(!originIsGhent) {
     timeline
+      .add('bounce')
+      .to(pod, 0.3,{rotation: west ? 180 : 0}, 'bounce')
+      .to(pod, 0.6, {scaleX: 0.8, scaleY: west ? -0.8 : 0.8, y: '-=50px', repeat: 4, yoyo: true}, 'bounce')
       .add('dissapear')
-      .to(pod, 0.2,{rotation: west ? 180 : 0})
-      .to(pod, 0.5, {scaleX: 0.8, scaleY: west ? -0.8 : 0.8, y: '-=50px', repeat: 4, yoyo: true})
       .to(pod, 3, {scale: 0, opacity: 0, y: '+=350px'});
   } else {
     timeline
+      .add('dissapear')
       .to(pod, 0.5, {opacity: 0, scale: 0});
   }
 
