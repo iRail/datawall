@@ -51,57 +51,65 @@ const moveAnimation = ({target, options}) => {
   const direction = getDirection(origin, destination);
   const pod = target.find({name: 'pod'});
   const originIsGhent = isCenter(origin);
-  let curve, scaleBegin, scaleEnd, west = false;
+  let curve, z, scaleBegin, scaleEnd, west = false;
 
   if(originIsGhent && direction === DIRECTIONS.northwest) {
     curve = hub.paths.back_left.bezier;
     scaleBegin = 1;
     scaleEnd = 0.33;
     west = true;
+    z = 2;
   } else if(originIsGhent && direction === DIRECTIONS.northeast) {
     curve = [...hub.paths.back_right.bezier].reverse();
     scaleBegin = 1;
     scaleEnd = 0.33;
+    z = 2;
   } else if(originIsGhent && direction === DIRECTIONS.southwest) {
     curve = [...hub.paths.front_left.bezier].reverse();
     scaleBegin = 1;
-    scaleEnd = 2.5;
+    scaleEnd = 2;
     west = true;
+    z = 6;
   } else if(originIsGhent && direction === DIRECTIONS.southeast) {
     curve = hub.paths.front_right.bezier;
     scaleBegin = 1;
-    scaleEnd = 2.5;
+    scaleEnd = 2;
+    z = 6;
   } else if(!originIsGhent && direction === DIRECTIONS.northwest) {
     curve = [...hub.paths.front_right.bezier].reverse();
-    scaleBegin = 2.5;
+    scaleBegin = 2;
     scaleEnd = 1;
     west = true;
+    z = 6;
   } else if(!originIsGhent && direction === DIRECTIONS.northeast) {
     curve = hub.paths.front_left.bezier;
-    scaleBegin = 2.5;
+    scaleBegin = 2;
     scaleEnd = 1;
+    z = 6;
   } else if(!originIsGhent && direction === DIRECTIONS.southwest) {
     curve = hub.paths.back_right.bezier;
     scaleBegin = 0.33;
     scaleEnd = 1;
     west = true;
+    z = 2;
   } else if(!originIsGhent && direction === DIRECTIONS.southeast) {
     curve = [...hub.paths.back_left.bezier].reverse();
     scaleBegin = 0.33;
     scaleEnd = 1;
+    z = 2;
   }
 
-  console.log(originIsGhent, scaleBegin, scaleEnd, direction, direction === DIRECTIONS.southeast);
-
   return new TimelineMax()
-    .set(pod, {scale: 0, opacity:0, x: curve[0].x, y: curve[0].y})
+    .set(pod, {scale: 0, opacity:0, x: curve[0].x, y: curve[0].y + 350})
+    .set(pod, {css:{zIndex: z}})
     .add('appear')
-    .to(pod, 1, {opacity: 1, scale: scaleBegin, scaleY: west ? -scaleBegin : scaleBegin, ease: Power1.easeIn})
+    .to(pod, 1, {opacity: 1, y: curve[0].y, scale: scaleBegin, scaleY: west ? -scaleBegin : scaleBegin, ease: Power1.easeIn})
     .add('move')
     .to(pod, 10, {scale: scaleEnd, scaleY: west ? -scaleEnd : scaleEnd, bezier:{type:"cubic", values: curve}, force3D:true, ease: Power1.easeInOut})
     .add('dissapear')
-    .to(pod, 0.5, {scale: 0.9, y: '-=30px', repeat: 3, yoyo: true})
-    .to(pod, 3, {scale: 0, opacity: 0});
+    .to(pod, 0.5,{rotation: west ? 180 : 0})
+    .to(pod, 0.5, {scaleX: 0.8, scaleY: west ? -0.8 : 0.8, y: '-=50px', repeat: 4, yoyo: true})
+    .to(pod, 3, {scale: 0, opacity: 0, y: '+=350px'});
 };
 
 class Pod extends Component {
@@ -113,22 +121,20 @@ class Pod extends Component {
   render() {
     const {origin, destination} = this.props;
     const direction = getDirection(origin, destination);
-    const z = zIndex.pod[direction];
-    const {scaleX, scaleY, rotate} = POSITIONS[direction];
+    const {rotate} = POSITIONS[direction];
 
     const style = {
-      marginTop: '200px',
-      marginLeft: '-150px',
+      marginTop: '220px',
+      marginLeft: '-100px',
       position: 'absolute',
       transform: `rotate(${rotate}deg)`,
-      zIndex: z,
       width: sizes.pod.width,
       height: sizes.pod.height,
     }
-    console.log(style.transform);
+
     return (
       <div>
-        <img style={style} name="pod" src={pod} alt="a lookup" />
+        <img style={style} name="pod" src={pod} alt="An iRail query" />
       </div>
     );
   }
