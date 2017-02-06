@@ -27,12 +27,12 @@ export const queryReducer = (state = INITIAL_STATE, action) => {
         ...state.queries.outbound
       ];
       let all = [
-        ...state.queries.all,
         ...queries,
+        ...state.queries.all
       ];
 
-      if(all.length > 100) {
-        all = queries;
+      if(all.length > 20) {
+        all = all.slice(0, 20);
       }
 
       // VISIBLE_INDEX++;

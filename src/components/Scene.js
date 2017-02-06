@@ -59,7 +59,7 @@ const Label = styled.p`
 class Scene extends Component {
   renderPods() {
     const {queries} = this.props;
-    return queries.all.map((query, i) => <Pod {...query} key={i}/>);
+    return queries.all.map((query, i) => <Pod {...query} key={query.querytime}/>);
   }
 
   render() {
