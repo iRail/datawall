@@ -1,54 +1,143 @@
 import React, {Component} from 'react';
-import styled from 'styled-components';
+import {TimelineMax, TweenLite, Power0} from 'gsap';
 import GSAP from 'react-gsap-enhancer';
-import {TweenMax, TimelineLite} from 'gsap';
 
 import {isCenter, getDirection, DIRECTIONS} from '../station';
 import {times, sizes, zIndex, animations} from '../constants';
-
 import pod from '../img/pod.svg';
-import {} from '../img/hub';
+import hub from '../img/hub';
 
 const POSITIONS = {
+  center: {
+    x: 0,
+    y: 5
+  },
   [DIRECTIONS.northeast]: {
-    rotate: 0
+    x: 60,
+    y: -25,
+    scaleX: 1,
+    scaleY: 1,
+    rotate: 0,
+    path: 'back_right'
   },
   [DIRECTIONS.northwest]: {
-    rotate: 0
+    x: -60,
+    y: -25,
+    scaleX: -1,
+    scaleY: 1,
+    rotate: 0,
+    path: 'back_left'
   },
   [DIRECTIONS.southeast]: {
-    rotate: 90
+    x: 60,
+    y: 20,
+    scaleX: 1,
+    scaleY: 1,
+    rotate: 90,
+    path: 'front_right'
   },
   [DIRECTIONS.southwest]: {
-    rotate: 90
+    x: -60,
+    y: 20,
+    scaleX: -1,
+    scaleY: 1,
+    rotate: 90,
+    path: 'front_left'
   }
 };
 
-const moveAnimation = ({target}) => {
+const moveAnimation = ({target, options}) => {
+  const {origin, destination} = options;
+  const direction = getDirection(origin, destination);
+  const z = zIndex.pod[direction];
+  const pod = target.find({name: 'pod'});
+  let curve;
+  const originIsGhent = isCenter(origin);
+  let scaleBegin, scaleEnd;
+
+  if(originIsGhent) {
+    scaleBegin = 1;
+
+    switch(direction) {
+      case DIRECTIONS.northeast:
+        curve = hub.paths.back_right.bezier;
+        break;
+      case DIRECTIONS.northwest:
+        curve = hub.paths.back_left.bezier;
+        break;
+      case DIRECTIONS.southeast:
+        curve = hub.paths.front_right.bezier;
+        break;
+      default:
+        curve = hub.paths.front_left.bezier;
+    }
+
+    if(direction === DIRECTIONS.northeast || direction === DIRECTIONS.northwest) {
+      scaleEnd = 0.33;
+    } else {
+      scaleEnd = 3;
+    }
+  } else {
+    scaleEnd = 1;
+
+    switch(direction) {
+      case DIRECTIONS.northeast:
+        curve = hub.paths.front_left.bezier;
+        break;
+      case DIRECTIONS.northwest:
+        curve = hub.paths.front_right.bezier;
+        break;
+      case DIRECTIONS.southeast:
+        curve = hub.paths.back_left.bezier;
+        break;
+      default:
+        curve = hub.paths.back_right.bezier;
+    }
+
+    if(direction === DIRECTIONS.northeast || direction === DIRECTIONS.northwest) {
+      scaleBegin = 0.33;
+    } else {
+      scaleBegin = 3;
+    }
+  }
+
+  console.log(originIsGhent, scaleBegin, scaleEnd, direction);
+
+  const values = originIsGhent ? [...curve].reverse() : curve;
+
+  return new TimelineMax()
+    .set(pod,{scale: scaleBegin, x: values[0].x, y: values[0].y})
+    .add('move')
+    .to(pod, 10, {scale: scaleEnd, bezier:{type:"cubic", values}, force3D:true})
+    .to(pod, 2, {scale: 0.1, opacity: 0});
 };
 
 class Pod extends Component {
-  constructor(props) {
-    super(props);
-    const path = document.getElementById('back_left');
-    console.dir(path.attributes.d.nodeValue.split(' '));
-  }
-
   componentDidMount() {
-    this.addAnimation(moveAnimation);
+    console.log('pod mounted');
+    const {origin, destination} = this.props;
+    this.addAnimation(moveAnimation, {origin, destination});
   }
 
   render() {
-    const Img = styled.img`
-      width: ${sizes.pod.width};
-      height: ${sizes.pod.height};
-      animation: ${animations.buzz()} 1s infinite;
-    `;
-
+    const {origin, destination} = this.props;
+    const direction = getDirection(origin, destination);
+    const z = zIndex.pod[direction];
+    const {scaleX, scaleY, rotate} = POSITIONS[direction];
+    const style = {
+      marginTop: '250px',
+      marginLeft: '-150px',
+      position: 'absolute',
+      transform: `scaleX(${scaleX}) scaleY(${scaleY}) rotate(${rotate}deg)`,
+      zIndex: z,
+      width: sizes.pod.width,
+      height: sizes.pod.height,
+    }
     return (
-      <Img src={pod} alt="An irail query represented by a pod" />
+      <div>
+        <img style={style} name="pod" src={pod} alt="a lookup" />
+      </div>
     );
   }
 }
-
 export default GSAP()(Pod);
