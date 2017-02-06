@@ -2,6 +2,7 @@ import io from 'socket.io-client';
 import {API_BASE_URI} from '../constants';
 
 export const RECEIVE_QUERIES = 'RECEIVE_QUERIES';
+export const REMOVE_QUERY = 'REMOVE_QUERIES';
 export const LISTEN_FOR_QUERIES = 'LISTEN_FOR_QUERIES';
 
 export const receiveQueries = (queries) => ({
@@ -18,3 +19,8 @@ export const listenToQueries = () => (
     });
   }
 );
+
+export const removeQuery = (query) => ({
+  type: REMOVE_QUERY,
+  payload: query
+});
