@@ -31,7 +31,7 @@ export const queryReducer = (state = INITIAL_STATE, action) => {
         ...state.queries.all
       ];
 
-      if(all.length > 20) {
+      if(all.length > 40) {
         all = all.slice(0, 20);
       }
 
