@@ -76,10 +76,10 @@ export default class List extends Component {
 
     return inbound.map((query,index) => (
       <Item key={index}>
-        <Heading>{query.destination.name}</Heading>
+        <Heading>{query.origin.name}</Heading>
         <Info>
           <img src={icons.right} alt='inbound request' style={{width: sizes.icon.width, height: sizes.icon.height}}/>
-          <Text>{query.origin.name}</Text>
+          <Text>{query.destination.name}</Text>
         </Info>
       </Item>
     ));
