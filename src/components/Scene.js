@@ -49,7 +49,8 @@ const LabelsInner = styled.div`
 
 const Label = styled.p`
   font-weight: 700;
-  margin: 0 .4em;
+  margin: 0;
+  margin-bottom: 1em;
   color: ${colors.white};
   transform: rotate(${props => props.rotate}deg);
   display: flex;
