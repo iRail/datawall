@@ -9,7 +9,7 @@ const INITIAL_STATE = {
   }
 };
 
-let podIndex = 0;
+let queryIndex = 0;
 
 export const queryReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
@@ -27,11 +27,11 @@ export const queryReducer = (state = INITIAL_STATE, action) => {
       ];
 
       const all = [
-        ...queries.map(q => ({...q, index: podIndex})),
+        ...queries.map(q => ({...q, index: queryIndex})),
         ...state.queries.all
       ];
 
-      podIndex++;
+      queryIndex++;
       return {
         ...state,
         queries: {
