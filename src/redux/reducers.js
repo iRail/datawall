@@ -1,6 +1,4 @@
-import store from './store';
-import {RECEIVE_QUERIES, DELETE_VISIBLE, deleteVisible} from './actions';
-import {times} from '../constants';
+import {RECEIVE_QUERIES} from './actions';
 import {isCenter} from '../station';
 
 const INITIAL_STATE = {
@@ -10,8 +8,6 @@ const INITIAL_STATE = {
     all: []
   }
 };
-
-let VISIBLE_INDEX = 0;
 
 export const queryReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
@@ -35,11 +31,6 @@ export const queryReducer = (state = INITIAL_STATE, action) => {
         all = all.slice(0, 20);
       }
 
-      // VISIBLE_INDEX++;
-      // setTimeout((index) => {
-      //   store.dispatch(deleteVisible(index));
-      // }, times.pod.moveIn + times.pod.moveAround + 50000, VISIBLE_INDEX);
-
       return {
         ...state,
         queries: {
@@ -48,13 +39,6 @@ export const queryReducer = (state = INITIAL_STATE, action) => {
           all,
         }
       };
-    case DELETE_VISIBLE:
-      const visible = Object.assign({}, state.visible);
-      delete visible[action.payload];
-      return {
-        ...state,
-        visible
-      }
     default:
       return state;
   }
