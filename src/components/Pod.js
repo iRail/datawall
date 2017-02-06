@@ -105,10 +105,10 @@ const moveAnimation = ({target, options}) => {
     .add('appear')
     .to(pod, 1, {opacity: 1, y: curve[0].y, scale: scaleBegin, scaleY: west ? -scaleBegin : scaleBegin, ease: Power1.easeIn})
     .add('move')
-    .to(pod, 10, {scale: scaleEnd, scaleY: west ? -scaleEnd : scaleEnd, bezier:{type:"cubic", values: curve}, force3D:true, ease: Power1.easeInOut})
+    .to(pod, 5, {scale: scaleEnd, scaleY: west ? -scaleEnd : scaleEnd, bezier:{type:"cubic", values: curve}, force3D:true, ease: Power1.easeInOut})
     .add('dissapear')
-    .to(pod, 0.5,{rotation: west ? 180 : 0})
-    .to(pod, 0.5, {scaleX: 0.8, scaleY: west ? -0.8 : 0.8, y: '-=50px', repeat: 4, yoyo: true})
+    .to(pod, 0.2,{rotation: west ? 180 : 0})
+    .to(pod, 0.5, {scaleX: '*=0.8', scaleY: west ? '*=-0.8' : '*=0.8', y: '-=50px', repeat: 4, yoyo: true})
     .to(pod, 3, {scale: 0, opacity: 0, y: '+=350px'});
 };
 
@@ -125,7 +125,7 @@ class Pod extends Component {
 
     const style = {
       marginTop: '220px',
-      marginLeft: '-100px',
+      marginLeft: '-150px',
       position: 'absolute',
       transform: `rotate(${rotate}deg)`,
       width: sizes.pod.width,
