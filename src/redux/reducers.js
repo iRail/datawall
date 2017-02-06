@@ -37,14 +37,15 @@ export const queryReducer = (state = INITIAL_STATE, action) => {
         }
       };
     case REMOVE_QUERY:
-      const queries = state.queries.all
+      const filtered = state.queries.all
         .filter(q => action.payload.querytime !== q.querytime);
 
       return {
         ...state,
-        all: queries
+        queries: {
+          all: filtered
+        }
       };
-
     default:
       return state;
   }
