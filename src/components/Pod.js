@@ -21,7 +21,7 @@ const getAnimationProps = (direction, isOriginStation) => {
         [curve, z, scaleEnd] = [[...hub.paths.back_right.bezier].reverse(), 2, 0.33];
         break;
       case DIRECTIONS.southwest:
-        [curve, z, scaleEnd, west] = [[...hub.paths.front_left.bezier].reverse(), 2, 2, true];
+        [curve, z, scaleEnd, west] = [[...hub.paths.front_left.bezier].reverse(), 6, 2, true];
         break;
       default:
         [curve, z, scaleEnd] = [hub.paths.front_right.bezier, 6, 2];
