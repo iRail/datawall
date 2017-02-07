@@ -1,17 +1,15 @@
-import store from './store';
-import {RECEIVE_QUERIES, DELETE_VISIBLE, deleteVisible} from './actions';
-import {times} from '../constants';
+import {RECEIVE_QUERIES, REMOVE_QUERY} from './actions';
 import {isCenter} from '../station';
 
 const INITIAL_STATE = {
   queries: {
     inbound: [],
     outbound: [],
-  },
-  visible: {}
+    all: []
+  }
 };
 
-let VISIBLE_INDEX = 0;
+let queryIndex = 0;
 
 export const queryReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
@@ -20,37 +18,39 @@ export const queryReducer = (state = INITIAL_STATE, action) => {
       queries.sort((a, b) => new Date(b.querytime) - new Date(a.querytime));
 
       const inbound = [
-        ...queries.filter((q) => isCenter(q.destination)),
+        ...queries.filter(q => isCenter(q.destination)),
         ...state.queries.inbound
       ];
       const outbound = [
-        ...queries.filter((q) => isCenter(q.origin)),
+        ...queries.filter(q => isCenter(q.origin)),
         ...state.queries.outbound
       ];
 
-      VISIBLE_INDEX++;
-      setTimeout((index) => {
-        store.dispatch(deleteVisible(index));
-      }, times.pod.moveIn + times.pod.moveAround, VISIBLE_INDEX);
+      const all = [
+        ...queries.map(q => ({...q, index: queryIndex})),
+        ...state.queries.all
+      ];
 
+      queryIndex++;
       return {
         ...state,
         queries: {
           inbound: inbound.slice(0,4),
-          outbound: outbound.slice(0,4)
-        },
-        visible: {
-          ...state.visible,
-          [VISIBLE_INDEX]: queries[0]
+          outbound: outbound.slice(0,4),
+          all,
         }
       };
-    case DELETE_VISIBLE:
-      const visible = Object.assign({}, state.visible);
-      delete visible[action.payload];
+    case REMOVE_QUERY:
+      const filtered = state.queries.all
+        .filter(q => action.payload.querytime !== q.querytime);
+
       return {
         ...state,
-        visible
-      }
+        queries: {
+          ...state.queries,
+          all: filtered
+        }
+      };
     default:
       return state;
   }

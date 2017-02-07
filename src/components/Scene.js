@@ -49,7 +49,8 @@ const LabelsInner = styled.div`
 
 const Label = styled.p`
   font-weight: 700;
-  margin: 0 .4em;
+  margin: 0;
+  margin-bottom: 1em;
   color: ${colors.white};
   transform: rotate(${props => props.rotate}deg);
   display: flex;
@@ -58,8 +59,15 @@ const Label = styled.p`
 
 class Scene extends Component {
   renderPods() {
-    const {queries} = this.props;
-    return Object.entries(queries).map(([index, pod]) => <Pod {...pod} key={index}/>);
+    const {queries, removePod} = this.props;
+    return queries.all
+      .map((query) => (
+        <Pod
+          query={query}
+          key={query.index}
+          removePod={removePod}
+        />
+      ));
   }
 
   render() {
