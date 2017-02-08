@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 import icons from '../img/icons';
 import {colors, sizes, zIndex} from '../constants';
+import ListItem from './ListItem';
 
 const Wrapper = styled.div`
   width: 100%;
@@ -24,42 +25,6 @@ const Container = styled.div`
   height: 100%;
 `;
 
-const Item = styled.div`
-  flex-grow: 1;
-  max-width: 50vw;
-  display: flex;
-  flex-direction: column;
-
-  &:nth-of-type(even) {
-    background-color: ${colors.lightGrey};
-  }
-
-  &:nth-of-type(odd) {
-    background-color: ${colors.darkGrey};
-  }
-`;
-
-const Heading = styled.div`
-  font-size: .8em;
-  padding: .4rem;
-  padding-bottom: 0;
-  color: ${colors.veryLightGrey};
-  white-space: nowrap;
-`;
-
-const Info = styled.div`
-  padding: 0 .4rem;
-  flex-grow: 1;
-  display: flex;
-  align-items: center;
-`;
-
-const Text = styled.span`
-  margin: 0 .4rem;
-  font-weight: 700;
-  white-space: nowrap;
-`;
-
 const InfoItem = styled.div`
   padding: .4rem;
   min-width: ${sizes.list.info.width};
@@ -70,49 +35,38 @@ const InfoItem = styled.div`
   align-items: center;
 `;
 
+const Img = styled.img`
+  height: 100%;
+  width: 100%;
+`;
+
 export default class List extends Component {
-  renderInbound() {
-    const {inbound} = this.props.queries;
-
-    return inbound.map((query,index) => (
-      <Item key={index}>
-        <Heading>{query.origin.name}</Heading>
-        <Info>
-          <img src={icons.right} alt='inbound request' style={{width: sizes.icon.width, height: sizes.icon.height}}/>
-          <Text>{query.destination.name}</Text>
-        </Info>
-      </Item>
-    ));
-  }
-
-  renderOutbound() {
-    const {outbound} = this.props.queries;
-
-    return outbound.map((query,index) => (
-      <Item key={index}>
-        <Heading>{query.origin.name}</Heading>
-        <Info>
-          <img src={icons.right} alt='outbound request' style={{width: sizes.icon.width, height: sizes.icon.height}}/>
-          <Text>{query.destination.name}</Text>
-        </Info>
-      </Item>
+  renderItems(items, type) {
+    return items.map((query, i) => (
+      <ListItem
+        key={i}
+        query={query}
+        type={type}
+      />
     ));
   }
 
   render() {
+    const {inbound, outbound} = this.props.queries;
+
     return (
       <Wrapper>
         <Container direction="row">
           <InfoItem>
-            <img src={icons.outbound} alt="outbound requests" style={{height: '100%', width: '100%'}}/>
+            <Img src={icons.outbound} alt="outbound requests" />
           </InfoItem>
-          {this.renderOutbound()}
+          {this.renderItems(outbound, 'outbound')}
         </Container>
         <Container direction="row-reverse">
           <InfoItem>
-            <img src={icons.inbound} alt="inbound requests" style={{height: '100%', width: '100%'}}/>
+            <Img src={icons.inbound} alt="outbound requests" />
           </InfoItem>
-          {this.renderInbound()}
+          {this.renderItems(inbound, 'inbound')}
         </Container>
       </Wrapper>
     );
