@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {TimelineMax, Power1} from 'gsap';
+import {TimelineLite, Power1} from 'gsap';
 import GSAP from 'react-gsap-enhancer';
 
 import {isCenter, getDirection, DIRECTIONS} from '../station';
@@ -65,23 +65,24 @@ const moveAnimation = ({target, options}) => {
   const {z, curve, scaleBegin, scaleEnd, west} = props;
   const pod = target.find({name: 'pod'});
 
-  const timeline = new TimelineMax()
+  const timeline = new TimelineLite()
     .set(pod, {scale: 0, opacity:0, x: curve[0].x, y: curve[0].y + 350})
-    .set(pod, {css:{zIndex: z}})
+    .set(pod, {css: {zIndex: z}})
     .add('appear')
     .to(pod, 1, {opacity: 1, y: curve[0].y, scale: scaleBegin, scaleY: west ? -scaleBegin : scaleBegin, ease: Power1.easeIn})
     .add('move')
-    .to(pod, 5, {scale: scaleEnd, scaleY: west ? -scaleEnd : scaleEnd, bezier:{type:"cubic", values: curve}, force3D:true, ease: Power1.easeInOut});
+    .to(pod, 5, {scale: scaleEnd, scaleY: west ? -scaleEnd : scaleEnd, bezier:{type:"cubic", values: curve}, ease: Power1.easeInOut});
 
   if(!isOriginStation) {
     timeline
       .add('bounce')
       .to(pod, 0.3,{rotation: west ? 180 : 0}, 'bounce')
-      .to(pod, 0.6, {scaleX: 0.8, scaleY: west ? -0.8 : 0.8, y: '-=50px', repeat: 4, yoyo: true}, 'bounce')
+      .to(pod, 0.6, {scaleX: 1.2, scaleY: west ? -1.2 : 1.2, y: '-=100px', repeat: 3, yoyo: true}, 'bounce')
   }
+
   timeline
     .add('dissapear')
-    .to(pod, 3, {scale: 0, opacity: 0, y: '+=350px', onComplete: removePod});
+    .to(pod, 3, {scale: 0, opacity: 0, y: '+=300px', onComplete: removePod});
 
   return timeline;
 };
@@ -91,6 +92,7 @@ class Pod extends Component {
     const {query: {origin, destination}} = this.props;
     const direction = getDirection(origin, destination);
     const isOriginStation = isCenter(origin);
+
     this.addAnimation(
       moveAnimation,
       {
@@ -111,7 +113,7 @@ class Pod extends Component {
     const rotate = rotationMap[getDirection(origin, destination)];
 
     const style = {
-      marginTop: '220px',
+      marginTop: '250px',
       marginLeft: '-120px',
       position: 'absolute',
       transform: `rotate(${rotate}deg)`,

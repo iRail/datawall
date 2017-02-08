@@ -25,8 +25,8 @@ const screens = (num) => `${num * 100/7}vh`;
 
 export const sizes = {
   pod: {
-    width: '3em',
-    height: '3em'
+    width: '2.5em',
+    height: '2.5em'
   },
   hub: {
     width: '100vw',
@@ -65,7 +65,7 @@ export const animations = {
       }
 
       50% {
-        transform: 
+        transform:
           rotate(0)
           scale(1)
           translateY(5-${Math.random() + 2}vh);
@@ -83,7 +83,7 @@ export const animations = {
       }
 
       50% {
-        transform: 
+        transform:
           scale(${Math.random() * (1.4 - 0.6) + 0.6})
           translateX(${Math.random()}vh)
           translateY(${Math.random()}vw);
