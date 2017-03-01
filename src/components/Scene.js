@@ -1,7 +1,7 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import styled from 'styled-components';
 
-import {colors, sizes} from '../constants';
+import { colors, sizes } from '../constants';
 
 import icons from '../img/icons';
 
@@ -59,43 +59,56 @@ const Label = styled.p`
 
 class Scene extends Component {
   renderPods() {
-    const {queries, removePod} = this.props;
-    return queries.all
-      .map((query) => (
-        <Pod
-          query={query}
-          key={query.index}
-          removePod={removePod}
-        />
-      ));
+    const { queries, removePod } = this.props;
+    return queries.all.map(query => (
+      <Pod query={query} key={query.index} removePod={removePod} />
+    ));
   }
 
   render() {
     return (
       <Wrapper>
         <Info />
-        <div style={{position: 'absolute'}}>{this.renderPods()}</div>
+        <div style={{ position: 'absolute' }}>{this.renderPods()}</div>
         <Hub />
         <Labels>
           <LabelsInner>
             <Label rotate={6}>
-              <img src={icons.chevronLeft} alt='inbound request' style={{width: sizes.icon.width, height: sizes.icon.height}}/>
+              <img
+                src={icons.chevronLeft}
+                alt="inbound request"
+                style={{ width: sizes.icon.width, height: sizes.icon.height }}
+              />
               Brugge
             </Label>
             <Label rotate={-6}>
               Antwerpen
-              <img src={icons.chevronRight} alt='inbound request' style={{width: sizes.icon.width, height: sizes.icon.height}}/>
+
+              <img
+                src={icons.chevronRight}
+                alt="inbound request"
+                style={{ width: sizes.icon.width, height: sizes.icon.height }}
+              />
             </Label>
           </LabelsInner>
-          <div style={{flexGrow: 1}}></div>
+          <div style={{ flexGrow: 1 }} />
           <LabelsInner>
             <Label rotate={-19}>
-              <img src={icons.chevronLeft} alt='inbound request' style={{width: sizes.icon.width, height: sizes.icon.height}}/>
+              <img
+                src={icons.chevronLeft}
+                alt="inbound request"
+                style={{ width: sizes.icon.width, height: sizes.icon.height }}
+              />
               Kortrijk
             </Label>
             <Label rotate={19}>
               Brussel
-              <img src={icons.chevronRight} alt='inbound request' style={{width: sizes.icon.width, height: sizes.icon.height}}/>
+
+              <img
+                src={icons.chevronRight}
+                alt="inbound request"
+                style={{ width: sizes.icon.width, height: sizes.icon.height }}
+              />
             </Label>
           </LabelsInner>
         </Labels>

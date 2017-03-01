@@ -1,14 +1,13 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import styled from 'styled-components';
 
-import {listenToQueries, removeQuery} from '../redux/actions';
+import { listenToQueries, removeQuery } from '../redux/actions';
 
-import {colors, sizes} from '../constants';
+import { colors, sizes } from '../constants';
 
 import Scene from './Scene';
 import List from './List';
-
 
 const Main = styled.main`
   display: flex;
@@ -32,12 +31,12 @@ class App extends Component {
     this.props.listenToQueries();
   }
 
-  removePod = (query) => {
+  removePod = query => {
     this.props.removeQuery(query);
-  }
+  };
 
   render() {
-    const {queries} = this.props;
+    const { queries } = this.props;
     return (
       <Main>
         <List queries={queries} />
@@ -50,7 +49,7 @@ class App extends Component {
 
 const mapStateToProps = (state, ownProps) => ({
   queries: state.queries,
-  visible: state.visible
+  visible: state.visible,
 });
 
-export default connect(mapStateToProps, {listenToQueries, removeQuery})(App);
+export default connect(mapStateToProps, { listenToQueries, removeQuery })(App);

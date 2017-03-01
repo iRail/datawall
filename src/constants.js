@@ -2,8 +2,8 @@
  * Global things that never change, colors and keyframes
  */
 
-import {keyframes} from 'styled-components';
-import {DIRECTIONS} from './station';
+import { keyframes } from 'styled-components';
+import { DIRECTIONS } from './station';
 
 export const colors = {
   darkGrey: '#232323',
@@ -11,29 +11,29 @@ export const colors = {
   veryLightGrey: '#b5b5b5',
   white: '#ffffff',
   black: '#191919',
-  red: '#c91f1b'
+  red: '#c91f1b',
 };
 
 export const times = {
   pod: {
     moveIn: 3000,
-    moveAround: 5000
-  }
+    moveAround: 5000,
+  },
 };
 
-const screens = (num) => `${num * 100/7}vh`;
+const screens = num => `${num * 100 / 7}vh`;
 
 export const sizes = {
   pod: {
     width: '2.5em',
-    height: '2.5em'
+    height: '2.5em',
   },
   hub: {
     width: '100vw',
-    height: screens(5)
+    height: screens(5),
   },
   scene: {
-    height: screens(6)
+    height: screens(6),
   },
   icons: {
     height: screens(1),
@@ -46,12 +46,12 @@ export const sizes = {
     height: screens(1),
     info: {
       width: '5vw',
-    }
+    },
   },
   icon: {
     width: '1em',
     height: '1em',
-  }
+  },
 };
 
 export const animations = {
@@ -90,7 +90,7 @@ export const animations = {
       }
     `;
   },
-}
+};
 
 export const zIndex = {
   list: 8,
@@ -106,7 +106,9 @@ export const zIndex = {
     jar: 4,
     doors_front_back: 5,
     doors_front_front: 7,
-  }
-}
+  },
+};
 
-export const API_BASE_URI = process.env.NODE_ENV === 'development' ? 'localhost:3001' : '/';
+export const API_BASE_URI = process.env.NODE_ENV === 'development'
+  ? 'localhost:3001'
+  : '/';

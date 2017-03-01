@@ -1,5 +1,5 @@
 const fetch = require('node-fetch');
-const {stations} = require('../../config.json');
+const { stations } = require('../../config.json');
 let lastQuery;
 
 // fetches logs using fetch
@@ -15,8 +15,7 @@ function fetchLogs(socket, callback = null) {
         emitSingleQueries(socket, filterQueries(callback(queryData)));
         // data refreshed and events emitted, start a new timeout
         setTimeout(fetchLogs, 500, socket, getNewData);
-      }
-      else {
+      } else {
         // initialize lastQuery
         // at this point the first dataset has been fetched
         lastQuery = queryData[queryData.length - 1];
@@ -43,7 +42,9 @@ function getNewData(data) {
       // break the loop
       break;
     } else {
-      if (JSON.stringify(query) === JSON.stringify(data[data.indexOf(query) + 1])) {
+      if (
+        JSON.stringify(query) === JSON.stringify(data[data.indexOf(query) + 1])
+      ) {
         continue;
       }
       // push new query to the array
@@ -61,10 +62,8 @@ function filterQueries(queryData, inputData) {
     // test for invalid queries
     try {
       return query.querytype === 'connections' &&
-        (
-          ids.includes(query.query.arrivalStop['@id']) ||
-          ids.includes(query.query.departureStop['@id'])
-        );
+        (ids.includes(query.query.arrivalStop['@id']) ||
+          ids.includes(query.query.departureStop['@id']));
     } catch (ex) {
       return false;
     }
@@ -76,12 +75,14 @@ function emitSingleQueries(socket, data) {
   data.forEach(request => socket.emit('newData', {
     origin: request.query.departureStop,
     destination: request.query.arrivalStop,
-    querytime: request.hasOwnProperty('querytime') ? request.querytime : new Date(),
+    querytime: (
+      request.hasOwnProperty('querytime') ? request.querytime : new Date()
+    ),
     useragent: request.user_agent,
     //journey: request.query.journeyoptions // can be useful later to get the latest station
   }));
 }
 
 module.exports = {
-  startPolling
+  startPolling,
 };

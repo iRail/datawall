@@ -1,9 +1,8 @@
-import React, {Component} from 'react';
-import styled, {keyframes} from 'styled-components';
+import React, { Component } from 'react';
+import styled, { keyframes } from 'styled-components';
 
 import icons from '../img/icons';
-import {colors, sizes} from '../constants';
-
+import { colors, sizes } from '../constants';
 
 const appear = keyframes`
   0% {
@@ -63,7 +62,7 @@ const Text = styled.span`
 
 export default class ListItem extends Component {
   render() {
-    const {query, type} = this.props;
+    const { query, type } = this.props;
 
     return (
       <Item>

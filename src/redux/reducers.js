@@ -1,12 +1,12 @@
-import {RECEIVE_QUERIES, REMOVE_QUERY} from './actions';
-import {isCenter} from '../station';
+import { RECEIVE_QUERIES, REMOVE_QUERY } from './actions';
+import { isCenter } from '../station';
 
 const INITIAL_STATE = {
   queries: {
     inbound: [],
     outbound: [],
-    all: []
-  }
+    all: [],
+  },
 };
 
 let queryIndex = 0;
@@ -19,37 +19,38 @@ export const queryReducer = (state = INITIAL_STATE, action) => {
 
       const inbound = [
         ...queries.filter(q => isCenter(q.destination)),
-        ...state.queries.inbound
+        ...state.queries.inbound,
       ];
       const outbound = [
         ...queries.filter(q => isCenter(q.origin)),
-        ...state.queries.outbound
+        ...state.queries.outbound,
       ];
 
       const all = [
-        ...queries.map(q => ({...q, index: queryIndex})),
-        ...state.queries.all
+        ...queries.map(q => ({ ...q, index: queryIndex })),
+        ...state.queries.all,
       ];
 
       queryIndex++;
       return {
         ...state,
         queries: {
-          inbound: inbound.slice(0,4),
-          outbound: outbound.slice(0,4),
+          inbound: inbound.slice(0, 4),
+          outbound: outbound.slice(0, 4),
           all,
-        }
+        },
       };
     case REMOVE_QUERY:
-      const filtered = state.queries.all
-        .filter(q => action.payload.querytime !== q.querytime);
+      const filtered = state.queries.all.filter(
+        q => action.payload.querytime !== q.querytime,
+      );
 
       return {
         ...state,
         queries: {
           ...state.queries,
-          all: filtered
-        }
+          all: filtered,
+        },
       };
     default:
       return state;

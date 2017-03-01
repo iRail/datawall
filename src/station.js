@@ -1,10 +1,10 @@
-import {stations} from '../config.json';
+import { stations } from '../config.json';
 
 export const DIRECTIONS = {
   northeast: 'NORTHEAST',
   northwest: 'NORTHWEST',
   southeast: 'SOUTHEAST',
-  southwest: 'SOUTHWEST'
+  southwest: 'SOUTHWEST',
 };
 
 /**

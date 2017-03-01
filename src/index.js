@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Provider} from 'react-redux';
-import {injectGlobal} from 'styled-components';
+import { Provider } from 'react-redux';
+import { injectGlobal } from 'styled-components';
 
 import 'typeface-pt-sans';
 
@@ -25,5 +25,5 @@ ReactDOM.render(
   <Provider store={store}>
     <App />
   </Provider>,
-  document.getElementById('root')
+  document.getElementById('root'),
 );

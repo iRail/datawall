@@ -11,5 +11,5 @@ export default {
   inbound,
   outbound,
   chevronRight,
-  chevronLeft
-}
+  chevronLeft,
+};

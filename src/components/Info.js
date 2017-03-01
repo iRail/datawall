@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import {sizes} from '../constants';
+import { sizes } from '../constants';
 
 import logo from '../img/logo_white.svg';
 import imec from '../img/logo_imec.svg';
@@ -32,4 +32,4 @@ export default () => {
       <Logo src={imec} alt="IMEC" />
     </Wrapper>
   );
-}
+};

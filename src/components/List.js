@@ -1,8 +1,8 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import styled from 'styled-components';
 
 import icons from '../img/icons';
-import {colors, sizes, zIndex} from '../constants';
+import { colors, sizes, zIndex } from '../constants';
 import ListItem from './ListItem';
 
 const Wrapper = styled.div`
@@ -43,16 +43,12 @@ const Img = styled.img`
 export default class List extends Component {
   renderItems(items, type) {
     return items.map((query, i) => (
-      <ListItem
-        key={i}
-        query={query}
-        type={type}
-      />
+      <ListItem key={i} query={query} type={type} />
     ));
   }
 
   render() {
-    const {inbound, outbound} = this.props.queries;
+    const { inbound, outbound } = this.props.queries;
 
     return (
       <Wrapper>

@@ -4,11 +4,11 @@ const app = express();
 const http = require('http').Server(app);
 const io = require('socket.io')(http);
 
-const {startPolling} = require('./src/lib/api');
+const { startPolling } = require('./src/lib/api');
 
 startPolling(io);
 
-app.set('port', (process.env.PORT || 3001));
+app.set('port', process.env.PORT || 3001);
 
 // Express only serves static assets in production
 if (process.env.NODE_ENV === 'production') {
