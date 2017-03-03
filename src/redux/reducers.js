@@ -37,7 +37,7 @@ export const queryReducer = (state = INITIAL_STATE, action) => {
         queries: {
           inbound: inbound.slice(0, 4),
           outbound: outbound.slice(0, 4),
-          all,
+          all: all.slice(0, 20),
         },
       };
     case REMOVE_QUERY:
