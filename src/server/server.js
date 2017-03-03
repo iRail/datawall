@@ -4,7 +4,7 @@ const app = express();
 const http = require('http').Server(app);
 const io = require('socket.io')(http);
 
-const { startPolling } = require('./src/lib/api');
+const { startPolling } = require('./lib/api');
 
 startPolling(io);
 

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import styled, { keyframes } from 'styled-components';
 
 import icons from '../img/icons';
-import { colors, sizes } from '../constants';
+import { colors, sizes } from '../../constants';
 
 const appear = keyframes`
   0% {

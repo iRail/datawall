@@ -1,5 +1,5 @@
 import { RECEIVE_QUERIES, REMOVE_QUERY } from './actions';
-import { isCenter } from '../station';
+import { isCenter } from '../../station';
 
 const INITIAL_STATE = {
   queries: {

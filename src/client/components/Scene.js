@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 
-import { colors, sizes } from '../constants';
+import { colors, sizes } from '../../constants';
 
 import icons from '../img/icons';
 

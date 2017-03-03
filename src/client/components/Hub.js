@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import { name } from '../../config.json';
+import { name } from '../../../config.json';
 import hub from '../img/hub';
 
-import { colors, sizes, zIndex } from '../constants';
+import { colors, sizes, zIndex } from '../../constants';
 
 const Wrapper = styled.div`
   width: ${sizes.hub.width};

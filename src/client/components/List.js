@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 
 import icons from '../img/icons';
-import { colors, sizes, zIndex } from '../constants';
+import { colors, sizes, zIndex } from '../../constants';
 import ListItem from './ListItem';
 
 const Wrapper = styled.div`

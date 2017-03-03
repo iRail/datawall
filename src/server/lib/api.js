@@ -1,5 +1,5 @@
 const fetch = require('node-fetch');
-const { stations } = require('../../config.json');
+const { stations } = require('../../../config.json');
 const { generateRandomQuery } = require('./generator');
 let lastQuery, lastUpdateTime = new Date();
 

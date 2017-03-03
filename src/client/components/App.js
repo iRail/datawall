@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 import { listenToQueries, removeQuery } from '../redux/actions';
 
-import { colors, sizes } from '../constants';
+import { colors, sizes } from '../../constants';
 
 import Scene from './Scene';
 import List from './List';

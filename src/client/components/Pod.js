@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { TimelineMax, Power1 } from 'gsap';
 import GSAP from 'react-gsap-enhancer';
 
-import { isCenter, getDirection, DIRECTIONS } from '../station';
-import { sizes } from '../constants';
+import { isCenter, getDirection, DIRECTIONS } from '../../station';
+import { sizes } from '../../constants';
 import pod from '../img/pod.svg';
 import hub from '../img/hub';
 

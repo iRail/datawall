@@ -5,8 +5,8 @@ import { injectGlobal } from 'styled-components';
 
 import 'typeface-pt-sans';
 
-import store from './redux/store';
-import App from './components/App';
+import store from './client/redux/store';
+import App from './client/components/App';
 
 // eslint-disable-next-line no-unused-expressions
 injectGlobal`
