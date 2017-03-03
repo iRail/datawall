@@ -39,5 +39,6 @@
   ],
   "name": "Gent",
   "longitude": 3.710675,
-  "latitude": 51.035896
+  "latitude": 51.035896,
+  "FAKE_NEWS": true
 }
