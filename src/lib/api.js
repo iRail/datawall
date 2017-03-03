@@ -1,6 +1,7 @@
 const fetch = require('node-fetch');
 const { stations } = require('../../config.json');
-let lastQuery;
+const { generateRandomQuery } = require('./generator');
+let lastQuery, lastUpdateTime = new Date();
 
 // fetches logs using fetch
 function fetchLogs(socket, callback = null) {
@@ -72,17 +73,29 @@ function filterQueries(queryData, inputData) {
 
 // emit event for every query
 function emitSingleQueries(socket, data) {
-  data.forEach(request => socket.emit('newData', {
-    origin: request.query.departureStop,
-    destination: request.query.arrivalStop,
-    querytime: (
-      request.hasOwnProperty('querytime') ? request.querytime : new Date()
-    ),
-    useragent: request.user_agent,
-    //journey: request.query.journeyoptions // can be useful later to get the latest station
-  }));
+  if(data.length === 0 && new Date() - new Date(lastUpdateTime) > 5000) {
+    const query = generateRandomQuery();
+    socket.emit('newData', query);
+    lastUpdateTime = query.querytime || new Date();
+  }
+  else {
+    data.forEach(request => {
+      lastUpdateTime = request.querytime;
+      socket.emit('newData', {
+        origin: request.query.departureStop,
+        destination: request.query.arrivalStop,
+        querytime: (
+          request.hasOwnProperty('querytime') ? request.querytime : new Date()
+        ),
+        useragent: request.user_agent,
+        //journey: request.query.journeyoptions // can be useful later to get the latest station
+      });
+    });
+  }
 }
 
 module.exports = {
   startPolling,
 };
+
+

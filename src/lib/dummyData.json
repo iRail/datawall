@@ -1,0 +1,82 @@
+{
+  "ghentStations": [
+    {
+      "@id": "http://irail.be/stations/NMBS/008892007",
+      "longitude": "3.710675",
+      "latitude": "51.035896",
+      "name": "Gent-Sint-Pieters",
+      "query": "Gent-Sint-Pieters"
+    },
+    {
+      "@id": "http://irail.be/stations/NMBS/008893120",
+      "longitude": "3.740591",
+      "latitude": "51.056365",
+      "name": "Gent-Dampoort",
+      "query": "008893120"
+    }
+  ],
+  "otherStations": [
+    {
+      "@id": "http://irail.be/stations/NMBS/008821006",
+      "longitude": "4.421101",
+      "latitude": "51.2172",
+      "name": "Antwerp-Central",
+      "query": "Antwerpen-Centraal"
+    },
+    {
+      "@id": "http://irail.be/stations/NMBS/008813003",
+      "longitude": "4.356801",
+      "latitude": "50.845658",
+      "name": "Brussel-Centraal",
+      "query": "BE.NMBS.008813003"
+    },
+    {
+      "@id": "http://irail.be/stations/NMBS/008833001",
+      "longitude": "4.715866",
+      "latitude": "50.88228",
+      "name": "Leuven",
+      "query": "008833001"
+    },
+    {
+      "@id": "http://irail.be/stations/NMBS/008891009",
+      "longitude": "3.216726",
+      "latitude": "51.197226",
+      "name": "Brugge",
+      "query": "BE.NMBS.008891009"
+    },
+    {
+      "@id": "http://irail.be/stations/NMBS/008896008",
+      "longitude": "3.264549",
+      "latitude": "50.824506",
+      "name": "Kortrijk",
+      "query": "Kortrijk"
+    },
+    {
+      "@id": "http://irail.be/stations/NMBS/008892601",
+      "longitude": "3.600386",
+      "latitude": "50.850116",
+      "name": "Oudenaarde",
+      "query": "008892601"
+    },
+    {
+    "@id": "http://irail.be/stations/NMBS/008812005",
+    "longitude": "4.360846",
+    "latitude": "50.859663",
+    "name": "Brussel-Noord",
+    "query": "008812005"
+  },
+  {
+    "@id": "http://irail.be/stations/NMBS/008814001",
+    "longitude": "4.336531",
+    "latitude": "50.835707",
+    "name": "Brussel-Zuid",
+    "query": "008814001"
+  }
+  ],
+  "userAgents" : [
+    "Railer/1630 CFNetwork/808.2.16 Darwin/16.3.0",
+    "WazaBe: BeTrains 4.59 for Android",
+    "",
+    "Jakarta Commons-HttpClient/3.1"
+  ]
+}
