@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { TimelineLite, Power1 } from 'gsap';
+import { TimelineMax, Power1 } from 'gsap';
 import GSAP from 'react-gsap-enhancer';
 
 import { isCenter, getDirection, DIRECTIONS } from '../station';
@@ -93,7 +93,7 @@ const moveAnimation = ({ target, options }) => {
   const { z, curve, scaleBegin, scaleEnd, west } = props;
   const pod = target.find({ name: 'pod' });
 
-  const timeline = new TimelineLite()
+  const timeline = new TimelineMax()
     .set(pod, { scale: 0, opacity: 0, x: curve[0].x, y: curve[0].y + 350 })
     .set(pod, { css: { zIndex: z } })
     .add('appear')
@@ -113,26 +113,37 @@ const moveAnimation = ({ target, options }) => {
     });
 
   if (!isOriginStation) {
+    let randomDistanceX = (Math.random() * 50) + 70;
+    randomDistanceX *= Math.floor(Math.random()*2) === 1 ? 1 : -1;
+
+    const floatTimeline = new TimelineMax({repeat: 7, yoyo: true})
+      .to(pod, 1, { x: `-=${2*randomDistanceX}px`})
+      .to(pod, 1, { x: `+=${2*randomDistanceX}px`})
+
     timeline
-      .add('bounce')
-      .to(pod, 0.3, { rotation: west ? 180 : 0 }, 'bounce')
+      .to(pod, 0.5, { x: `+=${randomDistanceX}px`})
+      .add('move around')
+      .to(pod, 0.3, { rotation: west ? 180 : 0 }, 'move around')
       .to(
         pod,
-        0.6,
+        4,
         {
           scaleX: 1.2,
           scaleY: west ? -1.2 : 1.2,
-          y: '-=100px',
+          y: '-=150px',
           repeat: 3,
           yoyo: true,
         },
-        'bounce',
-      );
+        'move around',
+      )
+      .add(floatTimeline, 'move around')
+      .to(pod, 0.5, { x: `-=${randomDistanceX}px`})
+
   }
 
   timeline
     .add('dissapear')
-    .to(pod, 3, { scale: 0, opacity: 0, y: '+=300px', onComplete: removePod });
+    .to(pod, 2, { scale: 0, opacity: 0, y: '+=150px', onComplete: removePod });
 
   return timeline;
 };
@@ -160,8 +171,8 @@ class Pod extends Component {
     const rotate = rotationMap[getDirection(origin, destination)];
 
     const style = {
-      marginTop: '250px',
-      marginLeft: '-120px',
+      marginTop: '2.5em',
+      marginLeft: '-1em',
       position: 'absolute',
       transform: `rotate(${rotate}deg)`,
       width: sizes.pod.width,
