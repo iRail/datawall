@@ -1,5 +1,5 @@
 const fetch = require('node-fetch');
-const { stations } = require('../../../config.json');
+const { stations, FAKE_NEWS } = require('../../../config.json');
 const { generateRandomQuery } = require('./generator');
 let lastQuery, lastUpdateTime = new Date();
 
@@ -73,7 +73,7 @@ function filterQueries(queryData, inputData) {
 
 // emit event for every query
 function emitSingleQueries(socket, data) {
-  if(data.length === 0 && new Date() - new Date(lastUpdateTime) > 5000) {
+  if(FAKE_NEWS && data.length === 0 && new Date() - new Date(lastUpdateTime) > 5000) {
     const query = generateRandomQuery();
     socket.emit('newData', query);
     lastUpdateTime = query.querytime || new Date();
