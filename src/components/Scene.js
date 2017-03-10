@@ -113,8 +113,8 @@ class Scene extends Component {
           </LabelsInner>
         </Labels>
         <Text>
-          <P>See the future of train travel</P>
-          <P>search with <strong>irail.be</strong></P>
+          <P>Bekijk de toekomst van treinreizen</P>
+          <P>zoek met <strong>irail.be</strong></P>
         </Text>
       </Wrapper>
     );
