@@ -113,15 +113,15 @@ const moveAnimation = ({ target, options }) => {
     });
 
   if (!isOriginStation) {
-    let randomDistanceX = (Math.random() * 50) + 70;
-    randomDistanceX *= Math.floor(Math.random()*2) === 1 ? 1 : -1;
+    let randomDistanceX = Math.random() * 50 + 70;
+    randomDistanceX *= Math.floor(Math.random() * 2) === 1 ? 1 : -1;
 
-    const floatTimeline = new TimelineMax({repeat: 7, yoyo: true})
-      .to(pod, 1, { x: `-=${2*randomDistanceX}px`})
-      .to(pod, 1, { x: `+=${2*randomDistanceX}px`})
+    const floatTimeline = new TimelineMax({ repeat: 7, yoyo: true })
+      .to(pod, 1, { x: `-=${2 * randomDistanceX}px` })
+      .to(pod, 1, { x: `+=${2 * randomDistanceX}px` });
 
     timeline
-      .to(pod, 0.5, { x: `+=${randomDistanceX}px`})
+      .to(pod, 0.5, { x: `+=${randomDistanceX}px` })
       .add('move around')
       .to(pod, 0.3, { rotation: west ? 180 : 0 }, 'move around')
       .to(
@@ -137,8 +137,7 @@ const moveAnimation = ({ target, options }) => {
         'move around',
       )
       .add(floatTimeline, 'move around')
-      .to(pod, 0.5, { x: `-=${randomDistanceX}px`})
-
+      .to(pod, 0.5, { x: `-=${randomDistanceX}px` });
   }
 
   timeline

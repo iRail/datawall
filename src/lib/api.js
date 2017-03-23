@@ -73,20 +73,23 @@ function filterQueries(queryData, inputData) {
 
 // emit event for every query
 function emitSingleQueries(socket, data) {
-  if(FAKE_NEWS && data.length === 0 && new Date() - new Date(lastUpdateTime) > 5000) {
+  if (
+    FAKE_NEWS &&
+    data.length === 0 &&
+    new Date() - new Date(lastUpdateTime) > 5000
+  ) {
     const query = generateRandomQuery();
     socket.emit('newData', query);
     lastUpdateTime = query.querytime || new Date();
-  }
-  else {
+  } else {
     data.forEach(request => {
       lastUpdateTime = request.querytime;
       socket.emit('newData', {
         origin: request.query.departureStop,
         destination: request.query.arrivalStop,
-        querytime: (
-          request.hasOwnProperty('querytime') ? request.querytime : new Date()
-        ),
+        querytime: request.hasOwnProperty('querytime')
+          ? request.querytime
+          : new Date(),
         useragent: request.user_agent,
         //journey: request.query.journeyoptions // can be useful later to get the latest station
       });
@@ -97,5 +100,3 @@ function emitSingleQueries(socket, data) {
 module.exports = {
   startPolling,
 };
-
-

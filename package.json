@@ -34,11 +34,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Haroenv/datawall.git"
+    "url": "git+https://github.com/iRail/datawall.git"
   },
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/Haroenv/datawall/issues"
+    "url": "https://github.com/iRail/datawall/issues"
   },
   "homepage": "/",
   "proxy": "http://localhost:3001/",
